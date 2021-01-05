@@ -106,6 +106,13 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="@Url.Action("Index", "Menu")">
+                            <span class="link-title">Món ăn theo ngày</span>
+                            <i class="mdi mdi-clipboard-text link-icon"></i>
+                        </a>
+                    </li>
+
                     if ((int)Session["userRole"] == 1)
                     {
                         <li>
