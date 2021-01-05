@@ -1,0 +1,244 @@
+﻿@model CanteenVanLang.Models.ORDER
+@{
+    Layout = null;
+    int count = 1;
+    int total = 0;
+    string today = DateTime.Now.ToString("dd/MM/yyyy");
+}
+
+<!DOCTYPE html>
+<!--
+  Invoice template by invoicebus.com
+  To customize this template consider following this guide https://invoicebus.com/how-to-create-invoice-template/
+  This template is under Invoicebus Template License, see https://invoicebus.com/templates/license/
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://cdn.invoicebus.com/generator/generator.min.css" media="all">
+    <title>@Model.ORDER_CODE</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Invoicebus Invoice Template">
+    <meta name="author" content="Invoicebus">
+    <meta name="template-hash" content="baadb45704803c2d1a1ac3e569b757d5">
+    <link href="~/Content/invoiceStyle.css" rel="stylesheet" />
+    <style>
+        .btn-print {
+            height: 35px;
+            max-height: 35px;
+            padding: 4px 15px;
+            font-size: 0.875rem;
+            color: #fff;
+            background-color: #D41B29;
+            border-color: #D41B29;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.03rem;
+            text-align: center;
+            vertical-align: middle;
+            text-transform: none;
+            overflow: visible;
+            box-sizing: border-box;
+            text-indent: 0px;
+            text-shadow: none;
+            word-spacing: normal;
+        }
+        
+    </style>
+</head>
+
+@*<ib-span class="ib_invoice_commands_wrap">
+        <ib-span class="ib_invoice_commands">
+
+            <ib-span id="ib-print-btn" class="ib_default_button">
+                <i class="fa fa-print"></i>
+                <span class="ib_hide_xsmall"> Print</span>
+            </ib-span>
+
+        </ib-span>
+    </ib-span>*@
+<body>
+
+
+    <div id="container">
+        <section id="memo">
+            <div class="logo">
+                <img data-logo="~/Images/canteenVL.png" src="~/Images/canteenVL.png" style="max-width:inherit; max-height: 60px" />
+            </div>
+
+            <div class="company-info">
+                <div>Canteen Van Lang</div>
+                <br />
+
+                <span>69/68 Đặng Thùy Trâm, P.13, Q. Bình Thạnh, TP.HCM</span>
+                <br />
+                <span>Tầng 4, Đại học Văn Lang</span>
+                <br />
+
+                <span>032 232 232</span>
+                <br />
+                <span>canteenVanLang.com</span>
+            </div>
+        </section>
+        <section id="invoice-title-number">
+
+            <span id="title">Hóa đơn</span>
+            <span id="number">@Model.ORDER_CODE</span>
+
+        </section>
+
+        <div class="clearfix"></div>
+
+        <section id="client-info">
+            @*<span>Thông tin khách hàng</span>*@
+            <div>
+                <span class="bold">Khách hàng: @Model.CUSTOMER.FULLNAME</span>
+            </div>
+
+            <div>
+                <span>Nhân viên: @Model.ACCOUNT.FULLNAME</span>
+            </div>
+
+            <div>
+                <span>Ngày mua: @Model.DATE</span>
+            </div>
+
+            @*<div>
+                    <span>client_phone_fa</span>
+                </div>
+
+                <div>
+                    <span>client_email</span>
+                </div>
+
+                <div>
+                    <span>client_other</span>
+                </div>*@
+        </section>
+
+        <div class="clearfix"></div>
+
+        <section id="items">
+
+            <table cellpadding="0" cellspacing="0">
+
+                <tr>
+                    <th>STT</th> <!-- Dummy cell for the row number and row commands -->
+                    <th>Món ăn</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá (VNĐ)</th>
+                    <th>Thành tiền (VNĐ)</th>
+                </tr>
+                @foreach (var orderDetail in Model.ORDER_DETAIL)
+                {
+                    total += orderDetail.UNIT_PRICE * orderDetail.QUANTITY;
+                    <tr data-iterate="item">
+                        <td>@count</td> <!-- Don't remove this column as it's needed for the row commands -->
+                        <td>@orderDetail.MENU.FOOD.FOOD_NAME</td>
+                        <td>@orderDetail.QUANTITY</td>
+                        <td>@string.Format("{0:#,#.}", orderDetail.UNIT_PRICE)</td>
+                        <td>@string.Format("{0:#,#.}", orderDetail.UNIT_PRICE * orderDetail.QUANTITY)</td>
+                    </tr>
+                    count++;
+                }
+
+
+            </table>
+
+        </section>
+
+        <section id="sums">
+
+            <table cellpadding="0" cellspacing="0">
+                @*<tr>
+                        <th>amount_subtotal_label</th>
+                        <td>amount_subtotal</td>
+                    </tr>
+
+                    <tr data-iterate="tax">
+                        <th>tax_name</th>
+                        <td>tax_value</td>
+                    </tr>
+
+                    <tr class="amount-total">
+                        <th>amount_total_label</th>
+                        <td>amount_total</td>
+                    </tr>*@
+
+                <!-- You can use attribute data-hide-on-quote="true" to hide specific information on quotes.
+                     For example Invoicebus doesn't need amount paid and amount due on quotes  -->
+                @*<tr data-hide-on-quote="true">
+                        <th>amount_paid_label</th>
+                        <td>amount_paid</td>
+                    </tr>*@
+
+                <tr data-hide-on-quote="true">
+                    <th>Tổng tiền:</th>
+                    <td>@string.Format("{0:#,#.}", total)</td>
+                </tr>
+
+            </table>
+            <div class="clearfix"></div>
+
+        </section>
+
+        <div class="clearfix"></div>
+        <section id="invoice-info">
+            <div>
+                <span>In ngày</span> <span></span>
+            </div>
+            <div>
+                <span>Người in</span> <span></span>
+            </div>
+            <br />
+            @*<div>
+                    <span>currency_label</span> <span>currency</span>
+                </div>
+                <div>
+                    <span>po_number_label</span> <span>po_number</span>
+                </div>
+                <div>
+                    <span>net_term_label</span> <span>net_term</span>
+                </div>*@
+        </section>
+
+        <section id="terms">
+            <div class="notes">@today</div>
+
+            <div class="payment-info">
+                <div>@Session["userFullName"]</div>
+            </div>
+        </section>
+
+        <div class="clearfix"></div>
+        <div class="thank-you" style="font-size: 30px">Xin cảm ơn và hẹn gặp lại</div>
+        <div class="clearfix"></div>
+    </div>
+    <footer>
+        <section id="memo">
+            <button type="button" class="btn-print" onclick="window.print()">In hóa đơn</button>
+            <a href="@Url.Action("Index", "Order")" style="float: right; margin-right: 40px">
+                <button type="button" class="btn-print" style="background-color: #fff; border-color: #f3f5f6; color: black">Hủy</button>
+            </a>
+        </section>
+    </footer>
+</body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/generator.min.js"></script>
+    <script src="http://cdn.invoicebus.com/generator/generator.min.js?data=data.js"></script>
+    <script type="text/javascript" src="http://cdn.invoicebus.com/generator/jquery.min.js"></script>
+    <script src="http://cdn.invoicebus.com/generator/docs/raw-data/raw-data-en.js"></script>
+    <script src="~/Content/data.js"></script>
+    <script type="text/javascript" src="http://cdn.invoicebus.com/generator/bootstrap.min.js"></script>
+    <script src="http://cdn.invoicebus.com/generator/docs/save-state/save-state-en.js"></script>
+    <script src="http://cdn.invoicebus.com/generator/docs/how-to/how-to-en.js"></script>
+}

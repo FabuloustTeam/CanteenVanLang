@@ -1,0 +1,802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QUANLYCANTEENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ABOUT_US">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CONTENT" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCOUNT_CODE" Type="varchar" MaxLength="4" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FULLNAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="ROLE" Type="int" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY_CODE" Type="varchar" MaxLength="5" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="nvarchar(max)" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
+          <Property Name="SUBJECT" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CONTENT" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_CODE" Type="varchar" MaxLength="9" />
+          <Property Name="FULLNAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="MEMBER_TYPE" Type="int" Nullable="false" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="15" />
+          <Property Name="FACULTY_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="FACULTY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FACULTY_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="FACULTY_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FOOD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FOOD_CODE" Type="varchar" MaxLength="9" />
+          <Property Name="FOOD_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRICE" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MENU_CODE" Type="varchar" MaxLength="11" />
+          <Property Name="PRICE" Type="int" Nullable="false" />
+          <Property Name="QUANTITY" Type="int" Nullable="false" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="FOOD_ID" Type="int" />
+          <Property Name="ACCOUNT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="NOTIFICATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIME" Type="datetime" />
+          <Property Name="CONTENT" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ACCOUNT_ID" Type="int" />
+          <Property Name="ORDER_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_CODE" Type="varchar" MaxLength="13" />
+          <Property Name="DATE" Type="datetime" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="FEEDBACK" Type="nvarchar(max)" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="ACCOUNT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUANTITY" Type="int" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="int" Nullable="false" />
+          <Property Name="MENU_ID" Type="int" />
+          <Property Name="ORDER_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SLIDER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CUSTOMER__FACULT__38996AB5">
+          <End Role="FACULTY" Type="Self.FACULTY" Multiplicity="0..1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACULTY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="FACULTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FOOD__CATEGORY_I__3F466844">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+          <End Role="FOOD" Type="Self.FOOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FOOD">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MENU__ACCOUNT_ID__4316F928">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MENU__FOOD_ID__4222D4EF">
+          <End Role="FOOD" Type="Self.FOOD" Multiplicity="0..1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOOD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="FOOD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTIFICAT__ACCOU__4E88ABD4">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTIFICAT__ORDER__4D94879B">
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER__ACCOUNT_I__45F365D3">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER__CUSTOMER___46E78A0C">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER_DET__MENU___4AB81AF0">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+          <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER_DET__ORDER__49C3F6B7">
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="0..1" />
+          <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYCANTEENModelStoreContainer">
+          <EntitySet Name="ABOUT_US" EntityType="Self.ABOUT_US" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTACT" EntityType="Self.CONTACT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACULTY" EntityType="Self.FACULTY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FOOD" EntityType="Self.FOOD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOTIFICATION" EntityType="Self.NOTIFICATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDER" EntityType="Self.ORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SLIDER" EntityType="Self.SLIDER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CUSTOMER__FACULT__38996AB5" Association="Self.FK__CUSTOMER__FACULT__38996AB5">
+            <End Role="FACULTY" EntitySet="FACULTY" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FOOD__CATEGORY_I__3F466844" Association="Self.FK__FOOD__CATEGORY_I__3F466844">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="FOOD" EntitySet="FOOD" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MENU__ACCOUNT_ID__4316F928" Association="Self.FK__MENU__ACCOUNT_ID__4316F928">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MENU__FOOD_ID__4222D4EF" Association="Self.FK__MENU__FOOD_ID__4222D4EF">
+            <End Role="FOOD" EntitySet="FOOD" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICAT__ACCOU__4E88ABD4" Association="Self.FK__NOTIFICAT__ACCOU__4E88ABD4">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICAT__ORDER__4D94879B" Association="Self.FK__NOTIFICAT__ORDER__4D94879B">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER__ACCOUNT_I__45F365D3" Association="Self.FK__ORDER__ACCOUNT_I__45F365D3">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="ORDER" EntitySet="ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER__CUSTOMER___46E78A0C" Association="Self.FK__ORDER__CUSTOMER___46E78A0C">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="ORDER" EntitySet="ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER_DET__MENU___4AB81AF0" Association="Self.FK__ORDER_DET__MENU___4AB81AF0">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER_DET__ORDER__49C3F6B7" Association="Self.FK__ORDER_DET__ORDER__49C3F6B7">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYCANTEENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QUANLYCANTEENEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ABOUT_US" EntityType="QUANLYCANTEENModel.ABOUT_US" />
+          <EntitySet Name="ACCOUNTs" EntityType="QUANLYCANTEENModel.ACCOUNT" />
+          <EntitySet Name="CATEGORies" EntityType="QUANLYCANTEENModel.CATEGORY" />
+          <EntitySet Name="CONTACTs" EntityType="QUANLYCANTEENModel.CONTACT" />
+          <EntitySet Name="CUSTOMERs" EntityType="QUANLYCANTEENModel.CUSTOMER" />
+          <EntitySet Name="FACULTies" EntityType="QUANLYCANTEENModel.FACULTY" />
+          <EntitySet Name="FOODs" EntityType="QUANLYCANTEENModel.FOOD" />
+          <EntitySet Name="MENUs" EntityType="QUANLYCANTEENModel.MENU" />
+          <EntitySet Name="NOTIFICATIONs" EntityType="QUANLYCANTEENModel.NOTIFICATION" />
+          <EntitySet Name="ORDERs" EntityType="QUANLYCANTEENModel.ORDER" />
+          <EntitySet Name="ORDER_DETAIL" EntityType="QUANLYCANTEENModel.ORDER_DETAIL" />
+          <EntitySet Name="SLIDERs" EntityType="QUANLYCANTEENModel.SLIDER" />
+          <AssociationSet Name="FK__MENU__ACCOUNT_ID__4316F928" Association="QUANLYCANTEENModel.FK__MENU__ACCOUNT_ID__4316F928">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="MENU" EntitySet="MENUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICAT__ACCOU__4E88ABD4" Association="QUANLYCANTEENModel.FK__NOTIFICAT__ACCOU__4E88ABD4">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER__ACCOUNT_I__45F365D3" Association="QUANLYCANTEENModel.FK__ORDER__ACCOUNT_I__45F365D3">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="ORDER" EntitySet="ORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FOOD__CATEGORY_I__3F466844" Association="QUANLYCANTEENModel.FK__FOOD__CATEGORY_I__3F466844">
+            <End Role="CATEGORY" EntitySet="CATEGORies" />
+            <End Role="FOOD" EntitySet="FOODs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CUSTOMER__FACULT__38996AB5" Association="QUANLYCANTEENModel.FK__CUSTOMER__FACULT__38996AB5">
+            <End Role="FACULTY" EntitySet="FACULTies" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER__CUSTOMER___46E78A0C" Association="QUANLYCANTEENModel.FK__ORDER__CUSTOMER___46E78A0C">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="ORDER" EntitySet="ORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MENU__FOOD_ID__4222D4EF" Association="QUANLYCANTEENModel.FK__MENU__FOOD_ID__4222D4EF">
+            <End Role="FOOD" EntitySet="FOODs" />
+            <End Role="MENU" EntitySet="MENUs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER_DET__MENU___4AB81AF0" Association="QUANLYCANTEENModel.FK__ORDER_DET__MENU___4AB81AF0">
+            <End Role="MENU" EntitySet="MENUs" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICAT__ORDER__4D94879B" Association="QUANLYCANTEENModel.FK__NOTIFICAT__ORDER__4D94879B">
+            <End Role="ORDER" EntitySet="ORDERs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ORDER_DET__ORDER__49C3F6B7" Association="QUANLYCANTEENModel.FK__ORDER_DET__ORDER__49C3F6B7">
+            <End Role="ORDER" EntitySet="ORDERs" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ABOUT_US">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CONTENT" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCOUNT_CODE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FULLNAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="ROLE" Type="Int32" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MENUs" Relationship="QUANLYCANTEENModel.FK__MENU__ACCOUNT_ID__4316F928" FromRole="ACCOUNT" ToRole="MENU" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="QUANLYCANTEENModel.FK__NOTIFICAT__ACCOU__4E88ABD4" FromRole="ACCOUNT" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="ORDERs" Relationship="QUANLYCANTEENModel.FK__ORDER__ACCOUNT_I__45F365D3" FromRole="ACCOUNT" ToRole="ORDER" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FOODs" Relationship="QUANLYCANTEENModel.FK__FOOD__CATEGORY_I__3F466844" FromRole="CATEGORY" ToRole="FOOD" />
+        </EntityType>
+        <EntityType Name="CONTACT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SUBJECT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_CODE" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="FULLNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="MEMBER_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="PHONE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FACULTY_ID" Type="Int32" />
+          <NavigationProperty Name="FACULTY" Relationship="QUANLYCANTEENModel.FK__CUSTOMER__FACULT__38996AB5" FromRole="CUSTOMER" ToRole="FACULTY" />
+          <NavigationProperty Name="ORDERs" Relationship="QUANLYCANTEENModel.FK__ORDER__CUSTOMER___46E78A0C" FromRole="CUSTOMER" ToRole="ORDER" />
+        </EntityType>
+        <EntityType Name="FACULTY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FACULTY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FACULTY_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUSTOMERs" Relationship="QUANLYCANTEENModel.FK__CUSTOMER__FACULT__38996AB5" FromRole="FACULTY" ToRole="CUSTOMER" />
+        </EntityType>
+        <EntityType Name="FOOD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FOOD_CODE" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="FOOD_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Int32" Nullable="false" />
+          <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY_ID" Type="Int32" />
+          <NavigationProperty Name="CATEGORY" Relationship="QUANLYCANTEENModel.FK__FOOD__CATEGORY_I__3F466844" FromRole="FOOD" ToRole="CATEGORY" />
+          <NavigationProperty Name="MENUs" Relationship="QUANLYCANTEENModel.FK__MENU__FOOD_ID__4222D4EF" FromRole="FOOD" ToRole="MENU" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MENU_CODE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="PRICE" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="FOOD_ID" Type="Int32" />
+          <Property Name="ACCOUNT_ID" Type="Int32" />
+          <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEENModel.FK__MENU__ACCOUNT_ID__4316F928" FromRole="MENU" ToRole="ACCOUNT" />
+          <NavigationProperty Name="FOOD" Relationship="QUANLYCANTEENModel.FK__MENU__FOOD_ID__4222D4EF" FromRole="MENU" ToRole="FOOD" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="QUANLYCANTEENModel.FK__ORDER_DET__MENU___4AB81AF0" FromRole="MENU" ToRole="ORDER_DETAIL" />
+        </EntityType>
+        <EntityType Name="NOTIFICATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIME" Type="DateTime" Precision="3" />
+          <Property Name="CONTENT" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ACCOUNT_ID" Type="Int32" />
+          <Property Name="ORDER_ID" Type="Int32" />
+          <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEENModel.FK__NOTIFICAT__ACCOU__4E88ABD4" FromRole="NOTIFICATION" ToRole="ACCOUNT" />
+          <NavigationProperty Name="ORDER" Relationship="QUANLYCANTEENModel.FK__NOTIFICAT__ORDER__4D94879B" FromRole="NOTIFICATION" ToRole="ORDER" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_CODE" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" Precision="3" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="FEEDBACK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CUSTOMER_ID" Type="Int32" />
+          <Property Name="ACCOUNT_ID" Type="Int32" />
+          <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEENModel.FK__ORDER__ACCOUNT_I__45F365D3" FromRole="ORDER" ToRole="ACCOUNT" />
+          <NavigationProperty Name="CUSTOMER" Relationship="QUANLYCANTEENModel.FK__ORDER__CUSTOMER___46E78A0C" FromRole="ORDER" ToRole="CUSTOMER" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="QUANLYCANTEENModel.FK__NOTIFICAT__ORDER__4D94879B" FromRole="ORDER" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="QUANLYCANTEENModel.FK__ORDER_DET__ORDER__49C3F6B7" FromRole="ORDER" ToRole="ORDER_DETAIL" />
+        </EntityType>
+        <EntityType Name="ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Int32" Nullable="false" />
+          <Property Name="MENU_ID" Type="Int32" />
+          <Property Name="ORDER_ID" Type="Int32" />
+          <NavigationProperty Name="MENU" Relationship="QUANLYCANTEENModel.FK__ORDER_DET__MENU___4AB81AF0" FromRole="ORDER_DETAIL" ToRole="MENU" />
+          <NavigationProperty Name="ORDER" Relationship="QUANLYCANTEENModel.FK__ORDER_DET__ORDER__49C3F6B7" FromRole="ORDER_DETAIL" ToRole="ORDER" />
+        </EntityType>
+        <EntityType Name="SLIDER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMAGE_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__MENU__ACCOUNT_ID__4316F928">
+          <End Type="QUANLYCANTEENModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.MENU" Role="MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTIFICAT__ACCOU__4E88ABD4">
+          <End Type="QUANLYCANTEENModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER__ACCOUNT_I__45F365D3">
+          <End Type="QUANLYCANTEENModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.ORDER" Role="ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FOOD__CATEGORY_I__3F466844">
+          <End Type="QUANLYCANTEENModel.CATEGORY" Role="CATEGORY" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.FOOD" Role="FOOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FOOD">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CUSTOMER__FACULT__38996AB5">
+          <End Type="QUANLYCANTEENModel.FACULTY" Role="FACULTY" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.CUSTOMER" Role="CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACULTY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="FACULTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER__CUSTOMER___46E78A0C">
+          <End Type="QUANLYCANTEENModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.ORDER" Role="ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MENU__FOOD_ID__4222D4EF">
+          <End Type="QUANLYCANTEENModel.FOOD" Role="FOOD" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.MENU" Role="MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOOD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="FOOD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER_DET__MENU___4AB81AF0">
+          <End Type="QUANLYCANTEENModel.MENU" Role="MENU" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTIFICAT__ORDER__4D94879B">
+          <End Type="QUANLYCANTEENModel.ORDER" Role="ORDER" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ORDER_DET__ORDER__49C3F6B7">
+          <End Type="QUANLYCANTEENModel.ORDER" Role="ORDER" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLYCANTEENModelStoreContainer" CdmEntityContainer="QUANLYCANTEENEntities">
+          <EntitySetMapping Name="ABOUT_US">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ABOUT_US">
+              <MappingFragment StoreEntitySet="ABOUT_US">
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACCOUNTs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ACCOUNT">
+              <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ACCOUNT_CODE" ColumnName="ACCOUNT_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORies">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_CODE" ColumnName="CATEGORY_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACTs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.CONTACT">
+              <MappingFragment StoreEntitySet="CONTACT">
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="FACULTY_ID" ColumnName="FACULTY_ID" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="MEMBER_TYPE" ColumnName="MEMBER_TYPE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                <ScalarProperty Name="CUSTOMER_CODE" ColumnName="CUSTOMER_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACULTies">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.FACULTY">
+              <MappingFragment StoreEntitySet="FACULTY">
+                <ScalarProperty Name="FACULTY_NAME" ColumnName="FACULTY_NAME" />
+                <ScalarProperty Name="FACULTY_CODE" ColumnName="FACULTY_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOODs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.FOOD">
+              <MappingFragment StoreEntitySet="FOOD">
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="FOOD_NAME" ColumnName="FOOD_NAME" />
+                <ScalarProperty Name="FOOD_CODE" ColumnName="FOOD_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="FOOD_ID" ColumnName="FOOD_ID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="MENU_CODE" ColumnName="MENU_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTIFICATIONs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.NOTIFICATION">
+              <MappingFragment StoreEntitySet="NOTIFICATION">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="TIME" ColumnName="TIME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDERs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ORDER">
+              <MappingFragment StoreEntitySet="ORDER">
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="FEEDBACK" ColumnName="FEEDBACK" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDER_DETAIL">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.ORDER_DETAIL">
+              <MappingFragment StoreEntitySet="ORDER_DETAIL">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLIDERs">
+            <EntityTypeMapping TypeName="QUANLYCANTEENModel.SLIDER">
+              <MappingFragment StoreEntitySet="SLIDER">
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,181 @@
+﻿@{
+    var linkBreadcrumb = "";
+    if (ViewBag.Feature == "Quản lý món ăn")
+    {
+        linkBreadcrumb = "/Admin/Food/Index";
+    }
+    else if (ViewBag.Feature == "Quản lý loại món ăn")
+    {
+        linkBreadcrumb = "/Admin/Category/Index";
+    }
+    else
+    {
+        linkBreadcrumb = "/Admin/Account/Index";
+    }
+    var role = "";
+    if (Session["userRole"] != null)
+    {
+        role = (int)(Session["userRole"]) == 1 ? "Quản trị" : (int)(Session["userRole"]) == 2 ? "Quản lý" : "Thu ngân";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+    <!-- plugins:css -->
+    <link href="~/Content/vendors/iconfonts/mdi/css/materialdesignicons.css" rel="stylesheet" />
+    <link href="~/Content/vendors/css/vendor.addons.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- vendor css for this page -->
+    <!-- End vendor css for this page -->
+    <!-- inject:css -->
+    <link href="~/Content/css/shared/style.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link href="~/Content/css/demo_1/style.css" rel="stylesheet" />
+    <!-- Layout style -->
+    <!-- <link rel="shortcut icon" href="../../../assets/images/favicon.ico" /> -->
+</head>
+<body class="header-fixed">
+    <!-- partial:../../partials/_header.html -->
+    <nav class="t-header">
+        <div class="t-header-brand-wrapper">
+            <a href="@Url.Action("Welcome", "Authentication")">
+                <img class="logo" src="~/Images/canteenVL.png" alt="logo-canteenVL" />
+            </a>
+            @*<img class="logo" src="~/Content/images/logo.svg" alt="">*@
+            @*<img class="logo-mini" src="~/Content/images/logo_mini.svg" alt="">*@
+        </div>
+        <div class="t-header-content-wrapper">
+            <div class="t-header-content">
+                <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <form action="#" class="t-header-search-box">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Tìm kiếm" autocomplete="off">
+                        <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="page-body">
+        <!-- partial:../../partials/_sidebar.html -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="display-avatar animated-avatar">
+                    <img class="profile-img img-lg rounded-circle" src="@Session["userImage"]" alt="profile image" />
+                </div>
+                <div class="info-wrapper">
+                    <p class="user-name">@Session["userFullName"]</p>
+                    @if (Session["userRole"] != null)
+                    {
+                        <h6 class="display-income">@role</h6>
+                    }
+                </div>
+            </div>
+            <ul class="navigation-menu">
+                @if (Session["userRole"] != null)
+                {
+                    if ((int)Session["userRole"] <= 2)
+                    {
+                        <li class="nav-category-divider">Quản lý danh mục</li>
+                        <li>
+                            <a href="@Url.Action("Index", "Food")">
+                                <span class="link-title">Món ăn</span>
+                                <i class="mdi mdi-bullseye link-icon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Category")">
+                                <span class="link-title">Loại món ăn</span>
+                                <i class="mdi mdi-chart-donut link-icon"></i>
+                            </a>
+                        </li>
+                    }
+
+                    <li>
+                        <a href="@Url.Action("Index", "Order")">
+                            <span class="link-title">Đơn đặt hàng</span>
+                            <i class="mdi mdi-file-document link-icon"></i>
+                        </a>
+                    </li>
+
+                    if ((int)Session["userRole"] == 1)
+                    {
+                        <li>
+                            <a href="@Url.Action("Index", "Account")">
+                                <span class="link-title">Tài khoản</span>
+                                <i class="mdi mdi-flower-tulip-outline link-icon"></i>
+                            </a>
+                        </li>
+                    }
+                }
+
+                <li class="nav-category-divider"></li>
+                <li>
+                    <a href="@Url.Action("Logout", "Authentication")">
+                        <span class="link-title">Đăng xuất</span>
+                        <i class="mdi mdi-asterisk link-icon"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- partial -->
+        <div class="page-content-wrapper">
+            <div class="page-content-wrapper-inner">
+                <div class="viewport-header">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb has-arrow">
+                            <li class="breadcrumb-item">
+                                <a href="@linkBreadcrumb">@ViewBag.Feature</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="content-viewport">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <!-- content viewport ends -->
+            <!-- partial:../../partials/_footer.html -->
+            <footer class="footer">
+                <div class="row">
+                    <div class="col-sm-6 text-center text-sm-right order-sm-1">
+                        <ul class="text-gray">
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
+                        <small class="text-muted d-block">Copyright © 2019 <a href="http://www.uxcandy.co" target="_blank">UXCANDY</a>. All rights reserved</small>
+                        <small class="text-gray mt-2">Handcrafted With <i class="mdi mdi-heart text-danger"></i></small>
+                    </div>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- page content ends -->
+    </div>
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="~/Content/vendors/js/core.js"></script>
+    <script src="~/Content/vendors/js/vendor.addons.js"></script>
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="~/Scripts/js/template.js"></script>
+    <!-- endbuild -->
+    <script src="https://kit.fontawesome.com/01ca63f52d.js" crossorigin="anonymous"></script>
+    @RenderSection("scripts", required: false) @*Chuyên Add Script vào*@
+</body>
+</html>

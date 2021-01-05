@@ -1,0 +1,164 @@
+﻿@model IEnumerable<CanteenVanLang.Models.ACCOUNT>
+
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="grid">
+        <p class="grid-header">Danh sách tài khoản</p>
+        <a href="@Url.Action("Create", "Account")" style="float: right; margin-right: 40px">
+            <button type="button" class="btn btn-sm btn-primary">Thêm tài khoản</button>
+        </a>
+
+        <div class="item-wrapper">
+            <div class="table-responsive">
+                <table class="table" id="cate-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Họ tên
+                            </th>
+                            <th>
+                                Hình ảnh
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+                            <th>
+                                Vai trò
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.EMAIL.Trim()
+                                </td>
+                                <td>
+                                    @item.FULL_NAME.Trim()
+                                </td>
+                                <td>
+                                    <img src="@item.IMAGE_URL" width="100px" />
+                                </td>
+                                <td>
+                                    @if (item.STATUS)
+                                    {
+                                        <label class="badge badge-success">Hoạt động</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="badge badge-danger">Ngừng hoạt động</label>
+                                    }
+                                </td>
+                                <td>@(item.ROLE == 1 ? "Quản trị" : item.ROLE == 2 ? "Quản lý" : "Thu ngân")</td>
+                                <td>
+                                    @*<form action="@Url.Action("Update", "Account", new { id = item.ID })" style="display:inline" target="_blank">
+                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded"
+                                                data-toggle="tooltip" data-placement="top" 
+                                                title="Cập nhật tài khoản">
+                                            <i class="mdi mdi-lead-pencil"></i>
+                                        </button>
+                                    </form>*@
+                                    @if (item.STATUS)
+                                    {
+                                        <button onclick="Deactive(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded"
+                                                data-toggle="tooltip" data-placement="top"
+                                                title="Ngưng hoạt động tài khoản">
+                                            <i class="mdi mdi-account-off"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button onclick="Active(this, @item.ID)" class="btn action-btn btn-outline-danger btn-rounded"
+                                                data-toggle="tooltip" data-placement="top"
+                                                title="Khởi động tài khoản">
+                                            <i class="mdi mdi-account-plus"></i>
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function Deactive(button, id) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(1).html();
+            if (confirm("Bạn có chắc chắn muốn ngưng hoạt động tài khoản " + name.trim() + "?")) {
+
+                //Send the JSON array to Controller using AJAX.
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Deactive", "Account")",
+                    data: JSON.stringify({ id: id }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        if (r.success) {
+                            alert("Ngưng hoạt động tài khoản thành công");
+                            window.location = r.url;
+                        } else {
+                            alert("Không thể ngưng hoạt động tài khoản của chính bạn");
+                        }
+                    }
+                });
+            }
+        };
+
+        function Active(button, id) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        var name = $("TD", row).eq(1).html();
+        if (confirm("Bạn có chắc chắn muốn khởi động tài khoản " + name.trim() + "?")) {
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Active", "Account")",
+                data: JSON.stringify({ id: id }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        alert("Khởi động tài khoản thành công");
+                        window.location = r.url;
+                    } else {
+                    }
+                }
+            });
+        }
+    };
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#inlineFormInputGroup").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#cate-table tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $(".form-add").css("height", (quote_height + 300) + "px");
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

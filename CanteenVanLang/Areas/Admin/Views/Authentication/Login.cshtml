@@ -1,0 +1,128 @@
+﻿@model CanteenVanLang.Models.ACCOUNT
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+    <!-- plugins:css -->
+    <link href="~/Content/vendors/iconfonts/mdi/css/materialdesignicons.css" rel="stylesheet" />
+    <link href="~/Content/vendors/css/vendor.addons.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- vendor css for this page -->
+    <!-- End vendor css for this page -->
+    <!-- inject:css -->
+    <link href="~/Content/css/shared/style.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link href="~/Content/css/demo_1/style.css" rel="stylesheet" />
+    <!-- Layout style -->
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        .text-error {
+            color: red;
+            padding-left: 15px;
+            padding-top: 0px;
+            font-size: 90%
+        }
+    </style>
+</head>
+<body class="login-page">
+    <div class="authentication-theme auth-style_1">
+        <div class="row">
+            <div class="col-12 logo-section">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-7 col-sm-9 col-11 mx-auto">
+                <div class="grid">
+                    <div class="grid-body">
+                        <a href="@Url.Action("Index", "Food")" class="logo">
+                            <img class="logo" src="~/Images/canteenVL.png" alt="logo-canteenVL" />
+                        </a>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-lg-7 col-md-8 col-sm-9 col-12 mx-auto form-wrapper">
+                                <form action="@Url.Action("Login", "Authentication")" method="post">
+                                    @if (Convert.ToBoolean(Session["deactive"]))
+                                    {
+                                        <p class="user-name error" style="color: red; padding-left: 15px; padding-top: 10px;padding-bottom: 10px ; font-size: 90%; text-align: center">
+                                            Tài khoản đã ngưng hoạt động <br />
+                                            Vui lòng liên hệ với quản trị viên
+                                        </p>
+                                    }
+                                    <div class="form-group input-rounded">
+                                        @if (Convert.ToBoolean(Session["incorrectPassword"]))
+                                        {
+                                            <input name="email" type="text" class="form-control" placeholder="Email" value="@ViewBag.email" />
+                                        }
+                                        else
+                                        {
+                                            <input name="email" type="text" class="form-control" placeholder="Email" />
+                                        }
+                                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                        @if (Convert.ToBoolean(Session["userNotFound"]))
+                                        {
+                                            <p class="user-name error text-danger">Không tìm thấy tài khoản</p>
+                                        }
+                                    </div>
+                                    <div class="form-group input-rounded">
+                                        <input name="password" type="password" class="form-control" placeholder="Mật khẩu" />
+                                        @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                        @if (Convert.ToBoolean(Session["incorrectPassword"]))
+                                        {
+                                            <p class="user-name error text-danger">Email hoặc mật khẩu không đúng</p>
+                                        }
+                                    </div>
+                                    @*<div class="form-inline">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" class="form-check-input" />Remember me <i class="input-frame"></i>
+                                                </label>
+                                            </div>
+                                        </div>*@
+                                    <button type="submit" class="btn btn-primary btn-block"> Đăng nhập </button>
+                                </form>
+                                @*<div class="signup-link">
+                                        <p>Don't have an account yet?</p>
+                                        <a href="#">Sign Up</a>
+                                    </div>*@
+                            </div>
+                        </div>
+
+                        <div class="auth_footer">
+                            <p class="text-muted text-center">© Canteen Van Lang 2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="~/Content/vendors/js/core.js"></script>
+    <script src="~/Content/vendors/js/vendor.addons.js"></script>
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="~/Scripts/js/template.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#error").remove();
+        }
+    </script>
+}

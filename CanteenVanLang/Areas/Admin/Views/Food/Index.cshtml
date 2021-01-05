@@ -1,0 +1,142 @@
+﻿@model IEnumerable<CanteenVanLang.Models.FOOD>
+
+@{
+    ViewBag.Title = "Quản lý món ăn";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="grid">
+        <p class="grid-header">Danh sách món ăn</p>
+        <a href="@Url.Action("Create", "Food")" style="float: right; margin-right: 40px">
+            <button type="button" class="btn btn-sm btn-primary">Thêm món ăn</button>
+        </a>
+
+        <div class="item-wrapper">
+            <div class="table-responsive">
+                <table class="table" id="food-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã món ăn
+                            </th>
+                            <th>
+                                Tên món ăn
+                            </th>
+                            <th>
+                                Mô tả
+                            </th>
+                            <th>
+                                Giá
+                            </th>
+                            <th>
+                                Hình ảnh
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+                            <th>
+                                Loại món ăn
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.FOOD_CODE
+                                </td>
+                                <td>
+                                    @item.FOOD_NAME
+                                </td>
+                                <td>
+                                    @if (item.DESCRIPTION != null)
+                                    {
+                                        @item.DESCRIPTION
+                                    }
+                                </td>
+                                <td>
+                                    @item.PRICE.ToString("N0")
+                                </td>
+                                <td>
+                                    <img src="@item.IMAGE_URL" width="100px" />
+                                </td>
+                                <td>
+                                    @if (item.STATUS)
+                                    {
+                                        <label class="badge badge-success">Còn bán</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="badge badge-danger">Hết bán</label>
+                                    }
+                                </td>
+                                <td>
+                                    @item.CATEGORY.CATEGORY_NAME
+                                </td>
+                                <td>
+                                    <form action="@Url.Action("Update", "Food", new { id = item.ID })" style="display:inline" target="_blank">
+                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
+                                            <i class="mdi mdi-lead-pencil"></i>
+                                        </button>
+                                    </form>
+                                    @*<form action="@Url.Action("Delete", "Food", new { id = item.ID })" style="display:inline">*@
+                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    @*</form>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    function Remove(button, id) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        var name = $("TD", row).eq(1).html();
+        if (confirm("Bạn có chắc chắn muốn xóa " + name.trim() + "? Không thể phục hồi món ăn đã xóa.")) {
+            //Get the reference of the Table.
+            var table = $("#food-table")[0];
+
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Delete", "Food")",
+                data: JSON.stringify({ id: id }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        alert("Xóa món ăn thành công");
+                        //Delete the Table row using it's Index.
+                        table.deleteRow(row[0].rowIndex);
+                    } else {
+                        alert("Không thể xóa món ăn còn bán");
+                    }
+                }
+            });
+        }
+    };
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#inlineFormInputGroup").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#food-table tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

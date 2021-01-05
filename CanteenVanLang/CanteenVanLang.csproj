@@ -1,0 +1,2231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0677CC69-3BFA-428F-92E7-780998A2DCB5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CanteenVanLang</RootNamespace>
+    <AssemblyName>CanteenVanLang</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.15.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.15.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Transactions.Workflows, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Transactions.Workflows.0.1.2.0\lib\net40\System.Transactions.Workflows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Middleware\LoginVertification.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ABOUT_US.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ACCOUNT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CATEGORY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTACT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CUSTOMER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FACULTY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FOOD.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MENU.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NOTIFICATION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORDER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORDER_DETAIL.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SLIDER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\demo_1\style.css" />
+    <Content Include="Content\css\demo_2\style.css" />
+    <Content Include="Content\css\shared\style.css" />
+    <Content Include="Content\data.js" />
+    <Content Include="Content\generator.min.js" />
+    <Content Include="Content\images\logo.svg" />
+    <Content Include="Content\images\logo_mini.svg" />
+    <Content Include="Content\images\profile\female\image_1.png" />
+    <Content Include="Content\images\profile\female\image_10.png" />
+    <Content Include="Content\images\profile\female\image_2.png" />
+    <Content Include="Content\images\profile\female\image_3.png" />
+    <Content Include="Content\images\profile\female\image_4.png" />
+    <Content Include="Content\images\profile\female\image_5.png" />
+    <Content Include="Content\images\profile\female\image_6.png" />
+    <Content Include="Content\images\profile\female\image_7.png" />
+    <Content Include="Content\images\profile\female\image_8.png" />
+    <Content Include="Content\images\profile\female\image_9.png" />
+    <Content Include="Content\images\profile\male\image_1.png" />
+    <Content Include="Content\images\profile\male\image_10.png" />
+    <Content Include="Content\images\profile\male\image_2.png" />
+    <Content Include="Content\images\profile\male\image_3.png" />
+    <Content Include="Content\images\profile\male\image_4.png" />
+    <Content Include="Content\images\profile\male\image_5.png" />
+    <Content Include="Content\images\profile\male\image_6.png" />
+    <Content Include="Content\images\profile\male\image_7.png" />
+    <Content Include="Content\images\profile\male\image_8.png" />
+    <Content Include="Content\images\profile\male\image_9.png" />
+    <Content Include="Content\images\pro_features_bg.svg" />
+    <Content Include="Content\images\social-icons\dribbble.svg" />
+    <Content Include="Content\images\social-icons\facebook.svg" />
+    <Content Include="Content\images\social-icons\instagram.svg" />
+    <Content Include="Content\images\social-icons\linkedin.svg" />
+    <Content Include="Content\images\social-icons\messenger.svg" />
+    <Content Include="Content\images\social-icons\twitter.svg" />
+    <Content Include="Content\img\bg.png" />
+    <Content Include="Content\img\total-stripe-firebrick.png" />
+    <Content Include="Content\img\total-stripe-gold.png" />
+    <Content Include="Content\img\total-stripe-turquoise.png" />
+    <Content Include="Content\invoiceStyle.css" />
+    <Content Include="Content\vendors\ace-builds\src-min\ace.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-beautify.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-elastic_tabstops_lite.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-emmet.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-error_marker.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-keybinding_menu.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-language_tools.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-linking.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-modelist.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-options.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-rtl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-searchbox.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-settings_menu.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-spellcheck.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-split.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-static_highlight.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-statusbar.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-textarea.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-themelist.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\ext-whitespace.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\keybinding-emacs.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\keybinding-sublime.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\keybinding-vim.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-abap.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-abc.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-actionscript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-ada.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-apache_conf.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-apex.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-applescript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-asciidoc.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-asl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-assembly_x86.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-autohotkey.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-batchfile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-bro.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-c9search.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-cirru.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-clojure.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-cobol.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-coffee.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-coldfusion.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-csharp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-csound_document.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-csound_orchestra.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-csound_score.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-csp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-css.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-curly.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-c_cpp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-d.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-dart.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-diff.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-django.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-dockerfile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-dot.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-drools.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-edifact.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-eiffel.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-ejs.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-elixir.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-elm.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-erlang.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-forth.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-fortran.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-fsharp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-fsl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-ftl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-gcode.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-gherkin.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-gitignore.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-glsl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-gobstones.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-golang.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-graphqlschema.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-groovy.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-haml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-handlebars.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-haskell.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-haskell_cabal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-haxe.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-hjson.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-html.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-html_elixir.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-html_ruby.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-ini.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-io.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-jack.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-jade.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-java.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-javascript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-json.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-jsoniq.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-jsp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-jssm.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-jsx.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-julia.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-kotlin.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-latex.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-less.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-liquid.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-lisp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-livescript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-logiql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-logtalk.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-lsl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-lua.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-luapage.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-lucene.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-makefile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-markdown.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-mask.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-matlab.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-maze.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-mel.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-mixal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-mushcode.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-mysql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-nix.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-nsis.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-objectivec.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-ocaml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-pascal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-perl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-perl6.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-pgsql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-php.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-php_laravel_blade.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-pig.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-plain_text.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-powershell.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-praat.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-prolog.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-properties.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-protobuf.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-puppet.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-python.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-r.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-razor.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-rdoc.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-red.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-redshift.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-rhtml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-rst.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-ruby.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-rust.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-sass.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-scad.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-scala.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-scheme.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-scss.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-sh.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-sjs.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-slim.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-smarty.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-snippets.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-soy_template.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-space.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-sparql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-sql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-sqlserver.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-stylus.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-svg.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-swift.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-tcl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-terraform.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-tex.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-text.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-textile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-toml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-tsx.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-turtle.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-twig.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-typescript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-vala.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-vbscript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-velocity.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-verilog.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-vhdl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-visualforce.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-wollok.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-xml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-xquery.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\mode-yaml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\abap.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\abc.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\actionscript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\ada.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\apache_conf.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\apex.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\applescript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\asciidoc.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\asl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\assembly_x86.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\autohotkey.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\batchfile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\bro.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\c9search.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\cirru.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\clojure.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\cobol.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\coffee.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\coldfusion.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\csharp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\csound_document.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\csound_orchestra.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\csound_score.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\csp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\css.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\curly.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\c_cpp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\d.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\dart.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\diff.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\django.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\dockerfile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\dot.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\drools.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\edifact.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\eiffel.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\ejs.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\elixir.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\elm.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\erlang.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\forth.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\fortran.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\fsharp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\fsl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\ftl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\gcode.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\gherkin.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\gitignore.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\glsl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\gobstones.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\golang.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\graphqlschema.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\groovy.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\haml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\handlebars.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\haskell.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\haskell_cabal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\haxe.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\hjson.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\html.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\html_elixir.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\html_ruby.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\ini.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\io.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\jack.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\jade.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\java.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\javascript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\json.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\jsoniq.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\jsp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\jssm.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\jsx.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\julia.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\kotlin.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\latex.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\less.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\liquid.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\lisp.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\livescript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\logiql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\logtalk.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\lsl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\lua.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\luapage.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\lucene.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\makefile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\markdown.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\mask.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\matlab.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\maze.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\mel.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\mixal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\mushcode.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\mysql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\nix.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\nsis.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\objectivec.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\ocaml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\pascal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\perl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\perl6.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\pgsql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\php.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\php_laravel_blade.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\pig.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\plain_text.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\powershell.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\praat.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\prolog.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\properties.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\protobuf.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\puppet.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\python.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\r.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\razor.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\rdoc.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\red.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\redshift.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\rhtml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\rst.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\ruby.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\rust.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\sass.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\scad.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\scala.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\scheme.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\scss.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\sh.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\sjs.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\slim.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\smarty.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\snippets.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\soy_template.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\space.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\sparql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\sql.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\sqlserver.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\stylus.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\svg.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\swift.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\tcl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\terraform.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\tex.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\text.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\textile.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\toml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\tsx.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\turtle.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\twig.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\typescript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\vala.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\vbscript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\velocity.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\verilog.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\vhdl.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\visualforce.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\wollok.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\xml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\xquery.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\snippets\yaml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-ambiance.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-chaos.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-chrome.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-clouds.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-clouds_midnight.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-cobalt.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-crimson_editor.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-dawn.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-dracula.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-dreamweaver.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-eclipse.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-github.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-gob.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-gruvbox.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-idle_fingers.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-iplastic.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-katzenmilch.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-kr_theme.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-kuroir.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-merbivore.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-merbivore_soft.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-monokai.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-mono_industrial.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-pastel_on_dark.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-solarized_dark.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-solarized_light.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-sqlserver.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-terminal.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-textmate.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-tomorrow.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-tomorrow_night.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-tomorrow_night_blue.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-tomorrow_night_bright.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-tomorrow_night_eighties.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-twilight.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-vibrant_ink.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\theme-xcode.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-coffee.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-css.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-html.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-javascript.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-json.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-lua.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-php.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-xml.js" />
+    <Content Include="Content\vendors\ace-builds\src-min\worker-xquery.js" />
+    <Content Include="Content\vendors\apexcharts\apexcharts.min.js" />
+    <Content Include="Content\vendors\c3\c3.js" />
+    <Content Include="Content\vendors\chartjs\Chart.min.js" />
+    <Content Include="Content\vendors\codemirror\codemirror.js" />
+    <Content Include="Content\vendors\codemirror\javascript.js" />
+    <Content Include="Content\vendors\codemirror\shell.js" />
+    <Content Include="Content\vendors\css\vendor.addons.css" />
+    <Content Include="Content\vendors\d3\d3.min.js" />
+    <Content Include="Content\vendors\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\vendors\hilightjs\skins\a11y-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\a11y-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\agate.css" />
+    <Content Include="Content\vendors\hilightjs\skins\an-old-hope.css" />
+    <Content Include="Content\vendors\hilightjs\skins\androidstudio.css" />
+    <Content Include="Content\vendors\hilightjs\skins\arduino-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\arta.css" />
+    <Content Include="Content\vendors\hilightjs\skins\ascetic.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-cave-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-cave-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-dune-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-dune-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-estuary-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-estuary-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-forest-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-forest-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-heath-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-heath-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-lakeside-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-lakeside-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-plateau-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-plateau-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-savanna-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-savanna-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-seaside-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-seaside-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-sulphurpool-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atelier-sulphurpool-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atom-one-dark-reasonable.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atom-one-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\atom-one-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\brown-paper.css" />
+    <Content Include="Content\vendors\hilightjs\skins\codepen-embed.css" />
+    <Content Include="Content\vendors\hilightjs\skins\color-brewer.css" />
+    <Content Include="Content\vendors\hilightjs\skins\darcula.css" />
+    <Content Include="Content\vendors\hilightjs\skins\dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\darkula.css" />
+    <Content Include="Content\vendors\hilightjs\skins\default.css" />
+    <Content Include="Content\vendors\hilightjs\skins\docco.css" />
+    <Content Include="Content\vendors\hilightjs\skins\dracula.css" />
+    <Content Include="Content\vendors\hilightjs\skins\far.css" />
+    <Content Include="Content\vendors\hilightjs\skins\foundation.css" />
+    <Content Include="Content\vendors\hilightjs\skins\github-gist.css" />
+    <Content Include="Content\vendors\hilightjs\skins\github.css" />
+    <Content Include="Content\vendors\hilightjs\skins\gml.css" />
+    <Content Include="Content\vendors\hilightjs\skins\googlecode.css" />
+    <Content Include="Content\vendors\hilightjs\skins\grayscale.css" />
+    <Content Include="Content\vendors\hilightjs\skins\gruvbox-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\gruvbox-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\hopscotch.css" />
+    <Content Include="Content\vendors\hilightjs\skins\hybrid.css" />
+    <Content Include="Content\vendors\hilightjs\skins\idea.css" />
+    <Content Include="Content\vendors\hilightjs\skins\ir-black.css" />
+    <Content Include="Content\vendors\hilightjs\skins\isbl-editor-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\isbl-editor-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\kimbie.dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\kimbie.light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\lightfair.css" />
+    <Content Include="Content\vendors\hilightjs\skins\magula.css" />
+    <Content Include="Content\vendors\hilightjs\skins\mono-blue.css" />
+    <Content Include="Content\vendors\hilightjs\skins\monokai-sublime.css" />
+    <Content Include="Content\vendors\hilightjs\skins\monokai.css" />
+    <Content Include="Content\vendors\hilightjs\skins\nord.css" />
+    <Content Include="Content\vendors\hilightjs\skins\obsidian.css" />
+    <Content Include="Content\vendors\hilightjs\skins\ocean.css" />
+    <Content Include="Content\vendors\hilightjs\skins\paraiso-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\paraiso-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\pojoaque.css" />
+    <Content Include="Content\vendors\hilightjs\skins\purebasic.css" />
+    <Content Include="Content\vendors\hilightjs\skins\qtcreator_dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\qtcreator_light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\railscasts.css" />
+    <Content Include="Content\vendors\hilightjs\skins\rainbow.css" />
+    <Content Include="Content\vendors\hilightjs\skins\routeros.css" />
+    <Content Include="Content\vendors\hilightjs\skins\school-book.css" />
+    <Content Include="Content\vendors\hilightjs\skins\shades-of-purple.css" />
+    <Content Include="Content\vendors\hilightjs\skins\solarized-dark.css" />
+    <Content Include="Content\vendors\hilightjs\skins\solarized-light.css" />
+    <Content Include="Content\vendors\hilightjs\skins\sunburst.css" />
+    <Content Include="Content\vendors\hilightjs\skins\tomorrow-night-blue.css" />
+    <Content Include="Content\vendors\hilightjs\skins\tomorrow-night-bright.css" />
+    <Content Include="Content\vendors\hilightjs\skins\tomorrow-night-eighties.css" />
+    <Content Include="Content\vendors\hilightjs\skins\tomorrow-night.css" />
+    <Content Include="Content\vendors\hilightjs\skins\tomorrow.css" />
+    <Content Include="Content\vendors\hilightjs\skins\vs.css" />
+    <Content Include="Content\vendors\hilightjs\skins\vs2015.css" />
+    <Content Include="Content\vendors\hilightjs\skins\xcode.css" />
+    <Content Include="Content\vendors\hilightjs\skins\xt256.css" />
+    <Content Include="Content\vendors\hilightjs\skins\zenburn.css" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\assets\docs.css" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\assets\docs.js" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\css\flag-icon.css" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\css\flag-icon.min.css" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ad.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ae.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\af.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ag.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ai.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\al.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\am.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ao.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\aq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ar.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\as.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\at.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\au.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\aw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ax.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\az.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ba.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\be.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\br.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bs.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\by.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\bz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ca.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ch.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ci.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ck.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\co.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cx.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\cz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\de.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\dj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\dk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\dm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\do.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\dz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ec.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ee.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\eg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\eh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\er.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\es-ct.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\es.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\et.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\eu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\fi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\fj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\fk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\fm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\fo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\fr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ga.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gb-eng.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gb-nir.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gb-sct.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gb-wls.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ge.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gs.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\gy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\hk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\hm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\hn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\hr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ht.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\hu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\id.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ie.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\il.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\im.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\in.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\io.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\iq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ir.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\is.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\it.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\je.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\jm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\jo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\jp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ke.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ki.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\km.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ky.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\kz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\la.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\li.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ls.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\lv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ly.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ma.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\md.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\me.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ml.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ms.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mx.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\my.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\mz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\na.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\nc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ne.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\nf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ng.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ni.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\nl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\no.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\np.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\nr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\nu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\nz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\om.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pa.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pe.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ph.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ps.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\pw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\py.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\qa.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\re.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ro.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\rs.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ru.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\rw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sa.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\se.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\si.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\so.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ss.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\st.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sx.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\sz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\td.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\th.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\to.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\tz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ua.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ug.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\um.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\un.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\us.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\uy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\uz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\va.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\vc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ve.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\vg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\vi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\vn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\vu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\wf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ws.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\xk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\ye.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\yt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\za.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\zm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\1x1\zw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ad.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ae.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\af.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ag.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ai.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\al.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\am.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ao.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\aq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ar.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\as.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\at.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\au.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\aw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ax.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\az.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ba.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\be.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\br.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bs.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\by.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\bz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ca.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ch.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ci.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ck.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\co.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cx.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\cz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\de.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\dj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\dk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\dm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\do.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\dz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ec.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ee.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\eg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\eh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\er.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\es-ct.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\es.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\et.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\eu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\fi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\fj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\fk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\fm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\fo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\fr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ga.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gb-eng.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gb-nir.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gb-sct.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gb-wls.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ge.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gs.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\gy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\hk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\hm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\hn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\hr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ht.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\hu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\id.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ie.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\il.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\im.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\in.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\io.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\iq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ir.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\is.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\it.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\je.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\jm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\jo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\jp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ke.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ki.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\km.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ky.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\kz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\la.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\li.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ls.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\lv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ly.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ma.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\md.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\me.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ml.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mo.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mp.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mq.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ms.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mx.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\my.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\mz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\na.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\nc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ne.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\nf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ng.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ni.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\nl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\no.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\np.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\nr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\nu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\nz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\om.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pa.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pe.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ph.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ps.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\pw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\py.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\qa.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\re.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ro.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\rs.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ru.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\rw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sa.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sb.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sd.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\se.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sh.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\si.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\so.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ss.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\st.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sx.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\sz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\td.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\th.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tj.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tl.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\to.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tr.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tv.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\tz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ua.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ug.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\um.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\un.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\us.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\uy.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\uz.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\va.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\vc.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ve.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\vg.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\vi.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\vn.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\vu.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\wf.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ws.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\xk.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\ye.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\yt.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\za.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\zm.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\flags\4x3\zw.svg" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\index.html" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Content\vendors\iconfonts\mdi\css\materialdesignicons.css" />
+    <Content Include="Content\vendors\iconfonts\mdi\css\materialdesignicons.min.css" />
+    <Content Include="Content\vendors\iconfonts\mdi\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="Content\vendors\iconfonts\mdi\preview.html" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\css\simple-line-icons.css" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\css\themify-icons.css" />
+    <Content Include="Content\vendors\iconfonts\themify\demo-files\demo.css" />
+    <Content Include="Content\vendors\iconfonts\themify\fonts\themify.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\ie7\ie7.css" />
+    <Content Include="Content\vendors\iconfonts\themify\ie7\ie7.js" />
+    <Content Include="Content\vendors\iconfonts\themify\index.html" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\agenda.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\alarm-clock.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\alert.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\align-center.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\align-justify.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\align-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\align-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\anchor.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\android.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-double-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-double-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-double-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-double-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\angle-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\announcement.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\apple.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\archive.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-circle-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-circle-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-circle-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-circle-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-top-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-top-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrow.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrows-corner.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrows-horizontal.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\arrows-vertical.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\back-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\back-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bag.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bar-chart-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bar-chart.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\basketball.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bell.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\blackboard.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bolt-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bolt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\book.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bookmark-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\bookmark.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\briefcase.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\brush-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\brush.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\calendar.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\camera.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\car.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\check-box.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\check.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\clip.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\clipboard.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\close.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\cloud-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\cloud-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\cloud.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\comment-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\comment.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\comments-smiley.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\comments.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-backward.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-eject.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-forward.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-pause.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-play.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-record.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-shuffle.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-skip-backward.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-skip-forward.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\control-stop.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\credit-card.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\crown.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\css3.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\cup.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\cut.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\dashboard.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\desktop.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\direction-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\direction.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\download.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\dribbble.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\dropbox-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\dropbox.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\drupal.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\email.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\envelope.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\eraser.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\exchange-vertical.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\export.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\eye.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\face-sad.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\face-smile.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\facebook.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\file.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\files.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\filter.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\flag-alt-2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\flag-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\flag.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\flickr-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\flickr.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\folder.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\fullscreen.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\gallery.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\game.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\gift.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\github.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\google.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-drag.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-open.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-point-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-point-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-point-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-point-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hand-stop.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\harddrive.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\harddrives.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\headphone-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\headphone.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\heart-broken.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\heart.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\help-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\help.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\home.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\html5.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\hummer.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\id-badge.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\image.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\import.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\infinite.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\info-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\info.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\ink-pen.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\instagram.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\Italic.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\joomla.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\jsfiddle.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\key.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layers-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layers.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-accordion-list.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-accordion-merged.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-accordion-separated.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-column2-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-column2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-column3-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-column3.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-column4-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-column4.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-cta-btn-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-cta-btn-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-cta-center.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-cta-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-cta-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid2-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid2-thumb.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid3-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid3.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid4-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-grid4.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-line-solid.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-list-large-image.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-list-post.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-list-thumb-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-list-thumb.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-center-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-center.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-left-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-overlay-alt-2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-overlay-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-overlay.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-right-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-media-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-menu-full.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-menu-separated.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-menu-v.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-menu.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-placeholder.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-sidebar-2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-sidebar-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-sidebar-none.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-sidebar-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-slider-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-slider.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-tab-min.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-tab-v.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-tab-window.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-tab.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-width-default-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-width-default.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout-width-full.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\layout.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\light-bulb.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\line-dashed.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\line-dotted.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\line-double.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\link.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\linkedin.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\linux.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\list-ol.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\list.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\location-arrow.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\location-pin.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\lock.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\loop.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\magnet.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\map-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\map.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\marker-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\marker.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\medall-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\medall.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\menu-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\menu.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\microphone-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\microphone.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\microsoft-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\microsoft.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\minus.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\mobile.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\money.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\more-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\more.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\mouse-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\mouse.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\music-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\music.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\na.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\new-window.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\notepad.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\package.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\paint-bucket.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\paint-roller.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\palette.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\panel.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\paragraph.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pencil-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pencil-alt2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pencil.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pie-chart.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pin-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pin.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pin2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pinterest-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pinterest.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\plug.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\plus.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\power-off.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\printer.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\pulse.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\quote-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\quote-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\receipt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\reddit.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\reload.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\rocket.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\rss-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\rss.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\ruler-alt-2.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\ruler-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\ruler-pencil.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\ruler.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\save-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\save.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\search.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\server.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\settings.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\share-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\share.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\sharethis-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\sharethis.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shield.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shift-left-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shift-left.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shift-right-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shift-right.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shine.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shopping-cart-full.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shopping-cart.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\shortcode.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\signal.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\skype.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\slice.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\smallcap.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\soundcloud.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\split-h.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\split-v-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\split-v.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\spray.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\stack-overflow.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\stamp.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\star.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\stats-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\stats-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\support.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\tablet.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\tag.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\target.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\text.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\themify-favicon-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\themify-favicon.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\themify-logo.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\thought.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\thumb-down.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\thumb-up.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\ticket.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\time.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\timer.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\trash.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\trello.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\truck.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\tumblr-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\tumblr.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\twitter-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\twitter.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\underline.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\unlink.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\unlock.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\upload.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\uppercase.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\user.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\vector.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\video-camera.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\video-clapper.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\view-grid.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\view-list-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\view-list.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\vimeo-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\vimeo.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\volume.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\wallet.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\wand.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\wheelchair.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\widget-alt.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\widget.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\widgetized.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\window.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\wordpress.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\world.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\write.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\yahoo.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\youtube.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\zip.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\zoom-in.svg" />
+    <Content Include="Content\vendors\iconfonts\themify\SVG\zoom-out.svg" />
+    <Content Include="Content\vendors\js\core.js" />
+    <Content Include="Content\vendors\js\vendor.addons.js" />
+    <Content Include="Content\vendors\simplemde\simplemde.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ar-AR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ar-AR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-bg-BG.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-bg-BG.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ca-ES.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ca-ES.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-cs-CZ.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-cs-CZ.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-da-DK.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-da-DK.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-de-DE.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-de-DE.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-el-GR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-el-GR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-es-ES.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-es-ES.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-es-EU.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-es-EU.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-fa-IR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-fa-IR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-fi-FI.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-fi-FI.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-fr-FR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-fr-FR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-gl-ES.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-gl-ES.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-he-IL.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-he-IL.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-hr-HR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-hr-HR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-hu-HU.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-hu-HU.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-id-ID.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-id-ID.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-it-IT.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-it-IT.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ja-JP.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ja-JP.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ko-KR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ko-KR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-lt-LT.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-lt-LT.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-lt-LV.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-lt-LV.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-mn-MN.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-mn-MN.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-nb-NO.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-nb-NO.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-nl-NL.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-nl-NL.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-pl-PL.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-pl-PL.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-pt-BR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-pt-BR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-pt-PT.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-pt-PT.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ro-RO.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ro-RO.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ru-RU.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ru-RU.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sk-SK.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sk-SK.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sl-SI.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sl-SI.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sr-RS-Latin.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sr-RS.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sr-RS.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sv-SE.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-sv-SE.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ta-IN.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-ta-IN.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-th-TH.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-th-TH.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-tr-TR.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-tr-TR.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-uk-UA.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-uk-UA.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-uz-UZ.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-uz-UZ.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-vi-VN.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-vi-VN.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-zh-CN.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-zh-CN.min.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-zh-TW.js" />
+    <Content Include="Content\vendors\summernote\dist\lang\summernote-zh-TW.min.js" />
+    <Content Include="Content\vendors\summernote\dist\summernote-bs4.css" />
+    <Content Include="Content\vendors\summernote\dist\summernote-bs4.js" />
+    <Content Include="Content\vendors\summernote\dist\summernote-bs4.min.js" />
+    <Content Include="Content\vendors\summernote\dist\summernote-lite.css" />
+    <Content Include="Content\vendors\summernote\dist\summernote-lite.js" />
+    <Content Include="Content\vendors\summernote\dist\summernote-lite.min.js" />
+    <Content Include="Content\vendors\summernote\dist\summernote.css" />
+    <Content Include="Content\vendors\summernote\dist\summernote.js" />
+    <Content Include="Content\vendors\summernote\dist\summernote.min.js" />
+    <Content Include="Content\vendors\tinymce\changelog.txt" />
+    <Content Include="Content\vendors\tinymce\jquery.tinymce.js" />
+    <Content Include="Content\vendors\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Content\vendors\tinymce\license.txt" />
+    <Content Include="Content\vendors\tinymce\plugins\advlist\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\anchor\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autolink\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autoresize\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autosave\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\bbcode\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\charmap\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Content\vendors\tinymce\plugins\codesample\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\code\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\code\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\colorpicker\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\contextmenu\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\directionality\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\fullpage\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\fullscreen\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\help\img\logo.png" />
+    <Content Include="Content\vendors\tinymce\plugins\help\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\help\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\help\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\hr\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\imagetools\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\image\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\image\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\importcss\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\insertdatetime\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\legacyoutput\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\link\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\link\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\lists\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\media\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\media\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\nonbreaking\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\noneditable\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\pagebreak\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\paste\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\preview\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\print\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\print\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\save\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\save\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\searchreplace\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\spellchecker\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\tabfocus\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\table\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\table\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\template\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\template\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\textcolor\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\textpattern\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\toc\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\toc\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Content\vendors\tinymce\plugins\visualblocks\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\visualchars\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\plugins\wordcount\index.js" />
+    <Content Include="Content\vendors\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Content\vendors\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\content.mobile.min.css" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\skin.mobile.min.css" />
+    <Content Include="Content\vendors\tinymce\themes\inlite\index.js" />
+    <Content Include="Content\vendors\tinymce\themes\inlite\theme.js" />
+    <Content Include="Content\vendors\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Content\vendors\tinymce\themes\mobile\index.js" />
+    <Content Include="Content\vendors\tinymce\themes\mobile\theme.js" />
+    <Content Include="Content\vendors\tinymce\themes\mobile\theme.min.js" />
+    <Content Include="Content\vendors\tinymce\themes\modern\index.js" />
+    <Content Include="Content\vendors\tinymce\themes\modern\theme.js" />
+    <Content Include="Content\vendors\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Content\vendors\tinymce\tinymce.js" />
+    <Content Include="Content\vendors\tinymce\tinymce.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\canteen-background.jpg" />
+    <Content Include="Images\canteen-background1.jpg" />
+    <Content Include="Images\canteenVL.png" />
+    <Content Include="Images\Categories\che.jpg" />
+    <Content Include="Images\Categories\com.jpg" />
+    <Content Include="Images\Categories\monnuoc.jpg" />
+    <Content Include="Images\Categories\thucuong.jpg" />
+    <Content Include="Images\Foods\7up.png" />
+    <Content Include="Images\Foods\coca.jpg" />
+    <Content Include="Images\Foods\comchientrung.jpg" />
+    <Content Include="Images\Foods\comgakho.jpg" />
+    <Content Include="Images\Foods\pepsi.png" />
+    <Content Include="Images\logo25nam-01.png" />
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Food\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\assets\docs.less" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\bower.json" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\composer.json" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\convertSvgToAssetCatalog.sh" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\Gruntfile.coffee" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\less\flag-icon-base.less" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\less\flag-icon-list.less" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\less\flag-icon-more.less" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\less\flag-icon.less" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\less\variables.less" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\LICENSE" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\package.json" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\README.md" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\sass\flag-icon.scss" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\sass\_flag-icon-base.scss" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\sass\_flag-icon-list.scss" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\sass\_variables.scss" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\svgo.yaml" />
+    <Content Include="Content\vendors\iconfonts\flag-icon-css\yarn.lock" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\animated.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\core.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\icons.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\larger.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\list.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\mixins.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\path.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\screen-reader.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\stacked.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\less\variables.less" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\package.json" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\README.md" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_core.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_list.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_path.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\vendors\iconfonts\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\bower.json" />
+    <Content Include="Content\vendors\iconfonts\mdi\css\materialdesignicons.css.map" />
+    <Content Include="Content\vendors\iconfonts\mdi\css\materialdesignicons.min.css.map" />
+    <Content Include="Content\vendors\iconfonts\mdi\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Content\vendors\iconfonts\mdi\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Content\vendors\iconfonts\mdi\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Content\vendors\iconfonts\mdi\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Content\vendors\iconfonts\mdi\license.md" />
+    <Content Include="Content\vendors\iconfonts\mdi\package.json" />
+    <Content Include="Content\vendors\iconfonts\mdi\README.md" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\materialdesignicons.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_animated.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_core.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_extras.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_functions.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_icons.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_path.scss" />
+    <Content Include="Content\vendors\iconfonts\mdi\scss\_variables.scss" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\bower.json" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\CODE_OF_CONDUCT.md" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\CONTRIBUTING.md" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\History.md" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\less\simple-line-icons.less" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\LICENSE.md" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\package.json" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\README.md" />
+    <Content Include="Content\vendors\iconfonts\simple-line-icon\scss\simple-line-icons.scss" />
+    <Content Include="Content\vendors\iconfonts\themify\bower.json" />
+    <Content Include="Content\vendors\iconfonts\themify\fonts\themify.eot" />
+    <Content Include="Content\vendors\iconfonts\themify\fonts\themify.ttf" />
+    <Content Include="Content\vendors\iconfonts\themify\fonts\themify.woff" />
+    <Content Include="Content\vendors\iconfonts\themify\LICENSE" />
+    <Content Include="Content\vendors\iconfonts\themify\package.json" />
+    <Content Include="Content\vendors\iconfonts\themify\README.md" />
+    <Content Include="Content\vendors\iconfonts\themify\Themify IconFonts 5-23-2014.json" />
+    <Content Include="Content\vendors\summernote\dist\font\summernote.eot" />
+    <Content Include="Content\vendors\summernote\dist\font\summernote.ttf" />
+    <Content Include="Content\vendors\summernote\dist\font\summernote.woff" />
+    <Content Include="Content\vendors\summernote\dist\summernote-0.8.11-dist.zip" />
+    <Content Include="Content\vendors\summernote\dist\summernote-bs4.js.map" />
+    <Content Include="Content\vendors\summernote\dist\summernote-lite.js.map" />
+    <Content Include="Content\vendors\summernote\dist\summernote.js.map" />
+    <Content Include="Content\vendors\tinymce\bower.json" />
+    <Content Include="Content\vendors\tinymce\composer.json" />
+    <Content Include="Content\vendors\tinymce\package.json" />
+    <Content Include="Content\vendors\tinymce\readme.md" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Content\vendors\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Content\css\demo_1\style.css.map" />
+    <Content Include="Content\css\demo_2\style.css.map" />
+    <Content Include="Content\css\shared\style.css.map" />
+    <Content Include="Areas\Admin\Views\Food\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Food\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Authentication\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Authentication\Welcome.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Print.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\charts\chartjs.addon.js" />
+    <Content Include="Scripts\js\charts\chartjs.js" />
+    <Content Include="Scripts\js\dashboard.js" />
+    <Content Include="Scripts\js\highlight.pack.js" />
+    <Content Include="Scripts\js\template.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Images\Accounts\" />
+    <Folder Include="Images\Sliders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49160</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49160/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
