@@ -34,7 +34,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             else
             {
                 var allFoods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
-                //var allFoods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
                 return View(allFoods);
             }
         }
