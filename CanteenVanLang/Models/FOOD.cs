@@ -12,7 +12,7 @@ namespace CanteenVanLang.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class FOOD
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +23,6 @@ namespace CanteenVanLang.Models
     
         public int ID { get; set; }
         public string FOOD_CODE { get; set; }
-  
 
         [Required(ErrorMessage = "Vui lòng nhập tên món ăn")]
         [MaxLength(50, ErrorMessage = "Số lượng ký tự không thể nhiều hơn 50. Vui lòng nhập lại.")]
