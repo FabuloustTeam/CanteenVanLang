@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CanteenVanLang</RootNamespace>
     <AssemblyName>CanteenVanLang</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,11 +72,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -192,6 +189,8 @@
     <Compile Include="Areas\Admin\Controllers\FoodController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Middleware\LoginVertification.cs" />
+    <Compile Include="Areas\Customer\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -269,6 +268,7 @@
     <Content Include="Content\customer\css\bootstrap\bootstrap-grid.css" />
     <Content Include="Content\customer\css\bootstrap\bootstrap-reboot.css" />
     <Content Include="Content\customer\css\css\bootstrap-reboot.css" />
+    <Content Include="Content\customer\css\css\main.css" />
     <Content Include="Content\customer\css\css\mixins\_text-hide.css" />
     <Content Include="Content\customer\css\flaticon.css" />
     <Content Include="Content\customer\css\magnific-popup.css" />
@@ -324,6 +324,7 @@
     <Content Include="Content\customer\images\prod-8.jpg" />
     <Content Include="Content\customer\images\prod-9.jpg" />
     <Content Include="Content\customer\js\bootstrap.min.js" />
+    <Content Include="Content\customer\js\global.js" />
     <Content Include="Content\customer\js\google-map.js" />
     <Content Include="Content\customer\js\jquery-migrate-3.0.1.min.js" />
     <Content Include="Content\customer\js\jquery.animateNumber.min.js" />
@@ -336,6 +337,20 @@
     <Content Include="Content\customer\js\owl.carousel.min.js" />
     <Content Include="Content\customer\js\popper.min.js" />
     <Content Include="Content\customer\js\scrollax.min.js" />
+    <Content Include="Content\customer\vendor\datepicker\daterangepicker.css" />
+    <Content Include="Content\customer\vendor\datepicker\daterangepicker.js" />
+    <Content Include="Content\customer\vendor\datepicker\moment.min.js" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Content\customer\vendor\jquery\jquery.js" />
+    <Content Include="Content\customer\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\customer\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\customer\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\customer\vendor\select2\select2.min.css" />
+    <Content Include="Content\customer\vendor\select2\select2.min.js" />
     <Content Include="Content\data.js" />
     <Content Include="Content\generator.min.js" />
     <Content Include="Content\images\logo.svg" />
@@ -2289,6 +2304,19 @@
     <Content Include="Content\customer\scss\bootstrap\_utilities.scss" />
     <Content Include="Content\customer\scss\bootstrap\_variables.scss" />
     <Content Include="Content\customer\scss\style.scss" />
+    <Content Include="Areas\Customer\Views\web.config" />
+    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Customer\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Customer\Views\Auth\SignUp.cshtml" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2346,6 +2374,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Images\Accounts\" />
     <Folder Include="Images\Sliders\" />
   </ItemGroup>
