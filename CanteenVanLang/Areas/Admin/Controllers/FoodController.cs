@@ -268,7 +268,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 var food = model.FOODs.FirstOrDefault(f => f.ID == id);
 
-                if (food.STATUS)
+                if (checkIfNotAbleDelete(id))
                 {
                     return Json(new { success = false, response = "cannotdelete" }, JsonRequestBehavior.AllowGet);
                 }
@@ -284,6 +284,13 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                     return Json(new { success = true, response = "deleted" }, JsonRequestBehavior.AllowGet);
                 }
             }
+        }
+
+        private bool checkIfNotAbleDelete(int id)
+        {
+            if (model.MENUs.Where(menu => menu.FOOD_ID == id).ToList().Count > 0)
+                return true;
+            return false;
         }
     }
 }
