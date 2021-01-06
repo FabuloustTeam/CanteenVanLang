@@ -18,7 +18,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
         private void checkRole()
         {
-            if((int) Session["userRole"] == 3)
+            if ((int)Session["userRole"] == 3)
             {
                 RedirectToAction("Welcome", "Authentication");
             }
@@ -33,8 +33,21 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             }
             else
             {
-                var allFoods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
-                return View(allFoods);
+                if ((bool)Session["newFood"] == true)
+                {
+                    var allFoods = model.FOODs.OrderByDescending(food => food.ID).ToList();
+                    var newFood = allFoods[allFoods.Count - 1];
+                    allFoods.Remove(newFood);
+                    allFoods.OrderBy(food => food.FOOD_NAME).ToList();
+                    allFoods.Add(newFood);
+                    Session["newFood"] = false;
+                    return View(allFoods);
+                }
+                else
+                {
+                    var allFoods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
+                    return View(allFoods);
+                }
             }
         }
 
@@ -74,11 +87,11 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                 food.STATUS = newFood.STATUS;
                 model.FOODs.Add(food);
                 model.SaveChanges();
-                
+
                 food.IMAGE_URL = @"\Images\Foods\" + food.ID + ".jpg";
                 model.SaveChanges();
 
-                changeCategoryStatusForCreating((int) food.CATEGORY_ID, food.STATUS);
+                changeCategoryStatusForCreating((int)food.CATEGORY_ID, food.STATUS);
 
                 if (picture != null)
                 {
@@ -86,6 +99,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                     picture.SaveAs(path + food.ID + ".jpg");
 
                 }
+                Session["newFood"] = true;
                 return RedirectToAction("Index");
             }
             ViewBag.Categories = model.CATEGORies.OrderByDescending(x => x.ID).ToList();
@@ -96,7 +110,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
         private void changeCategoryStatusForCreating(int idCategory, bool foodStatus)
         {
-            if(foodStatus)
+            if (foodStatus)
             {
                 CATEGORY category = model.CATEGORies.FirstOrDefault(cate => cate.ID == idCategory);
                 category.STATUS = true;
@@ -127,7 +141,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             ValidateFood(updatedFood);
             if (ModelState.IsValid)
             {
-                using(var scope = new TransactionScope())
+                using (var scope = new TransactionScope())
                 {
 
                     var food = model.FOODs.FirstOrDefault(f => f.ID == id);
@@ -147,7 +161,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                     model.SaveChanges();
 
                     int idOldCategory = Int32.Parse(idCategory);
-                    changeCategoryStatusForUpdating((int) updatedFood.CATEGORY_ID, idOldCategory, food.ID, food.STATUS);
+                    changeCategoryStatusForUpdating((int)updatedFood.CATEGORY_ID, idOldCategory, food.ID, food.STATUS);
 
                     if (picture != null)
                     {
@@ -231,10 +245,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("PRICE", "Giá không hợp lệ");
             }
-            //if (model.FOOD_CODE.Trim() == "")
-            //{
-            //    ModelState.AddModelError("FOOD_CODE", "Vui lòng nhập mã món ăn");
-            //}
             if (model.FOOD_NAME.Trim() == "")
             {
                 ModelState.AddModelError("FOOD_NAME", "Vui lòng nhập tên món ăn");

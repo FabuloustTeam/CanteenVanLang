@@ -46,6 +46,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                             Session["userId"] = account.ID;
                             Session["userRole"] = account.ROLE;
                             Session["userImage"] = account.IMAGE_URL;
+                            Session["newFood"] = false;
                             if ((int)Session["userRole"] == 3)
                             {
                                 return RedirectToAction("Welcome");
