@@ -11,7 +11,8 @@ namespace CanteenVanLang.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CUSTOMER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,8 @@ namespace CanteenVanLang.Models
         public string CUSTOMER_CODE { get; set; }
         public string FULLNAME { get; set; }
         public string PASSWORD { get; set; }
+        [DataType(DataType.EmailAddress)]
+
         public string EMAIL { get; set; }
         public bool STATUS { get; set; }
         public int MEMBER_TYPE { get; set; }
