@@ -35,6 +35,7 @@ namespace CanteenVanLang.Models
         public bool STATUS { get; set; }
 
         [MaxLength(500, ErrorMessage = "Số lượng ký tự không thể nhiều hơn 500. Vui lòng nhập lại.")]
+        [Required(ErrorMessage = "Vui lòng nhập mô tả")]
         public string DESCRIPTION { get; set; }
         public string IMAGE_URL { get; set; }
         public Nullable<int> CATEGORY_ID { get; set; }

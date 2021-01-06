@@ -28,7 +28,7 @@
 
                             <div class="form-group row showcase_row_area">
                                 <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Giá</label>
+                                    <label for="inputType1">Giá (VNĐ)</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
                                     @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @required = true, @min = 0, @max = 1000000 } })
@@ -73,7 +73,7 @@
                                     <label for="inputType9">Mô tả</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
-                                    <textarea name="DESCRIPTION" class="form-control" id="inputType9" cols="12" rows="5" maxlength="500"></textarea>
+                                    <textarea name="DESCRIPTION" class="form-control" id="inputType9" cols="12" rows="5" maxlength="500" required></textarea>
                                     @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
                                 </div>
                             </div>

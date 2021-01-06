@@ -76,7 +76,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 var food = new FOOD();
                 food.FOOD_NAME = newFood.FOOD_NAME.Trim();
-                //food.FOOD_CODE = newFood.FOOD_CODE.Trim();
                 food.DESCRIPTION = newFood.DESCRIPTION;
                 if (newFood.DESCRIPTION != null)
                 {
@@ -248,6 +247,10 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             if (model.FOOD_NAME.Trim() == "")
             {
                 ModelState.AddModelError("FOOD_NAME", "Vui lòng nhập tên món ăn");
+            }
+            if(model.DESCRIPTION.Trim() == "")
+            {
+                ModelState.AddModelError("DESCRIPTION", "Vui lòng nhập mô tả");
             }
         }
 
