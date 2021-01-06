@@ -22,7 +22,7 @@
                                     <label for="inputType1">Mã món ăn</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.FOOD_CODE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.FOOD_CODE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly", @disabled = "true" } })
                                     @Html.ValidationMessageFor(model => model.FOOD_CODE, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                     <label for="inputType9">Mô tả</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
-                                    <textarea name="DESCRIPTION" class="form-control" id="inputType9" cols="12" rows="5">@Model.DESCRIPTION</textarea>
+                                    <textarea required name="DESCRIPTION" class="form-control" id="inputType9" cols="12" rows="5">@Model.DESCRIPTION</textarea>
                                     @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
                                 </div>
                             </div>

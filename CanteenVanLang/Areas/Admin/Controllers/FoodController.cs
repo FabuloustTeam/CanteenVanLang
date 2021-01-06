@@ -145,8 +145,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
                     var food = model.FOODs.FirstOrDefault(f => f.ID == id);
                     food.FOOD_NAME = updatedFood.FOOD_NAME.Trim();
-                    //food.FOOD_CODE = updatedFood.FOOD_CODE.Trim();
-                    food.DESCRIPTION = updatedFood.DESCRIPTION;
+                    food.DESCRIPTION = updatedFood.DESCRIPTION.Trim();
                     if (updatedFood.DESCRIPTION != null)
                     {
                         food.DESCRIPTION = updatedFood.DESCRIPTION.Trim();
