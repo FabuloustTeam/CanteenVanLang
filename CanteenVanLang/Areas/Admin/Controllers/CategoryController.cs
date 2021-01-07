@@ -24,8 +24,21 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             }
             else
             {
-                var category = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME);
-                return View(category);
+                if ((bool)Session["newCategory"] == true)
+                {
+                    var newCategory = model.CATEGORies.OrderByDescending(cate => cate.ID).FirstOrDefault();
+                    var allCategories = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME).ToList();
+                    allCategories.Remove(newCategory);
+                    //allCategories.Add(newCategory);
+                    allCategories.Insert(0, newCategory);
+                    Session["newCategory"] = false;
+                    return View(allCategories);
+                }
+                else
+                {
+                    var category = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME);
+                    return View(category);
+                }
             }
         }
 
@@ -40,6 +53,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 ViewBag.Action = "Index";
                 ViewBag.Controller = "Category";
+                Session["newCategory"] = true;
                 return View();
             }
         }
@@ -97,7 +111,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 var category = model.CATEGORies.FirstOrDefault(f => f.ID == id);
                 category.CATEGORY_NAME = updatedCategory.CATEGORY_NAME.Trim();
-                //category.CATEGORY_CODE = updatedCategory.CATEGORY_CODE.Trim();
                 category.IMAGE_URL = @"\Images\Categories\" + id + ".jpg";
                 category.STATUS = updatedCategory.STATUS;
                 model.SaveChanges();
