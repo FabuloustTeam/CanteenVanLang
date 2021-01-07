@@ -24,7 +24,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             }
             else
             {
-                var category = model.CATEGORies.OrderByDescending(x => x.ID);
+                var category = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME);
                 return View(category);
             }
         }
