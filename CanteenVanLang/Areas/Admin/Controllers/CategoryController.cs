@@ -29,7 +29,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                     var newCategory = model.CATEGORies.OrderByDescending(cate => cate.ID).FirstOrDefault();
                     var allCategories = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME).ToList();
                     allCategories.Remove(newCategory);
-                    //allCategories.Add(newCategory);
                     allCategories.Insert(0, newCategory);
                     Session["newCategory"] = false;
                     return View(allCategories);
