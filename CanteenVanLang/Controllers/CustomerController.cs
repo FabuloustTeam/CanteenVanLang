@@ -8,10 +8,10 @@ using CanteenVanLang.Models;
 
 namespace CanteenVanLang.Areas.Customer.Controllers
 {
-    public class AuthController : Controller
+    public class CustomerController : Controller
     {
         private QUANLYCANTEENEntities db = new QUANLYCANTEENEntities();
-        // GET: Customer/Auth
+        // GET: Controller/Customer
         public ActionResult SignUp()
         {
             return View(db.FACULTies.ToList());
