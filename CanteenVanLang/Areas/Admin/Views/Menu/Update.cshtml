@@ -1,12 +1,12 @@
 ﻿@model CanteenVanLang.Models.MENU
 @using CanteenVanLang.Models;
 @{
-    ViewBag.Title = "Thêm món ăn theo ngày";
+    ViewBag.Title = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     List<FOOD> foods = ViewBag.Foods as List<FOOD>;
 }
 
-@*<h2>Create</h2>
+@*<h2>Update</h2>
 
     @using (Html.BeginForm())
     {
@@ -16,6 +16,8 @@
             <h4>MENU</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
             <div class="form-group">
                 @Html.LabelFor(model => model.MENU_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -76,7 +78,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
         </div>
@@ -86,16 +88,15 @@
         @Html.ActionLink("Back to List", "Index")
     </div>*@
 
-
 <div class="col-lg-12">
     <div class="grid">
-        <p class="grid-header">Thêm món ăn theo ngày</p>
+        <p class="grid-header">Cập nhật món ăn theo ngày</p>
         <div class="grid-body">
             <div class="item-wrapper">
                 <div class="row mb-12">
                     <div class="col-md-12 mx-auto">
                         @*@using (Html.BeginForm("Create", "Menu", FormMethod.Post, new { id = "form-update", @class = "form-add" }))
-        {*@
+                            {*@
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -141,16 +142,21 @@
                                             <div class="col-md-8">
                                                 <div class="form-group row showcase_row_area">
                                                     <div class="col-md-3 showcase_text_area">
-                                                        <label for="inputType1">Món ăn</label>
+                                                        <label data-toggle="tooltip" data-placement="left" title="Món ăn hiện tại là @Model.FOOD.FOOD_NAME" for="inputType1">Món ăn</label>
                                                     </div>
                                                     <div class="col-md-9 showcase_content_area">
-                                                        @*@Html.DropDownList("FOOD_ID", new SelectList(ViewBag.Foods, "ID", "FOOD_NAME"), new { @class = "custom-select", @required = true, @id = "selectFood", @onchange = "getPrice()" })
-                                        @Html.ValidationMessageFor(model => model.FOOD_ID, "", new { @class = "text-danger" })*@
                                                         <select id="selectFood" class="custom-select" onchange="getPrice()">
-                                                            <option value="none" selected="">Vui lòng chọn món ăn</option>
+                                                            <option value="none">Vui lòng chọn món ăn</option>
                                                             @foreach (var food in foods)
                                                             {
-                                                                <option value="@food.FOOD_CODE">@food.FOOD_NAME</option>
+                                                                if (food.ID == Model.FOOD_ID)
+                                                                {
+                                                                    <option value="@food.FOOD_CODE" selected>@food.FOOD_NAME</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@food.FOOD_CODE">@food.FOOD_NAME</option>
+                                                                }
                                                             }
                                                         </select>
                                                     </div>
@@ -168,14 +174,13 @@
 
                                                 <div class="form-group row showcase_row_area">
                                                     <div class="col-md-3 showcase_text_area">
-                                                        <label for="inputType5">Đơn giá</label>
+                                                        <label for="inputType5" data-toggle="tooltip" data-placement="left" title="Đơn giá hiện tại là @Model.PRICE">Đơn giá</label>
                                                     </div>
                                                     <div class="col-md-9 showcase_content_area">
                                                         @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control", @id = "txtPrice", @required = true, @min = 0, @max = 1000000 } })
                                                         @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -183,17 +188,29 @@
                             </div>
                         </div>
                         @*}*@
-                        <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 70px; left: 50%">
-                            <div class="col-md-6 showcase_text_area">
-                                <label>
-                                    <a href="/Admin/Menu">
-                                        <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
-                                    </a>
-                                </label>
-                            </div>
-                            <div class="col-md-6 showcase_content_area">
-                                <div class="custom-file">
-                                    <input onclick="submitOrder()" type="submit" class="btn btn-sm btn-primary btn-" value="Thêm">
+                        <div class="col-lg-12">
+                            <div class="grid">
+                                <div class="grid-body">
+                                    <div class="item-wrapper">
+                                        <div class="row mb-3">
+                                            <div class="col-md-8">
+                                                <div class="row showcase_row_area mb-3" style="position: absolute; padding-bottom: 20px; left: 50%">
+                                                    <div class="col-md-6 showcase_text_area">
+                                                        <label>
+                                                            <a href="/Admin/Menu">
+                                                                <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
+                                                            </a>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6 showcase_content_area">
+                                                        <div class="custom-file">
+                                                            <input onclick="submitOrder()" type="submit" class="btn btn-sm btn-primary btn-" value="Thêm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +220,6 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
@@ -224,5 +240,9 @@
                 }
             });
         }
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 }

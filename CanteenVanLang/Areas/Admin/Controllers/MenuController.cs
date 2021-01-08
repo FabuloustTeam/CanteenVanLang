@@ -36,5 +36,13 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         //{
 
         //}
+
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var menu = model.MENUs.FirstOrDefault(men => men.ID == id);
+            ViewBag.Foods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
+            return View(menu);
+        }
     }
 }
