@@ -31,6 +31,9 @@ namespace CanteenVanLang.Models
         [Required(ErrorMessage = "Vui lòng nhập số lượng")]
         [Range(0, Int32.MaxValue, ErrorMessage = "Số lượng chỉ bao gồm số. Vui lòng nhập lại.")]
         public int QUANTITY { get; set; }
+
+        [DisplayFormat(DataFormatString = "{mm/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Vui lòng chọn ngày")]
         public System.DateTime DATE { get; set; }
         public bool STATUS { get; set; }
 

@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-md-9 showcase_content_area">
                             <select class="custom-select" name="customerID" id="selectCustomer">
-                                <option value="none" selected="">Vui lòng chọn khách hàng</option>
+                                <option value="" selected="">Vui lòng chọn khách hàng</option>
                                 @foreach (var cust in customers)
                                 {
                                     <option value="@cust.ID">@cust.FULLNAME</option>

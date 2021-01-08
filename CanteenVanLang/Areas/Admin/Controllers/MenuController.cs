@@ -27,16 +27,75 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public JsonResult Create(MENU newMenu)
-        //{
-            
-        //}
+        [HttpPost]
+        public ActionResult Create(string date, string FOOD_ID, string quantity, string price, string status)
+        {
+            Validate(date, FOOD_ID, quantity, price);
+            if (ModelState.IsValid)
+            {
+                var newMenu = new MENU();
+                newMenu.DATE = DateTime.Parse(date);
+                newMenu.FOOD_ID = Int32.Parse(FOOD_ID);
+                newMenu.QUANTITY = Int32.Parse(quantity);
+                newMenu.PRICE = Int32.Parse(price);
+                newMenu.STATUS = Boolean.Parse(status);
+                ValidateMenu(newMenu);
+                if (ModelState.IsValid)
+                {
+                    var menu = new MENU();
+                    menu.DATE = newMenu.DATE;
+                    menu.ACCOUNT_ID = (int)Session["userId"];
+
+                    menu.FOOD_ID = newMenu.FOOD_ID;
+                    menu.QUANTITY = newMenu.QUANTITY;
+                    menu.PRICE = newMenu.PRICE;
+                    menu.STATUS = newMenu.STATUS;
+
+                    model.MENUs.Add(menu);
+                    model.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                return View(newMenu);
+            }
+            ViewBag.Foods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
+            return View();
+        }
+
+        private void Validate(string date, string foodId, string quantity, string price)
+        {
+            DateTime dt;
+            if(!DateTime.TryParse(date, out dt))
+            {
+                ModelState.AddModelError("DATE", "Vui lòng chọn ngày");
+            }
+            if(foodId == null)
+            {
+                ModelState.AddModelError("FOOD_ID", "Vui lòng chọn món ăn");
+            }
+            if (quantity == null)
+            {
+                ModelState.AddModelError("QUANTITY", "Vui lòng nhập số lượng");
+            }
+            if (price == null)
+            {
+                ModelState.AddModelError("PRICE", "Vui lòng nhập giá");
+            }
+        }
+
+        private void ValidateMenu(MENU menu)
+        {
+            if (menu.FOOD_ID == null)
+            {
+                ModelState.AddModelError("FOOD_ID", "Vui lòng chọn món ăn");
+            }
+        }
 
         [HttpPost]
-        public JsonResult getPrice(string foodCode)
+        public JsonResult getPrice(string idReceived)
         {
-            int price = model.FOODs.FirstOrDefault(food => food.FOOD_CODE == foodCode).PRICE;
+            int id = Int32.Parse(idReceived);
+            int price = model.FOODs.FirstOrDefault(food => food.ID == id).PRICE;
             return Json(new { success = true, value = price }, JsonRequestBehavior.AllowGet);
         }
 
