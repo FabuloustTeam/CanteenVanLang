@@ -73,5 +73,21 @@ namespace CanteenVanLang.Areas.Customer.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult LogIn(string email, string password)
+        {
+            CUSTOMER cust = db.CUSTOMERs.FirstOrDefault(item => item.EMAIL == email && item.PASSWORD == password);
+            if (cust == null)
+            {
+                ModelState.AddModelError("loginFail", "Email hoặc mật khẩu không đúng");
+                return LogIn();
+            }
+            else
+            {
+                Session["customerEmail"] = cust.EMAIL;
+            }
+            return Redirect("/");
+        }
     }
 }
