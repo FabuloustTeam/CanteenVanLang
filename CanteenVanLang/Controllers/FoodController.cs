@@ -12,9 +12,19 @@ namespace CanteenVanLang.Controllers
     {
         QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
         // GET: Food
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            var listFoods = model.FOODs.OrderByDescending(x => x.ID).ToList();
+            var listFoods = model.FOODs.OrderBy(x => x.FOOD_NAME).ToList();
+            if (!String.IsNullOrEmpty(search))
+            {
+                var trimSearching = search.Trim();
+                if (trimSearching != "")
+                {
+                    listFoods = listFoods.Where(s => s.FOOD_NAME.ToLower().Contains(search.ToLower())
+                    || s.CATEGORY.CATEGORY_NAME.ToLower().Contains(search.ToLower())).ToList();
+                }
+            }
+            ViewData["keyword"] = search;
             return View(listFoods);
         }
 

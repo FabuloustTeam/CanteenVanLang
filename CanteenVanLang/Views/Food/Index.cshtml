@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.FOOD>
+
 @using CanteenVanLang.Models
 
 @{
@@ -27,7 +28,7 @@
     <link rel="stylesheet" href="~/Content/customer/css/flaticon.css">
     <link rel="stylesheet" href="~/Content/customer/css/style.css">
 </head>
-<body>    
+<body>
 
     <!-- END nav -->
 
@@ -48,53 +49,48 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="row mb-4">
-                        <div class="col-md-12 d-flex justify-content-between align-items-center">
-                            <h4 class="product-select">Select Types of Products</h4>
-                            <select class="selectpicker" multiple>
-                                <option>Brandy</option>
-                                <option>Gin</option>
-                                <option>Rum</option>
-                                <option>Tequila</option>
-                                <option>Vodka</option>
-                                <option>Whiskey</option>
-                            </select>
-                        </div>
+                        <form method="post">
+                            <input type="text" name="search" value="" placeholder="Search food..." aria-label="Search food..."
+                                   class="col-md-12 offset-md-1">
+                        </form>    
                     </div>
+
                     <div class="row">
-                        <div class="col-md-4 d-flex">
-                            <div class="product ftco-animate">
-                                <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-1.jpg);">
-                                    <div class="desc">
-                                        @*<p class="meta-prod d-flex">
-                    <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                    <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                    <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                </p>*@
+                        @foreach (var food in Model)
+                        {
+
+                            <div class="col-md-4 d-flex">
+                                <div class="product ftco-animate fadeInUp ftco-animated">
+                                    <div class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        <a href="@Url.Action("Details", "Food", new { id = food.ID })" class=" stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                            <img src="@food.IMAGE_URL" class="img-fluid" alt="@food.FOOD_NAME">
+                                        </a>
                                     </div>
-                                </div>
-                                @foreach (var food in Model)
-                                {
+
                                     <div class="text text-center">
 
-                                        <span class="sale">
+                                        <span>
                                             @if (food.STATUS)
                                             {
-                                                <label class="badge badge-success">Còn bán</label>
+                                                <label class="new">Còn bán</label>
                                             }
                                             else
                                             {
-                                                <label class="badge badge-danger">Hết bán</label>
+                                                <label class="sale">Hết bán</label>
                                             }
 
                                         </span>
                                         <span class="category">@food.CATEGORY.CATEGORY_NAME</span>
                                         <h2>@food.FOOD_NAME</h2>
-                                        <p class="mb-0"><span class="price">@food.PRICE</span></p>
+                                        <p class="mb-0"><span class="price">@food.PRICE.ToString("N0")</span>VNĐ</p>
                                     </div>
-                                }
+
+
+                                </div>
 
                             </div>
-                        </div>
+
+                        }
                     </div>
                     <div class="row mt-5">
                         <div class="col text-center">
@@ -134,7 +130,5 @@
 
 
 
-
 </body>
 </html>
-
