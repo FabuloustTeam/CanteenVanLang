@@ -24,6 +24,13 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult getPrice(string foodCode)
+        {
+            int price = model.FOODs.FirstOrDefault(food => food.FOOD_CODE == foodCode).PRICE;
+            return Json(new { success = true, value = price }, JsonRequestBehavior.AllowGet);
+        }
+
         //[HttpPost]
         //public ActionResult Create(MENU newMenu)
         //{
