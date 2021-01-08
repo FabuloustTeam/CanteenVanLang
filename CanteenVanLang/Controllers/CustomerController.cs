@@ -11,7 +11,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
     public class CustomerController : Controller
     {
         private QUANLYCANTEENEntities db = new QUANLYCANTEENEntities();
-        // GET: Controller/Customer
+        // GET: Customer/Auth
         public ActionResult SignUp()
         {
             return View(db.FACULTies.ToList());
@@ -23,7 +23,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             if (password != confirmPassword)
             {
                 ModelState.AddModelError("confirmFail", "Mật khẩu xác nhận không khớp");
-                return View();
+                return SignUp();
             }
             if (name == "" || password == "" || confirmPassword == "" || email == "" || numberPhone == "")
             {
@@ -37,17 +37,17 @@ namespace CanteenVanLang.Areas.Customer.Controllers
                     ModelState.AddModelError("informationMissing", "Vui lòng nhập Email");
                 else if (numberPhone == "")
                     ModelState.AddModelError("informationMissing", "Vui lòng nhập Số điện thoại");
-                return View();
+                return SignUp();
             }
             if (!checkEmail(email))
             {
                 ModelState.AddModelError("invalidEmail", "Email không hợp lệ");
-                return View();
+                return SignUp();
             }
             if (db.CUSTOMERs.Count(item => item.EMAIL == email) == 1)
             {
                 ModelState.AddModelError("existedEmail", "Email đã tồn tại");
-                return View();
+                return SignUp();
             }
             CUSTOMER cust = new CUSTOMER();
             cust.EMAIL = email;
@@ -59,13 +59,19 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             cust.MEMBER_TYPE = 0;
             db.CUSTOMERs.Add(cust);
             db.SaveChanges();
-            return Redirect("/");
+            ViewBag.SignInSucceed = true;
+            return SignUp();
         }
 
         private bool checkEmail(string email)
         {
-            Regex regex = new Regex("\\w{1,50}@\\w{4,15}(\\.\\w)+");
+            Regex regex = new Regex("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
             return regex.IsMatch(email);
+        }
+
+        public ActionResult LogIn()
+        {
+            return View();
         }
     }
 }

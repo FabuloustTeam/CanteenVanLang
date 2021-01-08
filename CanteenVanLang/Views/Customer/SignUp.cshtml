@@ -6,6 +6,13 @@
 
 
 <body>
+    @if (ViewBag.SignInSucceed != null)
+    {
+        <script>
+            alert('Tài khoản đã được tạo thành công');
+            window.location.href = "/Customer/Login";
+        </script>
+    }
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
@@ -16,40 +23,51 @@
                             <div class="col-12">
                                 <div class="input-group">
                                     <label class="label">Họ và tên</label>
-                                    <input class="input--style-4" type="text" name="name" required>
+                                    <input class="input--style-4" type="text" name="name" id="name">
+                                    <p style="color: red" id="nameErrorContainer"></p>
                                 </div>
                             </div>
-                            
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <label class="label">Email</label>
-                                        <input class="input--style-4" type="email" name="email" required>
+
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="text" name="email" id="email">
+                                    <p style="color: red" id="emailErrorContainer"></p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <label class="label">Mật khẩu</label>
+                                    <input class="input--style-4" type="password" name="password" id="password">
+                                    <div id="passwordErrorContainer">
+                                        <p class="emptyError" style="color: red"></p>
+                                        <p class="notMatchError" style="color: red"></p>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <label class="label">Mật khẩu</label>
-                                        <input class="input--style-4" type="password" name="password" required>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <label class="label">Xác nhận mật khẩu</label>
+                                    <input class="input--style-4" type="password" name="confirmPassword" id="confirmPassword">
+                                    <div id="confirmPasswordErrorContainer">
+                                        <p class="emptyError" style="color: red"></p>
+                                        <p class="notMatchError" style="color: red"></p>
                                     </div>
                                 </div>
-                            
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <label class="label">Xác nhận mật khẩu</label>
-                                        <input class="input--style-4" type="password" name="confirmPassword" required>
-                                    </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <label class="label">Số điện thoại</label>
+                                    <input class="input--style-4" type="text" name="numberphone" id="numberphone">
+                                    <p style="color: red" id="numberphoneErrorContainer"></p>
                                 </div>
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <label class="label">Số điện thoại</label>
-                                        <input class="input--style-4" type="text" name="numberphone" required>
-                                    </div>
-                                </div>
+                            </div>
                             <div class="col-12">
                                 <div>
                                     <label class="label">Khoa</label>
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="faculty" required>
+                                        <select name="faculty" id="faculty">
                                             <option disabled="disabled" selected="selected">Chọn khoa</option>
                                             @foreach (var faculty in Model)
                                             {
@@ -58,6 +76,7 @@
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
+                                    <p style="color: red" id="facultyErrorContainer"></p>
                                 </div>
                             </div>
                         </div>
@@ -82,4 +101,83 @@
     <script src="~/Content/customer/vendor/datepicker/daterangepicker.js"></script>
     <!-- Main JS-->
     <script src="~/Content/customer/js/global.js"></script>
-</body>
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                document.getElementsByTagName('form')[0].addEventListener('submit', function (event) {
+                    var nameField = $('#name');
+                    var emailField = $('#email');
+                    var passwordField = $('#password');
+                    var confirmPasswordField = $('#confirmPassword');
+                    var numberphoneField = $('#numberphone');
+                    var facultyField = $('#faculty');
+                    var error = false;
+                    var emailPattern = /^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+                    if (nameField.val() === '') {
+                        $('#nameErrorContainer').html('Vui lòng nhập Họ và Tên');
+                        error = true;
+                    } else {
+                        $('#nameErrorContainer').html('');
+                        error = false;
+                    }
+                    if (emailField.val() === '') {
+                        $('#emailErrorContainer').html('Vui lòng nhập email');
+                        error = true;
+                    } else {
+                        $('#emailErrorContainer').html('');
+                        error = false;
+                    }
+                    if (passwordField.val() === '') {
+                        $('#passwordErrorContainer>.emptyError').html('Vui lòng nhập mật khẩu');
+                        error = true;
+                    } else {
+                        $('#passwordErrorContainer>.emptyError').html('');
+                        error = false;
+                    }
+                    if (confirmPasswordField.val() === '') {
+                        passwordError = true;
+                        $('#confirmPasswordErrorContainer>.emptyError').html('Vui lòng nhập xác nhận mật khẩu');
+                        error = true;
+                    } else {
+                        $('#confirmPasswordErrorContainer>.emptyError').html('');
+                        error = false;
+                    }
+                    if (numberphoneField.val() === '') {
+                        $('#numberphoneErrorContainer').html('Vui lòng nhập số điện thoại');
+                        error = true;
+                    } else {
+                        $('#numberphoneErrorContainer').html('');
+                        error = false;
+                    }
+                    if (facultyField.val() == null) {
+                        $('#facultyErrorContainer').html('Vui lòng chọn Khoa');
+                        error = true;
+                    } else {
+                        $('#facultyErrorContainer').html('');
+                        error = false;
+                    }
+                    if (passwordField.val() !== confirmPasswordField.val()) {
+                        $('#passwordErrorContainer>.notMatchError').html('Mật khẩu và xác nhận mật khẩu không trùng khớp');
+                        $('#confirmPasswordErrorContainer>.notMatchError').html('Mật khẩu và xác nhận mật khẩu không trùng khớp');
+                        error = true;
+                    } else {
+                        $('#confirmPasswordErrorContainer>.notMatchError').html('');
+                        $('#passwordErrorContainer>.notMatchError').html('');
+                        error = false;
+                    }
+                    if (!emailPattern.test(emailField.val())) {
+                        $('#emailErrorContainer').html('Email không hợp lệ, vui lòng nhập lại');
+                        error = true;
+                    } else {
+                        $('#emailErrorContainer').html('');
+                        error = false;
+                    }
+                    if (error) {
+                        event.preventDefault();
+                    }
+                    return !error;
+                });
+            });
+        </script>
+    }
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->

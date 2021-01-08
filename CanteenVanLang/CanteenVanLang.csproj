@@ -189,8 +189,7 @@
     <Compile Include="Areas\Admin\Controllers\FoodController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Middleware\LoginVertification.cs" />
-    <Compile Include="Controllers\CustController.cs" />
-    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2343,10 +2342,7 @@
     <Content Include="Content\customer\scss\bootstrap\_utilities.scss" />
     <Content Include="Content\customer\scss\bootstrap\_variables.scss" />
     <Content Include="Content\customer\scss\style.scss" />
-    <Content Include="Areas\Customer\Views\web.config" />
-    <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Customer\Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Cust\SignUp.cshtml" />
+    <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\customer\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
@@ -2474,13 +2470,11 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
-    <Content Include="Views\Cust\LogIn.cshtml" />
+    <Content Include="Views\Customer\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Customer\Controllers\" />
-    <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Images\Accounts\" />
     <Folder Include="Images\Sliders\" />
   </ItemGroup>

@@ -2,6 +2,10 @@
 (function ($) {
     "use strict";
 
+    $(document).ready(function () {
+        $('#ftco-loader').css('display', 'none');
+    });
+
 
      /*==================================================================
     [ Focus input ]*/
