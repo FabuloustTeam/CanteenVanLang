@@ -67,5 +67,10 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Regex regex = new Regex("\\w{1,50}@\\w{4,15}(\\.\\w)+");
             return regex.IsMatch(email);
         }
+
+        public ActionResult LogIn()
+        {
+            return View();
+        }
     }
 }

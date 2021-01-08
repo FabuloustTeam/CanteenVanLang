@@ -272,13 +272,22 @@
     <Content Include="Content\customer\css\css\mixins\_text-hide.css" />
     <Content Include="Content\customer\css\flaticon.css" />
     <Content Include="Content\customer\css\magnific-popup.css" />
+    <Content Include="Content\customer\css\main.css" />
     <Content Include="Content\customer\css\owl.carousel.min.css" />
     <Content Include="Content\customer\css\owl.theme.default.min.css" />
     <Content Include="Content\customer\css\style.css" />
+    <Content Include="Content\customer\css\util.css" />
     <Content Include="Content\customer\fonts\flaticon\backup.txt" />
     <Content Include="Content\customer\fonts\flaticon\font\flaticon.css" />
     <Content Include="Content\customer\fonts\flaticon\font\flaticon.html" />
     <Content Include="Content\customer\fonts\flaticon\font\Flaticon.svg" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\customer\fonts\iconic\css\material-design-iconic-font.css" />
+    <Content Include="Content\customer\fonts\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\customer\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Content\customer\images\1.jpg" />
     <Content Include="Content\customer\images\1.png" />
     <Content Include="Content\customer\images\2.png" />
@@ -288,11 +297,13 @@
     <Content Include="Content\customer\images\6.png" />
     <Content Include="Content\customer\images\7.png" />
     <Content Include="Content\customer\images\about.jpg" />
+    <Content Include="Content\customer\images\bg-01.jpg" />
     <Content Include="Content\customer\images\bg_1.jpg" />
     <Content Include="Content\customer\images\bg_2.jpg" />
     <Content Include="Content\customer\images\bg_4.jpg" />
     <Content Include="Content\customer\images\chimlac.png" />
     <Content Include="Content\customer\images\chimlacwhite.png" />
+    <Content Include="Content\customer\images\icons\favicon.ico" />
     <Content Include="Content\customer\images\image_1.jpg" />
     <Content Include="Content\customer\images\image_2.jpg" />
     <Content Include="Content\customer\images\image_3.jpg" />
@@ -326,6 +337,30 @@
     <Content Include="Content\customer\js\bootstrap.min.js" />
     <Content Include="Content\customer\js\global.js" />
     <Content Include="Content\customer\js\google-map.js" />
+    <Content Include="Content\customer\vendor\animate\animate.css" />
+    <Content Include="Content\customer\vendor\animsition\css\animsition.css" />
+    <Content Include="Content\customer\vendor\animsition\css\animsition.min.css" />
+    <Content Include="Content\customer\vendor\animsition\js\animsition.js" />
+    <Content Include="Content\customer\vendor\animsition\js\animsition.min.js" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\customer\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\customer\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\customer\vendor\bootstrap\js\popper.js" />
+    <Content Include="Content\customer\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Content\customer\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="Content\customer\vendor\countdowntime\countdowntime.js" />
+    <Content Include="Content\customer\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\customer\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\customer\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\customer\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\customer\vendor\daterangepicker\moment.js" />
+    <Content Include="Content\customer\vendor\daterangepicker\moment.min.js" />
+    <Content Include="Content\customer\vendor\jquery\jquery-3.2.1.min.js" />
     <Content Include="Content\customer\js\jquery-migrate-3.0.1.min.js" />
     <Content Include="Content\customer\js\jquery.animateNumber.min.js" />
     <Content Include="Content\customer\js\jquery.easing.1.3.js" />
@@ -349,6 +384,10 @@
     <Content Include="Content\customer\vendor\mdi-font\css\material-design-iconic-font.css" />
     <Content Include="Content\customer\vendor\mdi-font\css\material-design-iconic-font.min.css" />
     <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\customer\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\customer\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\customer\vendor\select2\select2.css" />
+    <Content Include="Content\customer\vendor\select2\select2.js" />
     <Content Include="Content\customer\vendor\select2\select2.min.css" />
     <Content Include="Content\customer\vendor\select2\select2.min.js" />
     <Content Include="Content\data.js" />
@@ -2317,6 +2356,67 @@
     <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
     <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
     <Content Include="Content\customer\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\customer\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\customer\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\customer\fonts\iconic\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\customer\fonts\iconic\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\customer\fonts\iconic\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\customer\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\customer\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2333,14 +2433,18 @@
     <Content Include="Scripts\js\highlight.pack.js" />
     <Content Include="Scripts\js\template.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -2370,6 +2474,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
+    <Content Include="Views\Cust\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
