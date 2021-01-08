@@ -39,7 +39,7 @@
 
         <div class="item-wrapper">
             <div class="table-responsive">
-                <table class="table" id="food-table">
+                <table class="table" id="daily-food-table">
                     <thead>
                         <tr>
                             <th>
@@ -134,25 +134,25 @@
         //Determine the reference of the Row using the Button.
         var row = $(button).closest("TR");
         var name = $("TD", row).eq(1).html();
-        if (confirm("Bạn có chắc chắn muốn xóa " + name.trim() + "? Không thể phục hồi món ăn đã xóa.")) {
+        if (confirm("Bạn có chắc chắn muốn xóa " + name.trim() + "?")) {
             //Get the reference of the Table.
-            var table = $("#food-table")[0];
+            var table = $("#daily-food-table")[0];
 
 
             //Send the JSON array to Controller using AJAX.
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("Delete", "Food")",
+                url: "@Url.Action("Delete", "Menu")",
                 data: JSON.stringify({ id: id }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
                     if (r.success) {
-                        alert("Xóa món ăn thành công");
+                        alert("Xóa thành công");
                         //Delete the Table row using it's Index.
                         table.deleteRow(row[0].rowIndex);
                     } else {
-                        alert("Không thể xóa món ăn còn bán");
+                        alert("Không thể xóa món ăn này");
                     }
                 }
             });
