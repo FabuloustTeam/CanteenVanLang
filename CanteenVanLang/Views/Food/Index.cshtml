@@ -50,7 +50,7 @@
                 <div class="col-md-9">
                     <div class="row mb-4">
                         <form method="post">
-                            <input type="text" name="search" value="" placeholder="Search food..." aria-label="Search food..."
+                            <input type="text" name="search" value="Search" placeholder="Search food..." aria-label="Search food..."
                                    class="col-md-12 offset-md-1">
                         </form>    
                     </div>
@@ -81,7 +81,9 @@
 
                                         </span>
                                         <span class="category">@food.CATEGORY.CATEGORY_NAME</span>
-                                        <h2>@food.FOOD_NAME</h2>
+                                        <a href="@Url.Action("Details", "Food", new { id = food.ID })">
+                                            <h2>@food.FOOD_NAME</h2>
+                                        </a>
                                         <p class="mb-0"><span class="price">@food.PRICE.ToString("N0")</span>VNĐ</p>
                                     </div>
 

@@ -72,7 +72,7 @@
                     <p class="price"><span>@Model.PRICE.ToString("N0")</span>VNĐ</p>
                     <p>@Model.DESCRIPTION</p>
                     <div class="row mt-4">
-                        <div class="input-group col-md-6 d-flex mb-3">
+                        <div class="input-group col-md-6 d-flex mb-5">
                             <span class="input-group-btn mr-2">
                                 <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
                                     <i class="fa fa-minus"></i>
@@ -90,7 +90,18 @@
                                 <p style="color: #000;">80 piece available</p>
                             </div>*@
                     </div>
-                    <p><a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add to Cart</a><a href="cart.html" class="btn btn-primary py-3 px-5">Buy now</a></p>
+                    <p>
+                        @if (Model.STATUS == true)
+                        {
+                            <a href="cart.html" class="btn btn-primary py-3 px-5 mr-2">Add to Cart</a>
+                        <a href="cart.html" class="btn btn-primary py-3 px-5">Buy now</a>
+                        }
+                        else
+                        {
+                            <a href="cart.html" disabled="disabled" class="btn btn-primary py-3 px-5 mr-2">Add to Cart</a>
+                        <a href="cart.html" disabled="disabled" class="btn btn-primary py-3 px-5">Buy now</a>
+                        }
+                    </p>
                 </div>
             </div>
 
