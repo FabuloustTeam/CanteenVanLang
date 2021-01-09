@@ -77,7 +77,7 @@
           <Property Name="PRICE" Type="int" Nullable="false" />
           <Property Name="STATUS" Type="bit" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IMAGE_URL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="nvarchar(max)" />
           <Property Name="CATEGORY_ID" Type="int" />
         </EntityType>
         <EntityType Name="MENU">
@@ -443,7 +443,7 @@
           <Property Name="PRICE" Type="Int32" Nullable="false" />
           <Property Name="STATUS" Type="Boolean" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CATEGORY_ID" Type="Int32" />
           <NavigationProperty Name="CATEGORY" Relationship="QUANLYCANTEENModel.FK__FOOD__CATEGORY_I__3F466844" FromRole="FOOD" ToRole="CATEGORY" />
           <NavigationProperty Name="MENUs" Relationship="QUANLYCANTEENModel.FK__MENU__FOOD_ID__4222D4EF" FromRole="FOOD" ToRole="MENU" />

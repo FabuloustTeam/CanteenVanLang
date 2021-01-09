@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="113831c3b44548218bb487a95aed5af8" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.ABOUT_US" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.ABOUT_US" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="QUANLYCANTEENModel.ACCOUNT" Width="1.5" PointX="0.75" PointY="4.875" />
         <EntityTypeShape EntityType="QUANLYCANTEENModel.CATEGORY" Width="1.5" PointX="1.5" PointY="9.25" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.CONTACT" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.CUSTOMER" Width="1.5" PointX="0.75" PointY="12.875" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.FACULTY" Width="1.5" PointX="1.5" PointY="17.5" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.CONTACT" Width="1.5" PointX="3.75" PointY="8.75" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.CUSTOMER" Width="1.5" PointX="3.75" PointY="12.875" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.FACULTY" Width="1.5" PointX="1.5" PointY="13.5" />
         <EntityTypeShape EntityType="QUANLYCANTEENModel.FOOD" Width="1.5" PointX="0.75" PointY="0.875" />
         <EntityTypeShape EntityType="QUANLYCANTEENModel.MENU" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.NOTIFICATION" Width="1.5" PointX="5.25" PointY="5.25" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.ORDER" Width="1.5" PointX="3" PointY="4.875" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.ORDER_DETAIL" Width="1.5" PointX="5.25" PointY="1.25" />
-        <EntityTypeShape EntityType="QUANLYCANTEENModel.SLIDER" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.NOTIFICATION" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.ORDER" Width="1.5" PointX="6" PointY="4.875" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.ORDER_DETAIL" Width="1.5" PointX="8.25" PointY="3.25" />
+        <EntityTypeShape EntityType="QUANLYCANTEENModel.SLIDER" Width="1.5" PointX="7.75" PointY="0.75" />
         <AssociationConnector Association="QUANLYCANTEENModel.FK__MENU__ACCOUNT_ID__4316F928" />
         <AssociationConnector Association="QUANLYCANTEENModel.FK__NOTIFICAT__ACCOU__4E88ABD4" />
         <AssociationConnector Association="QUANLYCANTEENModel.FK__ORDER__ACCOUNT_I__45F365D3" />
