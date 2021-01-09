@@ -1,7 +1,9 @@
-﻿
+﻿@using CanteenVanLang.Models;
 @{
     ViewBag.Title = "Canteen Van Lang";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    var categories = ViewBag.Categories as List<CATEGORY>;
+    var foods = ViewBag.Menu as List<FOOD>;
 }
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -14,31 +16,31 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="~/Images/Sliders/1.png" alt="First slide">
+            <img class="d-block w-100" src="~/Images/Sliders/1.jpg" alt="bún-bò-canteen-văn-lang">
             <div class="carousel-caption d-none d-md-block">
                 <!--                    <p>thit cho bo duong</p>-->
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="~/Images/Sliders/2.png" alt="Second slide">
+            <img class="d-block w-100" src="~/Images/Sliders/2.jpg" alt="mì-ý-canteen-văn-lang">
             <div class="carousel-caption d-none d-md-block">
                 <!--                    <p>thit cho bo duong</p>-->
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="~/Images/Sliders/3.png" alt="Third slide">
+            <img class="d-block w-100" src="~/Images/Sliders/3.jpg" alt="súp-canteen-văn-lang">
             <div class="carousel-caption d-none d-md-block">
                 <!--                    <p>thit cho bo duong</p>-->
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="~/Images/Sliders/4.png" alt="Fourth slide">
+            <img class="d-block w-100" src="~/Images/Sliders/4.jpg" alt="bánh-mì-canteen-văn-lang">
             <div class="carousel-caption d-none d-md-block">
                 <!--                    <p>thit cho bo duong</p>-->
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="~/Images/Sliders/5.png" alt="Fiveth slide">
+            <img class="d-block w-100" src="~/Images/Sliders/5.jpg" alt="mì-hến-canteen-văn-lang">
             <div class="carousel-caption d-none d-md-block">
                 <!--                    <p>thit cho bo duong</p>-->
             </div>
@@ -62,8 +64,8 @@
                         <span class="flaticon-support"></span>
                     </div>
                     <div class="text">
-                        <h2>Online Support 24/7</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <h2>Thời gian hoạt động</h2>
+                        <p>7AM - 14PM <br />Từ thứ Hai đến thứ Bảy luôn sẵn sàng phục vụ bạn</p>
                     </div>
                 </div>
             </div>
@@ -73,8 +75,8 @@
                         <span class="flaticon-cashback"></span>
                     </div>
                     <div class="text">
-                        <h2>Money Back Guarantee</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <h2>Thanh toán sau</h2>
+                        <p>Không cần phải trả trước khi đặt hàng, thanh toán tại quầy khi đến dùng bữa </p>
                     </div>
                 </div>
             </div>
@@ -84,8 +86,8 @@
                         <span class="flaticon-free-delivery"></span>
                     </div>
                     <div class="text">
-                        <h2>Free Shipping &amp; Return</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <h2>Phục vụ linh hoạt</h2>
+                        <p>Chấp nhận dùng bữa tại chỗ hoặc mang đi mà không tốn thêm bất cứ chi phí nào</p>
                     </div>
                 </div>
             </div>
@@ -95,17 +97,17 @@
 <section class="ftco-section ftco-no-pb">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
+            <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(@Url.Content("~/Images/canteen.jpg"));">
             </div>
             <div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
                 <div class="heading-section">
-                    <span class="subheading">Since 1905</span>
-                    <h2 class="mb-4">Desire Meets A New Taste</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
+                    <span class="subheading">Từ 2020</span>
+                    <h2 class="mb-4">Website Canteen Văn Lang</h2>
+                    <p>Bắt đầu từ mô hình phục vụ truyền thống hiện có chưa thể đáp ứng đủ nhu cầu của người dùng và còn gặp nhiều hạn chế trong quy trình phục vụ, chúng tôi đã tìm cách thay thế bằng một thứ <i>linh động</i> hơn. <em>Website Canteen Văn Lang</em> ra đời từ đó.</p>
+                    <p>Tính <i>tiện lợi và thân thiện</i> luôn là ưu tiên hàng đầu của webiste. Chỉ cần một vài <i>thao tác đơn giản</i> bạn đã có thể thưởng thức một bữa trưa tuyệt vời <i>đậm vị cơm nhà</i> ngay tại <strong>Canteen trường Đại học Văn Lang</strong>.</p>
                     <p class="year">
-                        <strong class="number" data-number="115">0</strong>
-                        <span>Years of Experience In Business</span>
+                        <strong class="number" data-number="117">0</strong>
+                        <span>Ngày nghiên cứu và phát triển</span>
                     </p>
                 </div>
             </div>
@@ -115,42 +117,30 @@
 <section class="ftco-section ftco-no-pb">
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 col-md-4 ">
-                <div class="sort w-100 text-center ftco-animate">
-                    <div class="img" style="background-image: url(images/kind-1.jpg);"></div>
-                    <h3>Brandy</h3>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 ">
-                <div class="sort w-100 text-center ftco-animate">
-                    <div class="img" style="background-image: url(images/kind-2.jpg);"></div>
-                    <h3>Gin</h3>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 ">
-                <div class="sort w-100 text-center ftco-animate">
-                    <div class="img" style="background-image: url(images/kind-3.jpg);"></div>
-                    <h3>Rum</h3>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 ">
-                <div class="sort w-100 text-center ftco-animate">
-                    <div class="img" style="background-image: url(images/kind-4.jpg);"></div>
-                    <h3>Tequila</h3>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 ">
-                <div class="sort w-100 text-center ftco-animate">
-                    <div class="img" style="background-image: url(images/kind-5.jpg);"></div>
-                    <h3>Vodka</h3>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 ">
-                <div class="sort w-100 text-center ftco-animate">
-                    <div class="img" style="background-image: url(images/kind-6.jpg);"></div>
-                    <h3>Whiskey</h3>
-                </div>
-            </div>
+            @if (categories.Count <= 6)
+            {
+                for (int i = 0; i < categories.Count; i++)
+                {
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url(@Url.Content("~"+categories[i].IMAGE_URL.Replace(@"\", "/")))"></div>
+                            <a href="#"><h3>@categories[i].CATEGORY_NAME</h3></a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url(@Url.Content("~"+categories[i].IMAGE_URL.Replace(@"\", "/")));"></div>
+                            <a href="#"><h3>@categories[i].CATEGORY_NAME</h3></a>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
 </section>
@@ -158,174 +148,75 @@
     <div class="container">
         <div class="row justify-content-center pb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Our Delightful offerings</span>
-                <h2>Tastefully Yours</h2>
+                <span class="subheading">Chuẩn vị cơm nhà</span>
+                <h2>Món ăn</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-1.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
+            @if (foods.Count <= 4)
+            {
+                foreach (var item in foods)
+                {
+                    <div class="col-md-3 d-flex">
+                        <div class="product ftco-animate">
+                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~"+item.IMAGE_URL.Replace(@"\", "/")));">
+                                <div class="desc">
+                                    <p class="meta-prod d-flex">
+                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                        @*<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>*@
+                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text text-center">
+                                <span class="category">@item.CATEGORY.CATEGORY_NAME</span>
+                                <a href="#"><h2>@item.FOOD_NAME</h2></a>
+                                <p class="mb-0"><span class="price">@item.PRICE.ToString("N0") VNĐ</span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="text text-center">
-                        <span class="sale">Sale</span>
-                        <span class="category">Brandy</span>
-                        <h2>Bacardi 151</h2>
-                        <p class="mb-0"><span class="price price-sale">$69.00</span> <span class="price">$49.00</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-2.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    <div class="col-md-3 d-flex">
+                        <div class="product ftco-animate">
+                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~"+foods[i].IMAGE_URL.Replace(@"\", "/")));">
+                                <div class="desc">
+                                    <p class="meta-prod d-flex">
+                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                        @*<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>*@
+                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text text-center">
+                                <span class="category">@foods[i].CATEGORY.CATEGORY_NAME</span>
+                                <a href="@Url.Action("Details", "Food", new { id = foods[i].ID })"><h2>@foods[i].FOOD_NAME</h2></a>
+                                <p class="mb-0"><span class="price">@foods[i].PRICE.ToString("N0") VNĐ</span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="text text-center">
-                        <span class="seller">Best Seller</span>
-                        <span class="category">Gin</span>
-                        <h2>Jim Beam Kentucky Straight</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-3.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="new">New Arrival</span>
-                        <span class="category">Rum</span>
-                        <h2>Citadelle</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-4.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">Rum</span>
-                        <h2>The Glenlivet</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-5.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">Whiskey</span>
-                        <h2>Black Label</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-6.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">Tequila</span>
-                        <h2>Macallan</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-7.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">Vodka</span>
-                        <h2>Old Monk</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-8.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">Whiskey</span>
-                        <h2>Jameson Irish Whiskey</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
+                }
+            }
         </div>
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <a href="product.html" class="btn btn-primary d-block">View All Products <span class="fa fa-long-arrow-right"></span></a>
+                <a href="@Url.Action("Index", "Food")" class="btn btn-primary d-block">Xem thêm món ăn  <span class="fa fa-long-arrow-right"></span></a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">
+<section class="ftco-section testimony-section img" style="background-image: url(@Url.Content("~/Images/Sliders/4.jpg"));">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                <span class="subheading">Testimonial</span>
-                <h2 class="mb-3">Happy Clients</h2>
+                <span class="subheading">Đôi nét</span>
+                <h2 class="mb-3">Đội ngũ của chúng tôi</h2>
             </div>
         </div>
         <div class="row ftco-animate">
@@ -335,12 +226,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Mang đến những bữa ăn dinh dưỡng và vệ sinh là cách mà tôi làm việc. Có kinh nghiệm làm bếp 5 năm tại các nhà hàng lớn.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Nhi Phan</p>
+                                        <span class="position">Bếp trưởng</span>
                                     </div>
                                 </div>
                             </div>
@@ -350,12 +240,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Năng động và nhiệt tình là cách mà người khác nói về mình, luôn lắng nghe khách hàng là tiêu chí khi làm việc của bản thân mình.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Yến Dâng</p>
+                                        <span class="position">Nhân viên quầy</span>
                                     </div>
                                 </div>
                             </div>
@@ -365,12 +254,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Nguyên tắc khi làm việc của tôi là không được có sai sót. Mà lâu lâu sai sót tí thì chị quản lý bỏ qua cho em hihi.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Lan Phương</p>
+                                        <span class="position">Thu ngân xinh đẹp</span>
                                     </div>
                                 </div>
                             </div>
@@ -380,27 +268,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Phải nghiêm túc khi làm việc, không được phép mắc sai lầm. Đặc biệt nhắc nhở đến cô thu ngân Lan Phương về vấn đề này.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Thanh Nhàn</p>
+                                        <span class="position">Quản lý</span>
                                     </div>
                                 </div>
                             </div>
@@ -418,13 +290,13 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Blog</span>
-                <h2>Recent Blog</h2>
+                <h2>Blog gần đây</h2>
             </div>
         </div>
         <div class="row d-flex">
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_1.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-1.jpg');">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
@@ -438,7 +310,7 @@
             </div>
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_2.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-11.jpg');">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
@@ -452,7 +324,7 @@
             </div>
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-2.jpg');">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
@@ -466,7 +338,7 @@
             </div>
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_4.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-22.jpg');">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">

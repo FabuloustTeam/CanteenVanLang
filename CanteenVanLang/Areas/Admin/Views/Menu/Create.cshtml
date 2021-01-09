@@ -1,0 +1,178 @@
+﻿@model CanteenVanLang.Models.MENU
+@using CanteenVanLang.Models;
+@{
+    ViewBag.Feature = "Quản lý món ăn theo ngày";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<FOOD> foods = ViewBag.Foods as List<FOOD>;
+}
+
+<div class="col-lg-12">
+    <div class="grid">
+        <p class="grid-header">Thêm món ăn theo ngày</p>
+        <div class="grid-body">
+            <div class="item-wrapper">
+                <div class="row mb-12">
+                    <div class="col-md-12 mx-auto">
+                        @using (Html.BeginForm("Create", "Menu", FormMethod.Post, new { id = "form-update", @class = "form-add" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="col-lg-12">
+                                <div class="grid">
+                                    <h2 class="grid-title">Chọn ngày</h2>
+                                    <div class="grid-body">
+                                        <div class="item-wrapper">
+                                            <div class="row mb-3">
+                                                <div class="col-md-8">
+                                                    <div class="form-group row showcase_row_area">
+                                                        <div class="col-md-3 showcase_text_area">
+                                                            <label for="inputType1">Ngày</label>
+                                                        </div>
+                                                        <div class="col-md-9 showcase_content_area">
+                                                            @Html.EditorFor(model => model.DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @required = true, @type = "date" } })
+                                                            @Html.ValidationMessageFor(model => model.DATE, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row showcase_row_area">
+                                                        <div class="col-md-3 showcase_text_area">
+                                                            <label for="inputType5">Nhân viên</label>
+                                                        </div>
+                                                        <div class="col-md-9 showcase_content_area">
+                                                            <input type="text" class="form-control" id="menu-account" value="@Session["userFullName"]" disabled>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="grid">
+                                    <h2 class="grid-title">Chọn món ăn</h2>
+                                    <div class="grid-body">
+                                        <div class="item-wrapper">
+                                            <div class="row mb-3">
+                                                <div class="col-md-8">
+                                                    <div class="form-group row showcase_row_area">
+                                                        <div class="col-md-3 showcase_text_area">
+                                                            <label for="inputType1">Món ăn</label>
+                                                        </div>
+                                                        <div class="col-md-9 showcase_content_area">
+                                                            <select name="FOOD_ID" id="selectFood" class="custom-select" onchange="getPrice()" required>
+                                                                <option value="">Vui lòng chọn món ăn</option>
+                                                                @foreach (var food in foods)
+                                                                {
+                                                                    <option value="@food.ID">@food.FOOD_NAME</option>
+                                                                }
+                                                            </select>
+                                                            @Html.ValidationMessageFor(model => model.FOOD_ID, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row showcase_row_area">
+                                                        <div class="col-md-3 showcase_text_area">
+                                                            <label for="inputType5">Số lượng</label>
+                                                        </div>
+                                                        <div class="col-md-9 showcase_content_area">
+                                                            @Html.EditorFor(model => model.QUANTITY, new { htmlAttributes = new { @class = "form-control", @id = "menu-quantity", @required = true, @min = 1 } })
+                                                            @Html.ValidationMessageFor(model => model.QUANTITY, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row showcase_row_area">
+                                                        <div class="col-md-3 showcase_text_area">
+                                                            <label for="inputType5">Đơn giá</label>
+                                                        </div>
+                                                        <div class="col-md-9 showcase_content_area">
+                                                            @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control", @id = "menu-price", @required = true, @min = 0, @max = 1000000 } })
+                                                            @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row showcase_row_area">
+                                                        <div class="col-md-3 showcase_text_area">
+                                                            <label>Trạng thái</label>
+                                                        </div>
+                                                        <div class="col-md-9 showcase_content_area">
+                                                            <div class="form-inline">
+                                                                <div class="radio mb-3">
+                                                                    <label class="radio-label mr-4">
+                                                                        @Html.RadioButtonFor(model => model.STATUS, "true", new { Checked = "checked" }) Còn bán
+                                                                        <i class="input-frame"></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="radio mb-3">
+                                                                    <label class="radio-label">
+                                                                        @Html.RadioButtonFor(model => model.STATUS, "false") Hết bán
+                                                                        <i class="input-frame"></i>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="grid">
+                                    <div class="grid-body">
+                                        <div class="item-wrapper">
+                                            <div class="row mb-3">
+                                                <div class="col-md-8">
+                                                    <div class="row showcase_row_area mb-3" style="position: absolute; left: 50%">
+                                                        <div class="col-md-6 showcase_text_area">
+                                                            <label>
+                                                                <a href="/Admin/Menu">
+                                                                    <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
+                                                                </a>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-6 showcase_content_area">
+                                                            <div class="custom-file">
+                                                                <input type="submit" class="btn btn-sm btn-primary btn-" value="Thêm">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function getPrice() {
+            var valueFoodCode = $("#selectFood option:selected").val();
+            var txtPrice = $("#menu-price");
+             $.ajax({
+                type: "POST",
+                url: "@Url.Action("getPrice", "Menu")",
+                 data: JSON.stringify({ idReceived: valueFoodCode }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        txtPrice.val(r.value);
+                    }
+                }
+            });
+        }
+    </script>
+}
