@@ -1,12 +1,12 @@
 ﻿@model CanteenVanLang.Models.ACCOUNT
 @{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    ViewBag.Feature = "Quản lý tài khoản";
+    ViewBag.Feature = "Quản lý tài khoản cá nhân";
     ViewBag.Title = Model.EMAIL;
 }
 <div class="col-lg-12">
     <div class="grid">
-        <p class="grid-header">Cập nhật tài khoản</p>
+        <p class="grid-header">Thay đổi thông tin cá nhân</p>
         <div class="grid-body">
             <div class="item-wrapper">
                 <div class="row mb-3">
@@ -55,16 +55,7 @@
                                     @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
-                            @*<div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Quyền</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    <input name="ConfirmPassword" type="password" class="form-control" id="inputType3">
-                                    @Html.ValidationMessageFor(model => model.ROLE, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
+                            
                             <div class="row showcase_row_area">
                                 <div class="col-md-3 showcase_text_area">
                                     <label>Trạng thái</label>
@@ -93,8 +84,10 @@
                                     <label>Vai trò</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
-                                    @*@Html.DropDownList("CATEGORY_ID", new SelectList(ViewBag.Categories, "ID", "CATEGORY_NAME"), new { @class = "custom-select" })*@
-                                    @Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
+                                    @*@Html.DropDownList("ROLE", new SelectList(ViewBag.Categories, "ID", "CATEGORY_NAME"), new { @class = "custom-select" })*@
+                                    @*@Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })*@
+
+                                    <input type="text" class="form-control" readonly value="@(Model.ROLE == 1 ? "Quản trị" : Model.ROLE == 2 ? "Quản lý" : "Thu ngân" )">
                                 </div>
                             </div>
 
@@ -116,7 +109,7 @@
                             <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 0;left: 50%">
                                 <div class="col-md-6 showcase_text_area">
                                     <label>
-                                        <a href="@Url.Action("Index", "Account")">
+                                        <a href="@Url.Action("Welcome", "Authentication")">
                                             <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
                                         </a>
                                     </label>

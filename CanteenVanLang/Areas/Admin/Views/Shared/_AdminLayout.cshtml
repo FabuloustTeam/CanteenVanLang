@@ -12,10 +12,6 @@
     {
         linkBreadcrumb = "/Admin/Menu/Index";
     }
-    else
-    {
-        linkBreadcrumb = "/Admin/Account/Index";
-    }
     var role = "";
     if (Session["userRole"] != null)
     {
@@ -78,7 +74,7 @@
                 <div class="info-wrapper">
                     <p class="user-name">@Session["userFullName"]
                         <a href="@Url.Action("Update", "Account", new { id = @Session["userId"]})">
-                            <i class="mdi mdi-lead-pencil"></i>
+                            <i class="mdi mdi-lead-pencil" style="color: black"></i>
                         </a>
                     </p>
                     @if (Session["userRole"] != null)

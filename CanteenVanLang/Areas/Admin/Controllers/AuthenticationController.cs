@@ -15,10 +15,17 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         // GET: Admin/Authentication
         public ActionResult Login()
         {
-            Session["incorrectPassword"] = false;
-            Session["userNotFound"] = false;
-            Session["deactive"] = false;
-            return View();
+            if (Session["userFullName"] != null)
+            {
+                return RedirectToAction("Welcome", "Authentication");
+            }
+            else
+            {
+                Session["incorrectPassword"] = false;
+                Session["userNotFound"] = false;
+                Session["deactive"] = false;
+                return View();
+            }
         }
 
         [HttpPost]
@@ -35,27 +42,20 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                 {
                     if (account.PASSWORD.Equals(password))
                     {
-                        if (!account.STATUS)
+                        Session["userFullName"] = account.FULLNAME;
+                        Session["userId"] = account.ID;
+                        Session["userRole"] = account.ROLE;
+                        Session["userImage"] = account.IMAGE_URL;
+
+                        Session["newCategory"] = false;
+                        Session["newFood"] = false;
+
+                        if ((int)Session["userRole"] == 3)
                         {
-                            Session["deactive"] = true;
-                            return View();
+                            return RedirectToAction("Welcome");
                         }
-                        else
-                        {
-                            Session["userFullName"] = account.FULLNAME;
-                            Session["userId"] = account.ID;
-                            Session["userRole"] = account.ROLE;
-                            Session["userImage"] = account.IMAGE_URL;
-                            
-                            Session["newCategory"] = false;
-                            Session["newFood"] = false;
-                            
-                            if ((int)Session["userRole"] == 3)
-                            {
-                                return RedirectToAction("Welcome");
-                            }
-                            return RedirectToAction("Welcome", "Authentication");
-                        }
+                        return RedirectToAction("Welcome", "Authentication");
+
                     }
                     else
                     {
@@ -72,7 +72,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
         private void ValidateLogin(string email, string password)
         {
-            if(email.Trim() == "")
+            if (email.Trim() == "")
             {
                 ModelState.AddModelError("EMAIL", "Vui lòng nhập email");
             }
@@ -89,12 +89,12 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             Session["userRole"] = null;
             return RedirectToAction("Login", "Authentication");
         }
-        
+
         [LoginVertification]
         public ActionResult Welcome()
         {
             return View();
         }
-        
+
     }
 }
