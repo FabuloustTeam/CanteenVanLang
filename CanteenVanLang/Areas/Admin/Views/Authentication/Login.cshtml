@@ -24,6 +24,8 @@
     <!-- Layout style -->
 
     <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="~/Images/logo.png" />
     <style>
         .text-error {
             color: red;
@@ -49,13 +51,6 @@
                         <div class="row" style="padding-top: 20px;">
                             <div class="col-lg-7 col-md-8 col-sm-9 col-12 mx-auto form-wrapper">
                                 <form action="@Url.Action("Login", "Authentication")" method="post">
-                                    @if (Convert.ToBoolean(Session["deactive"]))
-                                    {
-                                        <p class="user-name error" style="color: red; padding-left: 15px; padding-top: 10px;padding-bottom: 10px ; font-size: 90%; text-align: center">
-                                            Tài khoản đã ngưng hoạt động <br />
-                                            Vui lòng liên hệ với quản trị viên
-                                        </p>
-                                    }
                                     <div class="form-group input-rounded">
                                         @if (Convert.ToBoolean(Session["incorrectPassword"]))
                                         {
@@ -68,7 +63,7 @@
                                         @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
                                         @if (Convert.ToBoolean(Session["userNotFound"]))
                                         {
-                                            <p class="user-name error text-danger">Không tìm thấy tài khoản</p>
+                                            <p class="user-name error text-danger">Email hoặc mật khẩu không đúng</p>
                                         }
                                     </div>
                                     <div class="form-group input-rounded">

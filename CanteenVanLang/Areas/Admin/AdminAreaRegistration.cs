@@ -17,7 +17,8 @@ namespace CanteenVanLang.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new [] {"CanteenVanLang.Areas.Admin.Controllers"}
             );
         }
     }
