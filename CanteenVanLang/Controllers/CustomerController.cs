@@ -156,5 +156,12 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Regex pattern = new Regex("^0[0-9]{9}$");
             return pattern.IsMatch(phone);
         }
+
+        public ActionResult SignOut()
+        {
+            Session["customerEmail"] = null;
+            Session["customerName"] = null;
+            return Redirect("/");
+        }
     }
 }
