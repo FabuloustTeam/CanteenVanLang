@@ -35,7 +35,13 @@
     <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/43/3/util.js"></script>
 </head>
 <body>
-
+    @if (ViewBag.SignInSucceed != null)
+    {
+        <script>
+            alert('Tài khoản đã được tạo thành công');
+            window.location.href = "/Customer/Login";
+        </script>
+    }
     <div class="wrap">
         <div class="container">
             <div class="row">
@@ -140,7 +146,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10 ftco-animate fadeInUp ftco-animated">
-                    <form action="#" class="billing-form">
+                    <form method="post" class="billing-form">
                         <h3 class="mb-4 billing-heading">Đăng ký</h3>
                         <div class="row align-items-end">
                             <div class="col-md-12">
@@ -148,12 +154,14 @@
                                     <label for="firstname">Họ và tên</label>
                                     <input type="text" class="form-control" placeholder="" name="name" id="name">
                                 </div>
+                                <p style="color: red" id="nameErrorContainer"></p>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="lastname">Email</label>
-                                    <input type="text" class="form-control" placeholder="" name="email" id="email">
+                                    <input type="text" class="form-control" placeholder="" name="email" id="email1">
                                 </div>
+                                <p style="color: red" id="emailErrorContainer"></p>
                             </div>
 
                             <div class="w-100"></div>
@@ -162,11 +170,19 @@
                                     <label for="streetaddress">Mật khẩu</label>
                                     <input type="password" class="form-control" placeholder="House number and street name" name="password" id="password">
                                 </div>
+                                <div id="passwordErrorContainer">
+                                    <p class="emptyError" style="color: red"></p>
+                                    <p class="notMatchError" style="color: red"></p>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="streetaddress">Xác nhận mật khẩu</label>
                                     <input type="password" class="form-control" placeholder="Appartment, suite, unit etc: (optional)" name="confirmPassword" id="confirmPassword">
+                                </div>
+                                <div id="confirmPasswordErrorContainer">
+                                    <p class="emptyError" style="color: red"></p>
+                                    <p class="notMatchError" style="color: red"></p>
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -175,6 +191,7 @@
                                     <label for="towncity">Số điện thoại</label>
                                     <input type="text" class="form-control" placeholder="" name="numberphone" id="numberphone">
                                 </div>
+                                <p style="color: red" id="numberphoneErrorContainer"></p>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-12">
@@ -190,13 +207,18 @@
                                             }
                                         </select>
                                     </div>
+                                    <p style="color: red" id="facultyErrorContainer"></p>
                                 </div>
                             </div>
                         </div>
+                        <div style="color :red">
+                            @Html.ValidationMessage("confirmFail")
+                            @Html.ValidationMessage("informationMissing")
+                            @Html.ValidationMessage("invalidEmail")
+                            @Html.ValidationMessage("existedEmail")
+                        </div>
+                        <button class="btn btn-primary py-3 px-4">Đăng ký</button>
                     </form><!-- END -->
-
-                    <p><a href="#" class="btn btn-primary py-3 px-4">Đăng ký</a></p>
-
                 </div> <!-- .col-md-8 -->
             </div>
         </div>
@@ -313,6 +335,7 @@
                 var facultyField = $('#faculty');
                 var error = false;
                 var emailPattern = /^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+                var phonePattern = new RegExp("^0[0-9]{9}$");
                 if (nameField.val() === '') {
                     $('#nameErrorContainer').html('Vui lòng nhập Họ và Tên');
                     error = true;
@@ -372,6 +395,13 @@
                     $('#emailErrorContainer').html('');
                     error = false;
                 }
+                if (!phonePattern.test(numberphoneField.val())) {
+                    $('#numberphoneErrorContainer').html('Số điện thoại không hợp lệ, vui vòng nhập lại');
+                    error = true;
+                } else {
+                    $('#numberphoneErrorContainer').html('');
+                    error = false;
+                }
                 if (error) {
                     event.preventDefault();
                 }
@@ -379,5 +409,117 @@
             });
         });
     </script>
+    @*<script>
+            var submitFunction = () => {
+                console.log('ok');
+                if (checkName() || checkEmail() || checkPassword() || checkConfirmPassword() || checkPasswordAndConfirmPassword()
+                    || checkNumberphone() || checkFaculty()) {
+                    return;
+                }
+                var newForm = $(`<form method="POST"><input type="text" name="name" value="${nameField.val()}" />
+                                                    <input type="text" name="email" value="${emailField.val()}" />
+                                                    <input type="text" name="password" value="${passwordField.val()}" />
+                                                    <input type="text" name="confirmPassword" value="${confirmPasswordField.val()}" />
+                                                    <input type="text" name="numberphone" value="${numberphoneField.val()}" />
+                                                    <input type="text" name="faculty" value="${facultyField.val()}" />
+                                        </form>`);
+                $(document.body).append(newForm);
+                newForm.submit();
+            };
+            document.getElementsByTagName('form')[0].addEventListener('submit', submitFunction);
+            function checkName() {
+                var nameField = $('#name');
+                if (nameField.val() === '') {
+                    $('#nameErrorContainer').html('Vui lòng nhập Họ và Tên');
+                    return true;
+                } else {
+                    $('#nameErrorContainer').html('');
+                    return false;
+                }
+            }
+            function checkEmail() {
+                var emailField = $('#email1');
+                if (emailField.val() === '') {
+                    $('#emailErrorContainer').html('Vui lòng nhập email');
+                    return true;
+                } else {
+                    return checkEmailValid();
+                }
+            }
+            function checkPassword() {
+                var passwordField = $('#password');
+                if (passwordField.val() === '') {
+                    $('#passwordErrorContainer>.emptyError').html('Vui lòng nhập mật khẩu');
+                    return true;
+                } else {
+                    $('#passwordErrorContainer>.emptyError').html('');
+                    return false;
+                }
+            }
+            function checkConfirmPassword() {
+                var confirmPasswordField = $('#confirmPassword');
+                if (confirmPasswordField.val() === '') {
+                    $('#confirmPasswordErrorContainer>.emptyError').html('Vui lòng nhập xác nhận mật khẩu');
+                    return true;
+                } else {
+                    $('#confirmPasswordErrorContainer>.emptyError').html('');
+                    return false;
+                }
+            }
+            function checkPasswordAndConfirmPassword() {
+                var passwordField = $('#password');
+                var confirmPasswordField = $('#confirmPassword');
+                if (passwordField.val() !== confirmPasswordField.val()) {
+                    $('#passwordErrorContainer>.notMatchError').html('Mật khẩu và xác nhận mật khẩu không trùng khớp');
+                    $('#confirmPasswordErrorContainer>.notMatchError').html('Mật khẩu và xác nhận mật khẩu không trùng khớp');
+                    return true;
+                } else {
+                    $('#confirmPasswordErrorContainer>.notMatchError').html('');
+                    $('#passwordErrorContainer>.notMatchError').html('');
+                    return false;
+                }
+            }
+            function checkNumberphone() {
+                var numberphoneField = $('#numberphone');
+                if (numberphoneField.val() === '') {
+                    $('#numberphoneErrorContainer').html('Vui lòng nhập số điện thoại');
+                    error = true;
+                } else {
+                    return checkNumberPhoneValid();
+                }
+            }
+            function checkNumberPhoneValid() {
+                var numberphoneField = $('#numberphone');
+                var phonePattern = new RegExp('0\\d{9}');
+                if (!phonePattern.test(numberphoneField.val())) {
+                    $('#numberphoneErrorContainer').html('Số điện thoại không hợp lệ, vui lòng  nhập lại');
+                    return true;
+                } else {
+                    $('#numberphoneErrorContainer').html('');
+                    return false;
+                }
+            }
+            function checkEmailValid() {
+                var emailField = $('#email1');
+                var emailPattern = /^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+                if (!emailPattern.test(emailField.val())) {
+                    $('#emailErrorContainer').html('Email không hợp lệ, vui lòng nhập lại');
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function checkFaculty() {
+                var facultyField = $('#faculty');
+                if (facultyField.val() == null) {
+                    $('#facultyErrorContainer').html('Vui lòng chọn Khoa');
+                    return true;
+                } else {
+                    $('#facultyErrorContainer').html('');
+                    return false;
+                }
+            }
+        </script>*@
+
 </body>
 </html>
