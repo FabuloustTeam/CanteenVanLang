@@ -9,30 +9,20 @@
     <div class="grid">
         <p class="grid-header">Danh sách món ăn theo ngày</p>
         <div class="row">
-            <div class="col-lg-6">
-                @*<div class="col-md-2 padding-size">
-                        <div class="form-group">
-                            <div class="input-group date" id="datetimepicker1">
-                                <input type='text' class="form-control" placeholder="Issue Date" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>*@
-
-
-                @*<div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control">
-                        <div class="input-group-addon">
-                            <input data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>*@
+            <div class="col-lg-3">
+                <div class="col-md-10 showcase_content_area">
+                    <input type="date" class="form-control" id="filter-date">
+                </div>
             </div>
-            <div class="col-lg-6">
-                <a class="col-lg-6" href="@Url.Action("Create", "Menu")" style="float: right">
-                    <button type="button" class="btn btn-sm btn-primary">Thêm món ăn theo ngày</button>
+            <div class="col-lg-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="filterDate()">Lọc</button>
+            </div>
+            <div class="col-lg-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="removeFilterDate()">Xóa lọc</button>
+            </div>
+            <div class="col-lg-7">
+                <a class="col-lg-6" href="@Url.Action("Create", "Menu")" style="float: right; margin-right: 40px">
+                    <button type="button" class="btn btn-sm btn-primary" style="float: right">Thêm món ăn theo ngày</button>
                 </a>
             </div>
         </div>
@@ -164,7 +154,7 @@
         $(document).ready(function () {
             $("#inlineFormInputGroup").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#food-table tbody tr").filter(function () {
+                $("#daily-food-table tbody tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -172,27 +162,19 @@
 
     </script>
 
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css">
-
-        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-        <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
+    <script>
+        function filterDate() {
+            var date = new Date($("#filter-date").val());
+            var convertedDate = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear()
+            $("#daily-food-table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(convertedDate) > -1)
             });
-        </script>*@
+        }
 
-    @*<script>
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy'
+        function removeFilterDate() {
+            $("#daily-food-table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
             });
-        </script>*@
-
-
+        }
+    </script>
 }
