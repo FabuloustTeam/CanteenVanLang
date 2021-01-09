@@ -114,27 +114,32 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 var menu = model.MENUs.FirstOrDefault(f => f.ID == id);
 
-                if (menu.STATUS || checkIfMenuInAnyOrder(id))
-                {
-                    return Json(new { success = false, response = "cannotdelete" }, JsonRequestBehavior.AllowGet);
-                }
-                else
+                if (!menu.STATUS && !checkIfMenuInAnyOrder(id))
                 {
                     model.MENUs.Remove(menu);
                     model.SaveChanges();
-                    
+
                     scope.Complete();
                     return Json(new { success = true, response = "deleted" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, response = "cannotdelete" }, JsonRequestBehavior.AllowGet);
                 }
             }
         }
 
         private bool checkIfMenuInAnyOrder(int id)
         {
-            if (model.ORDER_DETAIL.Where(ordDetail => ordDetail.MENU_ID == id) != null)
-                return true;
-            else
-                return false;
+            var allOrderDetail = model.ORDER_DETAIL.ToList();
+            for(int i = 0; i < allOrderDetail.Count; i++)
+            {
+                if(allOrderDetail[i].MENU_ID == id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
