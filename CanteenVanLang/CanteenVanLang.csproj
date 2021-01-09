@@ -2345,6 +2345,7 @@
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Views\Customer\LogIn.cshtml" />
+    <Content Include="Views\Customer\UpdateCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
