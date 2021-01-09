@@ -194,7 +194,7 @@
                             </div>
                             <div class="text text-center">
                                 <span class="category">@foods[i].CATEGORY.CATEGORY_NAME</span>
-                                <a href="#"><h2>@foods[i].FOOD_NAME</h2></a>
+                                <a href="@Url.Action("Details", "Food", new { id = foods[i].ID })"><h2>@foods[i].FOOD_NAME</h2></a>
                                 <p class="mb-0"><span class="price">@foods[i].PRICE.ToString("N0") VNĐ</span></p>
                             </div>
                         </div>

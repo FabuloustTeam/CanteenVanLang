@@ -65,11 +65,13 @@ namespace CanteenVanLang.Controllers
             {
                 return new HttpStatusCodeResult(400, "Bad Request");
             }
-            FOOD food = model.FOODs.Find(id);
+            var listFoods = getFoods();
+            FOOD food = listFoods.FirstOrDefault(f => f.ID == id);
             if (food == null)
             {
                 return HttpNotFound("Not Found");
             }
+            ViewBag.NameFood = food.FOOD_NAME;
             ViewData["list"] = model.FOODs.Where(x => x.ID == id).ToList<FOOD>();
             return View(food);
         }
