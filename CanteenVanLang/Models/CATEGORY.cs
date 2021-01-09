@@ -11,6 +11,7 @@ namespace CanteenVanLang.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class CATEGORY
     {
@@ -22,6 +23,10 @@ namespace CanteenVanLang.Models
     
         public int ID { get; set; }
         public string CATEGORY_CODE { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập tên loại món ăn")]
+        [MinLength(3, ErrorMessage = "Số lượng ký tự tối thiểu là 3")]
+        [MaxLength(50, ErrorMessage = "Số lượng ký tự tối đa là 50")]
         public string CATEGORY_NAME { get; set; }
         public string IMAGE_URL { get; set; }
         public bool STATUS { get; set; }
