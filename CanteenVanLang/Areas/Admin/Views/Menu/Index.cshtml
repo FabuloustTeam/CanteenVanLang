@@ -1,0 +1,180 @@
+﻿@model IEnumerable<CanteenVanLang.Models.MENU>
+
+@{
+    ViewBag.Title = "Danh sách món ăn theo ngày";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="grid">
+        <p class="grid-header">Danh sách món ăn theo ngày</p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="col-md-10 showcase_content_area">
+                    <input type="date" class="form-control" id="filter-date">
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="filterDate()">Lọc</button>
+            </div>
+            <div class="col-lg-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="removeFilterDate()">Xóa lọc</button>
+            </div>
+            <div class="col-lg-7">
+                <a class="col-lg-6" href="@Url.Action("Create", "Menu")" style="float: right; margin-right: 40px">
+                    <button type="button" class="btn btn-sm btn-primary" style="float: right">Thêm món ăn theo ngày</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="item-wrapper">
+            <div class="table-responsive">
+                <table class="table" id="daily-food-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã món ăn theo ngày
+                            </th>
+                            <th>
+                                Ngày
+                            </th>
+                            <th>
+                                Món ăn
+                            </th>
+                            <th>
+                                Giá (VNĐ)
+                            </th>
+                            <th>
+                                Số lượng
+                            </th>
+                            <th>
+                                Nhân viên
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.MENU_CODE
+                                </td>
+                                <td>
+                                    @item.DATE.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    @item.FOOD.FOOD_NAME
+                                </td>
+                                <td>
+                                    @item.PRICE.ToString("N0")
+                                </td>
+                                <td>
+                                    @item.QUANTITY
+                                </td>
+                                <td>
+                                    @item.ACCOUNT.FULLNAME
+                                </td>
+                                <td>
+                                    @if (item.STATUS)
+                                    {
+                                        <label class="badge badge-success">Còn bán</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="badge badge-danger">Hết bán</label>
+                                    }
+                                </td>
+                                <td>
+                                    <form action="@Url.Action("Update", "Menu", new { id = item.ID })" style="display:inline" target="_blank">
+                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
+                                            <i class="mdi mdi-lead-pencil"></i>
+                                        </button>
+                                    </form>
+                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+
+    <script type="text/javascript">
+    function Remove(button, id) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        var name = $("TD", row).eq(2).html();
+        if (confirm("Bạn có chắc chắn muốn xóa " + name.trim() + "?")) {
+            //Get the reference of the Table.
+            var table = $("#daily-food-table")[0];
+
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Delete", "Menu")",
+                data: JSON.stringify({ id: id }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        alert("Xóa thành công");
+                        //Delete the Table row using it's Index.
+                        table.deleteRow(row[0].rowIndex);
+                    } else {
+                        alert("Không thể xóa món ăn này");
+                    }
+                }
+            });
+        }
+    };
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#inlineFormInputGroup").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#daily-food-table tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
+
+    <script>
+        function filterDate() {
+            var date = new Date($("#filter-date").val());
+            var convertedDate = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear()
+            $("#daily-food-table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(convertedDate) > -1)
+            });
+        }
+
+        function removeFilterDate() {
+            $("#daily-food-table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
+            });
+        }
+    </script>
+}
