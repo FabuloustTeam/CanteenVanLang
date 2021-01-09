@@ -2347,6 +2347,7 @@
     <Folder Include="Images\Accounts\" />
     <Folder Include="Images\Sliders\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
