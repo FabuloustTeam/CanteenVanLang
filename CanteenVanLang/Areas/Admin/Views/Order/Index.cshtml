@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.ORDER>
+@using CanteenVanLang.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách đơn đặt hàng";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var total = 0;
+    var listDetail = new List<ORDER_DETAIL>();
 }
 
 
@@ -32,12 +35,17 @@
                             <th>
                                 Trạng thái
                             </th>
+                            <th>
+                                Tổng tiền (VNĐ)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            total = 0;
+                            listDetail = item.ORDER_DETAIL.ToList<ORDER_DETAIL>();
                             <tr>
                                 <td>
                                     @item.ORDER_CODE
@@ -52,7 +60,7 @@
                                     }
                                 </td>
                                 <td>
-                                    @item.DATE
+                                    @(((DateTime)item.DATE).ToString("dd/MM/yyyy"))
                                 </td>
                                 <td>
                                     @if (item.STATUS == 1)
@@ -71,6 +79,14 @@
                                     {
                                         <label class="badge badge-danger">Hủy</label>
                                     }
+                                </td>
+
+                                @foreach (var detail in listDetail)
+                                {
+                                    total += detail.QUANTITY * detail.UNIT_PRICE;
+                                }
+                                <td>
+                                    @total.ToString("N0")
                                 </td>
                                 <td>
                                     <form action="#" style="display:inline" target="_blank">
