@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.FOOD>
-
-@using CanteenVanLang.Models
-
+    @using CanteenVanLang.Models;
 @{
-    ViewBag.Title = "Món ăn";
+    ViewBag.Title = "Tìm kiếm";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var categories = ViewBag.Categories as List<CATEGORY>;
 }
@@ -41,7 +39,6 @@
                 <div class="row">
                     @foreach (var food in Model)
                     {
-
                         <div class="col-md-4 d-flex">
                             <div class="product ftco-animate fadeInUp ftco-animated">
                                 <div class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
@@ -51,7 +48,6 @@
                                 </div>
 
                                 <div class="text text-center">
-
                                     <span>
                                         @if (food.STATUS)
                                         {
@@ -69,29 +65,25 @@
                                     </a>
                                     <p class="mb-0"><span class="price">@food.PRICE.ToString("N0")</span> VNĐ</p>
                                 </div>
-
-
                             </div>
-
                         </div>
-
                     }
                 </div>
                 @*<div class="row mt-5">
-                    <div class="col text-center">
-                        <div class="block-27">
-                            <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
-                            </ul>
+                        <div class="col text-center">
+                            <div class="block-27">
+                                <ul>
+                                    <li><a href="#">&lt;</a></li>
+                                    <li class="active"><span>1</span></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">&gt;</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </div>
 
             <div class="col-md-3">

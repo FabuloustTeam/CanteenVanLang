@@ -2038,6 +2038,11 @@
     <Content Include="Images\Accounts\4.jpg" />
     <Content Include="Images\canteen-background.jpg" />
     <Content Include="Images\canteen-background1.jpg" />
+    <Content Include="Images\canteen-vlu-cs3-1.jpg" />
+    <Content Include="Images\canteen-vlu-cs3-11.jpg" />
+    <Content Include="Images\canteen-vlu-cs3-2.jpg" />
+    <Content Include="Images\canteen-vlu-cs3-22.jpg" />
+    <Content Include="Images\canteen.jpg" />
     <Content Include="Images\canteenVL.png" />
     <Content Include="Images\Categories\1.jpg" />
     <Content Include="Images\Categories\2.jpg" />
@@ -2048,12 +2053,13 @@
     <Content Include="Images\Foods\4.jpg" />
     <Content Include="Images\Foods\7.jpg" />
     <Content Include="Images\Foods\9.jpg" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\logo25nam-01.png" />
-    <Content Include="Images\Sliders\1.png" />
-    <Content Include="Images\Sliders\2.png" />
-    <Content Include="Images\Sliders\3.png" />
-    <Content Include="Images\Sliders\4.png" />
-    <Content Include="Images\Sliders\5.png" />
+    <Content Include="Images\Sliders\1.jpg" />
+    <Content Include="Images\Sliders\2.jpg" />
+    <Content Include="Images\Sliders\3.jpg" />
+    <Content Include="Images\Sliders\4.jpg" />
+    <Content Include="Images\Sliders\5.jpg" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2458,6 +2464,7 @@
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Food\Details.cshtml" />
     <Content Include="Views\Shared\_PartialLogIn.cshtml" />
+    <Content Include="Views\Food\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
