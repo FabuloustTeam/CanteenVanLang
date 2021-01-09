@@ -68,7 +68,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Regex regex = new Regex("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
             return regex.IsMatch(email);
         }
-
+         
         public ActionResult LogIn()
         {
             return View();
