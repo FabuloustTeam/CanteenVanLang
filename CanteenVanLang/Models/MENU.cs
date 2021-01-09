@@ -11,6 +11,7 @@ namespace CanteenVanLang.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class MENU
     {
@@ -22,11 +23,22 @@ namespace CanteenVanLang.Models
     
         public int ID { get; set; }
         public string MENU_CODE { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập giá")]
+        [Range(0, 1000000, ErrorMessage = "Giá chỉ bao gồm số và nhỏ hơn 1 000 000. Vui lòng nhập lại.")]
         public int PRICE { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập số lượng")]
+        [Range(0, Int32.MaxValue, ErrorMessage = "Số lượng chỉ bao gồm số. Vui lòng nhập lại.")]
         public int QUANTITY { get; set; }
+
+        [DisplayFormat(DataFormatString = "{mm/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Vui lòng chọn ngày")]
         public System.DateTime DATE { get; set; }
         public bool STATUS { get; set; }
-        public Nullable<int> FOOD_ID { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng chọn món ăn")]
+        public int FOOD_ID { get; set; }
         public Nullable<int> ACCOUNT_ID { get; set; }
     
         public virtual ACCOUNT ACCOUNT { get; set; }

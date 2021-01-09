@@ -1,0 +1,120 @@
+﻿@model IEnumerable<CanteenVanLang.Models.FOOD>
+@using CanteenVanLang.Models
+@{
+    var category = ViewBag.Category as CATEGORY;
+    ViewBag.Title = category.CATEGORY_NAME;
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    var categories = ViewBag.Categories as List<CATEGORY>;
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~"+category.IMAGE_URL.Replace(@"\", "/"))');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate mb-5 text-center">
+                <p class="breadcrumbs mb-0">
+                    <span class="mr-2">
+                        <a href="@Url.Action("Index", "Home")">
+                            Trang chủ
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </span>
+                    <span class="mr-2">
+                        <a href="@Url.Action("Index", "Food")">
+                            Món ăn
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </span>
+                </p>
+                <h2 class="mb-0 bread" style="margin-top: 10px">@category.CATEGORY_NAME</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row mb-4">
+                    <div class="col-md-12 d-flex justify-content-between align-items-center">
+                        <input id="searching" class="form-control" placeholder="Tìm kiếm" style="margin-right: 40px" />
+                        <input onclick="search()" type="button" value="Tìm kiếm" class="btn btn-primary btn btn-primary py-3 px-4" style="margin-right: 10px">
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var food in Model)
+                    {
+
+                        <div class="col-md-4 d-flex">
+                            <div class="product ftco-animate fadeInUp ftco-animated">
+                                <div class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    <a href="@Url.Action("Details", "Food", new { id = food.ID })" class=" stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        <img src="@food.IMAGE_URL" class="img-fluid" alt="@food.FOOD_NAME">
+                                    </a>
+                                </div>
+
+                                <div class="text text-center">
+
+                                    <span>
+                                        @if (food.STATUS)
+                                        {
+                                            <label class="new">Còn bán</label>
+                                        }
+                                        else
+                                        {
+                                            <label class="sale">Hết bán</label>
+                                        }
+
+                                    </span>
+                                    <span class="category">@food.CATEGORY.CATEGORY_NAME</span>
+                                    <a href="@Url.Action("Details", "Food", new { id = food.ID })">
+                                        <h2>@food.FOOD_NAME</h2>
+                                    </a>
+                                    <p class="mb-0"><span class="price">@food.PRICE.ToString("N0")</span> VNĐ</p>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="sidebar-box ftco-animate">
+                    <div class="categories">
+                        <h3>Danh mục món ăn</h3>
+                        <ul class="p-0">
+                            @foreach (var item in categories)
+                            {
+                                <li><a href="@Url.Action("Category", "Food", new { id = item.ID })">@item.CATEGORY_NAME <span class="fa fa-chevron-right"></span></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form id="form-search" action="@Url.Action("Search", "Food")">
+    <input hidden id="searchValue" value="" name="searching" />
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function search() {
+            var searchingValue = $("#searching").val();
+            if (searchingValue != "") {
+                $("#searchValue").val(searchingValue);
+                $("#form-search").submit();
+            }
+        }
+    </script>
+}
