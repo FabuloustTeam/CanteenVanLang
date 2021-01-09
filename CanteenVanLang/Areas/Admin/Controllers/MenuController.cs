@@ -56,6 +56,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
                     return RedirectToAction("Index");
                 }
+                ViewBag.Foods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
                 return View(newMenu);
             }
             ViewBag.Foods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
@@ -65,11 +66,11 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         private void Validate(string date, string foodId, string quantity, string price)
         {
             DateTime dt;
-            if(!DateTime.TryParse(date, out dt))
+            if (!DateTime.TryParse(date, out dt))
             {
                 ModelState.AddModelError("DATE", "Vui lòng chọn ngày");
             }
-            if(foodId == null)
+            if (foodId == null)
             {
                 ModelState.AddModelError("FOOD_ID", "Vui lòng chọn món ăn");
             }
@@ -104,7 +105,44 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         {
             var menu = model.MENUs.FirstOrDefault(men => men.ID == id);
             ViewBag.Foods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
+            ViewBag.Title = menu.DATE.ToString("dd/MM/yyyy") + " " + menu.FOOD.FOOD_NAME;
             return View(menu);
+        }
+
+        [HttpPost]
+        public ActionResult Update(int id, string quantity, string price, string status)
+        {
+            ValidateQuantityPrice(quantity, price);
+            var menu = model.MENUs.FirstOrDefault(men => men.ID == id);
+            var food = model.FOODs.FirstOrDefault(f => f.ID == menu.FOOD_ID);
+            if (ModelState.IsValid)
+            {
+                var updatedMenu = new MENU();
+                updatedMenu.QUANTITY = Int32.Parse(quantity);
+                updatedMenu.PRICE = Int32.Parse(price);
+                updatedMenu.STATUS = Boolean.Parse(status);
+                menu.QUANTITY = updatedMenu.QUANTITY;
+                menu.PRICE = updatedMenu.PRICE;
+                menu.STATUS = updatedMenu.STATUS;
+
+                model.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Foods = model.FOODs.OrderBy(f => f.FOOD_NAME).ToList();
+            ViewBag.Title = menu.DATE.ToString("dd/MM/yyyy") + " " + food.FOOD_NAME;
+            return View(menu);
+        }
+
+        private void ValidateQuantityPrice(string quantity, string price)
+        {
+            if (quantity == null || quantity == "")
+            {
+                ModelState.AddModelError("QUANTITY", "Vui lòng nhập số lượng");
+            }
+            if (price == null || price == "")
+            {
+                ModelState.AddModelError("PRICE", "Vui lòng nhập giá");
+            }
         }
 
         [HttpPost]
@@ -132,9 +170,9 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         private bool checkIfMenuInAnyOrder(int id)
         {
             var allOrderDetail = model.ORDER_DETAIL.ToList();
-            for(int i = 0; i < allOrderDetail.Count; i++)
+            for (int i = 0; i < allOrderDetail.Count; i++)
             {
-                if(allOrderDetail[i].MENU_ID == id)
+                if (allOrderDetail[i].MENU_ID == id)
                 {
                     return true;
                 }
