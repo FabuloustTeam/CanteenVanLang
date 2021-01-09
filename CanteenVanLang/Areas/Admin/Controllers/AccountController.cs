@@ -70,7 +70,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(ACCOUNT newAccount, HttpPostedFileBase picture, string ConfirmPassword)
         {
-            ValidateAccount(newAccount, ConfirmPassword, picture);
+            ValidateAccount(newAccount);
             if(ModelState.IsValid)
             {
                 var account = new ACCOUNT();
@@ -95,38 +95,76 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             }
             return View();
         }
-
-        private void ValidateAccount(ACCOUNT account, string ConfirmPassword, HttpPostedFileBase picture)
+        [HttpGet]
+        public ActionResult Update (int id)
         {
-            if(account.IMAGE_URL == null)
+            var account = model.ACCOUNTs.FirstOrDefault(f => f.ID == id);
+            ViewBag.Action = "Index";
+            ViewBag.Controller = "Account";
+            return View(account);
+        }
+
+        [HttpPost]
+        public ActionResult Update (int id, ACCOUNT updatedAccount, HttpPostedFileBase picture, string ConfirmPassword)
+        {
+            ValidateAccount(updatedAccount);
+            if (ModelState.IsValid)
             {
-                if (picture == null)
+                var account = model.ACCOUNTs.FirstOrDefault(f => f.ID == id);
+                account.FULLNAME = updatedAccount.FULLNAME.Trim();
+                account.PASSWORD = updatedAccount.PASSWORD.Trim();
+                account.ConfirmPassword = updatedAccount.ConfirmPassword.Trim();
+                if (account.PASSWORD == account.ConfirmPassword)
                 {
-                    ModelState.AddModelError("IMAGE_URL", "Vui lòng thêm ảnh");
+                    model.SaveChanges();
                 }
-            }
-            if(account.EMAIL.Trim() == "")
-            {
-                ModelState.AddModelError("EMAIL", "Vui lòng nhập email");
-            }
-            if(ConfirmPassword != "")
-            {
-                if (account.PASSWORD.Trim() != ConfirmPassword.Trim())
+                model.SaveChanges();
+
+                account.IMAGE_URL = @"\Images\Accounts\" + id + ".jpg";
+                model.SaveChanges();
+
+                if (picture != null)
                 {
-                    ModelState.AddModelError("ROLE", "Xác nhận mật khẩu không đúng");
+                    var path = Server.MapPath(PICTURE_PATH);
+                    System.IO.File.Delete(path + updatedAccount.ID + ".jpg");
+                    picture.SaveAs(path + id + ".jpg");
                 }
+                return RedirectToAction("Index");
             }
-            else
+            ViewBag.Action = "Index";
+            ViewBag.Controller = "Account";
+            return View(updatedAccount);
+        }
+
+
+        private void ValidateAccount(ACCOUNT model)
+        {
+            if (model.FULLNAME == null)
             {
-                ModelState.AddModelError("ROLE", "Vui lòng nhập xác nhận mật khẩu");
+                ModelState.AddModelError("FULLNAME", "Vui lòng nhập họ tên.");
             }
-            if (account.PASSWORD.Trim() == "")
+            if(model.ConfirmPassword.Trim() != model.PASSWORD.Trim())
+            {
+                    ModelState.AddModelError("ConfirmPassword", "Xác nhận mật khẩu không đúng");
+            }
+            if(model.ConfirmPassword.Trim() == "")
+            {
+                ModelState.AddModelError("ConfirmPassword", "Vui lòng nhập xác nhận mật khẩu");
+            }
+            if (model.PASSWORD.Trim() == "")
             {
                 ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
             }
-            if(account.STATUS == false && account.ID == (int)Session["userId"])
+            if(model.STATUS == false && model.ID == (int)Session["userId"])
             {
                 ModelState.AddModelError("STATUS", "Không thể ngưng hoạt động tài khoản của chính bạn");
+            }
+        }
+        private void ValidateImage(HttpPostedFileBase picture)
+        {
+            if (picture == null)
+            {
+                ModelState.AddModelError("IMAGE_URL", "Vui lòng thêm ảnh");
             }
         }
     }

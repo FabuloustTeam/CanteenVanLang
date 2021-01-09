@@ -31,8 +31,8 @@
                                     <label for="inputType1">Họ tên</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id = "inputType1" } })
-                                    @Html.ValidationMessageFor(model => model.FULL_NAME, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.FULLNAME, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.FULLNAME, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -41,7 +41,7 @@
                                     <label for="inputType1">Mật khẩu</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password" } })
+                                    @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password" , @required = true, @minLenght = 0, @maxLength = 50} })
                                     @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -51,10 +51,20 @@
                                     <label for="inputType1">Xác nhận mật khẩu</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
+                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password", @required = true, @minLenght = 0, @maxLength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @*<div class="form-group row showcase_row_area">
+                                <div class="col-md-3 showcase_text_area">
+                                    <label for="inputType1">Quyền</label>
+                                </div>
+                                <div class="col-md-9 showcase_content_area">
                                     <input name="ConfirmPassword" type="password" class="form-control" id="inputType3">
                                     @Html.ValidationMessageFor(model => model.ROLE, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="row showcase_row_area">
                                 <div class="col-md-3 showcase_text_area">
                                     <label>Trạng thái</label>
@@ -84,11 +94,7 @@
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
                                     @*@Html.DropDownList("CATEGORY_ID", new SelectList(ViewBag.Categories, "ID", "CATEGORY_NAME"), new { @class = "custom-select" })*@
-                                    <select name="ROLE" class="custom-select">
-                                        <option value="1">Quản trị</option>
-                                        <option value="2">Quản lý</option>
-                                        <option value="3">Thu ngân</option>
-                                    </select>
+                                    @Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
                                 </div>
                             </div>
 
