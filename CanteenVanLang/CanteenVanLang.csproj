@@ -2391,6 +2391,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\Update.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

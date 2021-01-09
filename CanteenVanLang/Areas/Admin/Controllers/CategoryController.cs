@@ -33,7 +33,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                 var category = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME);
                 return View(category);
             }
-
         }
 
         [HttpGet]
