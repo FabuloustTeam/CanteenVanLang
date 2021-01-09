@@ -193,6 +193,7 @@
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Middleware\LoginVertification.cs" />
+    <Compile Include="Areas\Admin\Middleware\PermissionVertification.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2028,19 +2029,28 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Accounts\1.jpg" />
+    <Content Include="Images\Accounts\2.jpg" />
+    <Content Include="Images\Accounts\3.jpg" />
+    <Content Include="Images\Accounts\4.jpg" />
     <Content Include="Images\canteen-background.jpg" />
     <Content Include="Images\canteen-background1.jpg" />
     <Content Include="Images\canteenVL.png" />
-    <Content Include="Images\Categories\che.jpg" />
-    <Content Include="Images\Categories\com.jpg" />
-    <Content Include="Images\Categories\monnuoc.jpg" />
-    <Content Include="Images\Categories\thucuong.jpg" />
-    <Content Include="Images\Foods\7up.png" />
-    <Content Include="Images\Foods\coca.jpg" />
-    <Content Include="Images\Foods\comchientrung.jpg" />
-    <Content Include="Images\Foods\comgakho.jpg" />
-    <Content Include="Images\Foods\pepsi.png" />
+    <Content Include="Images\Categories\1.jpg" />
+    <Content Include="Images\Categories\2.jpg" />
+    <Content Include="Images\Categories\3.jpg" />
+    <Content Include="Images\Categories\4.jpg" />
+    <Content Include="Images\Foods\2.jpg" />
+    <Content Include="Images\Foods\3.jpg" />
+    <Content Include="Images\Foods\4.jpg" />
+    <Content Include="Images\Foods\7.jpg" />
+    <Content Include="Images\Foods\9.jpg" />
     <Content Include="Images\logo25nam-01.png" />
+    <Content Include="Images\Sliders\1.png" />
+    <Content Include="Images\Sliders\2.png" />
+    <Content Include="Images\Sliders\3.png" />
+    <Content Include="Images\Sliders\4.png" />
+    <Content Include="Images\Sliders\5.png" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2444,8 +2454,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Images\Accounts\" />
-    <Folder Include="Images\Sliders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -10,6 +10,7 @@ using CanteenVanLang.Areas.Admin.Middleware;
 namespace CanteenVanLang.Areas.Admin.Controllers
 {
     [LoginVertification]
+    [PermissionVertification]
     public class CategoryController : Controller
     {
         QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
@@ -18,43 +19,32 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult Index()
         {
-            if ((int)Session["userRole"] == 3)
+            if ((bool)Session["newCategory"] == true)
             {
-                return RedirectToAction("Welcome", "Authentication");
+                var newCategory = model.CATEGORies.OrderByDescending(cate => cate.ID).FirstOrDefault();
+                var allCategories = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME).ToList();
+                allCategories.Remove(newCategory);
+                allCategories.Insert(0, newCategory);
+                Session["newCategory"] = false;
+                return View(allCategories);
             }
             else
             {
-                if ((bool)Session["newCategory"] == true)
-                {
-                    var newCategory = model.CATEGORies.OrderByDescending(cate => cate.ID).FirstOrDefault();
-                    var allCategories = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME).ToList();
-                    allCategories.Remove(newCategory);
-                    allCategories.Insert(0, newCategory);
-                    Session["newCategory"] = false;
-                    return View(allCategories);
-                }
-                else
-                {
-                    var category = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME);
-                    return View(category);
-                }
+                var category = model.CATEGORies.OrderBy(cate => cate.CATEGORY_NAME);
+                return View(category);
             }
+
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            if ((int)Session["userRole"] == 3)
-            {
-                return RedirectToAction("Welcome", "Authentication");
-            }
-            else
-            {
-                ViewBag.Action = "Index";
-                ViewBag.Controller = "Category";
-                Session["newCategory"] = true;
-                return View();
-            }
+
+            ViewBag.Action = "Index";
+            ViewBag.Controller = "Category";
+            Session["newCategory"] = true;
+            return View();
+
         }
         [HttpPost]
         public ActionResult Create(CATEGORY newCategory, HttpPostedFileBase picture)
@@ -64,7 +54,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var category = new CATEGORY();
-                //category.CATEGORY_CODE = newCategory.CATEGORY_CODE.Trim();
                 category.CATEGORY_NAME = newCategory.CATEGORY_NAME.Trim();
                 category.STATUS = false;
                 model.CATEGORies.Add(category);
@@ -89,17 +78,10 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            if ((int)Session["userRole"] == 3)
-            {
-                return RedirectToAction("Welcome", "Authentication");
-            }
-            else
-            {
-                var category = model.CATEGORies.FirstOrDefault(x => x.ID == id);
-                ViewBag.Action = "Index";
-                ViewBag.Controller = "Category";
-                return View(category);
-            }
+            var category = model.CATEGORies.FirstOrDefault(x => x.ID == id);
+            ViewBag.Action = "Index";
+            ViewBag.Controller = "Category";
+            return View(category);
         }
 
         [HttpPost]

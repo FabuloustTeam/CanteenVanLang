@@ -10,61 +10,44 @@ using CanteenVanLang.Areas.Admin.Middleware;
 namespace CanteenVanLang.Areas.Admin.Controllers
 {
     [LoginVertification]
+    [PermissionVertification]
     public class FoodController : Controller
     {
         QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
 
         private const string PICTURE_PATH = "~/Images/Foods/";
 
-        private void checkRole()
-        {
-            if ((int)Session["userRole"] == 3)
-            {
-                RedirectToAction("Welcome", "Authentication");
-            }
-        }
-
         // GET: Admin/Food
         public ActionResult Index()
         {
-            if ((int)Session["userRole"] == 3)
+
+            if ((bool)Session["newFood"] == true)
             {
-                return RedirectToAction("Welcome", "Authentication");
+                var allFoods = model.FOODs.OrderByDescending(food => food.ID).ToList();
+                var newFood = allFoods[allFoods.Count - 1];
+                allFoods.Remove(newFood);
+                allFoods.OrderBy(food => food.FOOD_NAME).ToList();
+                allFoods.Add(newFood);
+                Session["newFood"] = false;
+                return View(allFoods);
             }
             else
             {
-                if ((bool)Session["newFood"] == true)
-                {
-                    var allFoods = model.FOODs.OrderByDescending(food => food.ID).ToList();
-                    var newFood = allFoods[allFoods.Count - 1];
-                    allFoods.Remove(newFood);
-                    allFoods.OrderBy(food => food.FOOD_NAME).ToList();
-                    allFoods.Add(newFood);
-                    Session["newFood"] = false;
-                    return View(allFoods);
-                }
-                else
-                {
-                    var allFoods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
-                    return View(allFoods);
-                }
+                var allFoods = model.FOODs.OrderBy(food => food.FOOD_NAME).ToList();
+                return View(allFoods);
             }
+
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            if ((int)Session["userRole"] == 3)
-            {
-                return RedirectToAction("Welcome", "Authentication");
-            }
-            else
-            {
-                ViewBag.Categories = model.CATEGORies.OrderByDescending(x => x.ID).ToList();
-                ViewBag.Action = "Index";
-                ViewBag.Controller = "Food";
-                return View();
-            }
+
+            ViewBag.Categories = model.CATEGORies.OrderByDescending(x => x.ID).ToList();
+            ViewBag.Action = "Index";
+            ViewBag.Controller = "Food";
+            return View();
+
         }
 
         [HttpPost]
@@ -120,18 +103,11 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            if ((int)Session["userRole"] == 3)
-            {
-                return RedirectToAction("Welcome", "Authentication");
-            }
-            else
-            {
-                var food = model.FOODs.FirstOrDefault(f => f.ID == id);
-                ViewBag.Categories = model.CATEGORies.OrderByDescending(x => x.ID).ToList();
-                ViewBag.Action = "Index";
-                ViewBag.Controller = "Food";
-                return View(food);
-            }
+            var food = model.FOODs.FirstOrDefault(f => f.ID == id);
+            ViewBag.Categories = model.CATEGORies.OrderByDescending(x => x.ID).ToList();
+            ViewBag.Action = "Index";
+            ViewBag.Controller = "Food";
+            return View(food);
         }
 
         [HttpPost]
@@ -142,7 +118,6 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 using (var scope = new TransactionScope())
                 {
-
                     var food = model.FOODs.FirstOrDefault(f => f.ID == id);
                     food.FOOD_NAME = updatedFood.FOOD_NAME.Trim();
                     food.DESCRIPTION = updatedFood.DESCRIPTION.Trim();
@@ -247,7 +222,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("FOOD_NAME", "Vui lòng nhập tên món ăn");
             }
-            if(model.DESCRIPTION.Trim() == "")
+            if (model.DESCRIPTION.Trim() == "")
             {
                 ModelState.AddModelError("DESCRIPTION", "Vui lòng nhập mô tả");
             }

@@ -68,7 +68,7 @@
                                         @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
                                         @if (Convert.ToBoolean(Session["userNotFound"]))
                                         {
-                                            <p class="user-name error text-danger">Không tìm thấy tài khoản</p>
+                                            <p class="user-name error text-danger">Email hoặc mật khẩu không đúng</p>
                                         }
                                     </div>
                                     <div class="form-group input-rounded">
