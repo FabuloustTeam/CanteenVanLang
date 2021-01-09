@@ -11,7 +11,9 @@ namespace CanteenVanLang.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+
     public partial class ACCOUNT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,12 +27,22 @@ namespace CanteenVanLang.Models
         public int ID { get; set; }
         public string ACCOUNT_CODE { get; set; }
         public string EMAIL { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [StringLength(50)]
         public string PASSWORD { get; set; }
+        
+        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
         public string FULLNAME { get; set; }
         public bool STATUS { get; set; }
         public int ROLE { get; set; }
         public string IMAGE_URL { get; set; }
-    
+
+        [Required(ErrorMessage = "Vui lòng nhập xác nhận mật khẩu")]
+        [StringLength(50)]
+        [Compare("PASSWORD", ErrorMessage = "Xác nhận mật khẩu không khớp")]
+        public string ConfirmPassword { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENU> MENUs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

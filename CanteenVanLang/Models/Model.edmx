@@ -77,7 +77,7 @@
           <Property Name="PRICE" Type="int" Nullable="false" />
           <Property Name="STATUS" Type="bit" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IMAGE_URL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="nvarchar(max)" />
           <Property Name="CATEGORY_ID" Type="int" />
         </EntityType>
         <EntityType Name="MENU">
@@ -90,7 +90,7 @@
           <Property Name="QUANTITY" Type="int" Nullable="false" />
           <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="STATUS" Type="bit" Nullable="false" />
-          <Property Name="FOOD_ID" Type="int" />
+          <Property Name="FOOD_ID" Type="int" Nullable="false" />
           <Property Name="ACCOUNT_ID" Type="int" />
         </EntityType>
         <EntityType Name="NOTIFICATION">
@@ -169,7 +169,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MENU__FOOD_ID__4222D4EF">
-          <End Role="FOOD" Type="Self.FOOD" Multiplicity="0..1" />
+          <End Role="FOOD" Type="Self.FOOD" Multiplicity="1" />
           <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FOOD">
@@ -443,7 +443,7 @@
           <Property Name="PRICE" Type="Int32" Nullable="false" />
           <Property Name="STATUS" Type="Boolean" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IMAGE_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CATEGORY_ID" Type="Int32" />
           <NavigationProperty Name="CATEGORY" Relationship="QUANLYCANTEENModel.FK__FOOD__CATEGORY_I__3F466844" FromRole="FOOD" ToRole="CATEGORY" />
           <NavigationProperty Name="MENUs" Relationship="QUANLYCANTEENModel.FK__MENU__FOOD_ID__4222D4EF" FromRole="FOOD" ToRole="MENU" />
@@ -458,7 +458,7 @@
           <Property Name="QUANTITY" Type="Int32" Nullable="false" />
           <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="STATUS" Type="Boolean" Nullable="false" />
-          <Property Name="FOOD_ID" Type="Int32" />
+          <Property Name="FOOD_ID" Type="Int32" Nullable="false" />
           <Property Name="ACCOUNT_ID" Type="Int32" />
           <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEENModel.FK__MENU__ACCOUNT_ID__4316F928" FromRole="MENU" ToRole="ACCOUNT" />
           <NavigationProperty Name="FOOD" Relationship="QUANLYCANTEENModel.FK__MENU__FOOD_ID__4222D4EF" FromRole="MENU" ToRole="FOOD" />
@@ -584,7 +584,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MENU__FOOD_ID__4222D4EF">
-          <End Type="QUANLYCANTEENModel.FOOD" Role="FOOD" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.FOOD" Role="FOOD" Multiplicity="1" />
           <End Type="QUANLYCANTEENModel.MENU" Role="MENU" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FOOD">

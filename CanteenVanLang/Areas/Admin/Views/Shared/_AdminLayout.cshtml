@@ -8,9 +8,9 @@
     {
         linkBreadcrumb = "/Admin/Category/Index";
     }
-    else
+    else if (ViewBag.Feature == "Quản lý món ăn theo ngày")
     {
-        linkBreadcrumb = "/Admin/Account/Index";
+        linkBreadcrumb = "/Admin/Menu/Index";
     }
     var role = "";
     if (Session["userRole"] != null)
@@ -35,8 +35,11 @@
     <!-- endinject -->
     <!-- Layout style -->
     <link href="~/Content/css/demo_1/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Images/logo.png" />
     <!-- Layout style -->
     <!-- <link rel="shortcut icon" href="../../../assets/images/favicon.ico" /> -->
+
+    <link rel="shortcut icon" href="~/Images/logo.png" />
 </head>
 <body class="header-fixed">
     <!-- partial:../../partials/_header.html -->
@@ -72,7 +75,11 @@
                     <img class="profile-img img-lg rounded-circle" src="@Session["userImage"]" alt="profile image" />
                 </div>
                 <div class="info-wrapper">
-                    <p class="user-name">@Session["userFullName"]</p>
+                    <p class="user-name">@Session["userFullName"]
+                        <a href="@Url.Action("Update", "Account", new { id = @Session["userId"]})">
+                            <i class="mdi mdi-lead-pencil" style="color: black"></i>
+                        </a>
+                    </p>
                     @if (Session["userRole"] != null)
                     {
                         <h6 class="display-income">@role</h6>
