@@ -48,7 +48,7 @@
 
                             <div class="form-group row showcase_row_area">
                                 <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Xác Nhận Mật khẩu</label>
+                                    <label for="inputType1">Xác nhận mật khẩu</label>
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
                                     @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password", @required = true, @minLenght = 0, @maxLength = 50 } })
@@ -94,11 +94,7 @@
                                 </div>
                                 <div class="col-md-9 showcase_content_area">
                                     @*@Html.DropDownList("CATEGORY_ID", new SelectList(ViewBag.Categories, "ID", "CATEGORY_NAME"), new { @class = "custom-select" })*@
-                                    <select name="ROLE" class="custom-select">
-                                        <option value="1">Quản trị</option>
-                                        <option value="2">Quản lý</option>
-                                        <option value="3">Thu ngân</option>
-                                    </select>
+                                    @Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
                                 </div>
                             </div>
 
