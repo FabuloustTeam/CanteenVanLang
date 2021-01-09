@@ -64,8 +64,8 @@
                         <span class="flaticon-support"></span>
                     </div>
                     <div class="text">
-                        <h2>Online Support 24/7</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <h2>Thời gian hoạt động</h2>
+                        <p>7AM - 14PM <br />Từ thứ Hai đến thứ Bảy luôn sẵn sàng phục vụ bạn</p>
                     </div>
                 </div>
             </div>
@@ -75,8 +75,8 @@
                         <span class="flaticon-cashback"></span>
                     </div>
                     <div class="text">
-                        <h2>Money Back Guarantee</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <h2>Thanh toán sau</h2>
+                        <p>Không cần phải trả trước khi đặt hàng, thanh toán tại quầy khi đến dùng bữa </p>
                     </div>
                 </div>
             </div>
@@ -86,8 +86,8 @@
                         <span class="flaticon-free-delivery"></span>
                     </div>
                     <div class="text">
-                        <h2>Free Shipping &amp; Return</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        <h2>Phục vụ linh hoạt</h2>
+                        <p>Chấp nhận dùng bữa tại chỗ hoặc mang đi mà không tốn thêm bất cứ chi phí nào</p>
                     </div>
                 </div>
             </div>
@@ -97,17 +97,17 @@
 <section class="ftco-section ftco-no-pb">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(Images/canteen.jpg);">
+            <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url(@Url.Content("~/Images/canteen.jpg"));">
             </div>
             <div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
                 <div class="heading-section">
                     <span class="subheading">Từ 2020</span>
-                    <h2 class="mb-4">Desire Meets A New Taste</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
+                    <h2 class="mb-4">Website Canteen Văn Lang</h2>
+                    <p>Bắt đầu từ mô hình phục vụ truyền thống hiện có chưa thể đáp ứng đủ nhu cầu của người dùng và còn gặp nhiều hạn chế trong quy trình phục vụ, chúng tôi đã tìm cách thay thế bằng một thứ <i>linh động</i> hơn. <em>Website Canteen Văn Lang</em> ra đời từ đó.</p>
+                    <p>Tính <i>tiện lợi và thân thiện</i> luôn là ưu tiên hàng đầu của webiste. Chỉ cần một vài <i>thao tác đơn giản</i> bạn đã có thể thưởng thức một bữa trưa tuyệt vời <i>đậm vị cơm nhà</i> ngay tại <strong>Canteen trường Đại học Văn Lang</strong>.</p>
                     <p class="year">
-                        <strong class="number" data-number="20">0</strong>
-                        <span>Years of Experience In Business</span>
+                        <strong class="number" data-number="117">0</strong>
+                        <span>Ngày nghiên cứu và phát triển</span>
                     </p>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                 {
                     <div class="col-lg-2 col-md-4 ">
                         <div class="sort w-100 text-center ftco-animate">
-                            <div class="img" style="background-image: url(@categories[i].IMAGE_URL.Remove(0, 1).Replace(@"\", "/"))"></div>
+                            <div class="img" style="background-image: url(@Url.Content("~"+categories[i].IMAGE_URL.Replace(@"\", "/")))"></div>
                             <a href="#"><h3>@categories[i].CATEGORY_NAME</h3></a>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                 {
                     <div class="col-lg-2 col-md-4 ">
                         <div class="sort w-100 text-center ftco-animate">
-                            <div class="img" style="background-image: url(@categories[i].IMAGE_URL.Remove(0, 1).Replace(@"\", "/"));"></div>
+                            <div class="img" style="background-image: url(@Url.Content("~"+categories[i].IMAGE_URL.Replace(@"\", "/")));"></div>
                             <a href="#"><h3>@categories[i].CATEGORY_NAME</h3></a>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                 {
                     <div class="col-md-3 d-flex">
                         <div class="product ftco-animate">
-                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@item.IMAGE_URL.Remove(0, 1).Replace(@"\", "/"));">
+                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~"+item.IMAGE_URL.Replace(@"\", "/")));">
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
                                         <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -183,7 +183,7 @@
                 {
                     <div class="col-md-3 d-flex">
                         <div class="product ftco-animate">
-                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@foods[i].IMAGE_URL.Remove(0, 1).Replace(@"\", "/"));">
+                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~"+foods[i].IMAGE_URL.Replace(@"\", "/")));">
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
                                         <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -210,13 +210,13 @@
     </div>
 </section>
 
-<section class="ftco-section testimony-section img" style="background-image: url(Images/Sliders/4.jpg);">
+<section class="ftco-section testimony-section img" style="background-image: url(@Url.Content("~/Images/Sliders/4.jpg"));">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                <span class="subheading">Testimonial</span>
-                <h2 class="mb-3">Happy Clients</h2>
+                <span class="subheading">Đôi nét</span>
+                <h2 class="mb-3">Đội ngũ của chúng tôi</h2>
             </div>
         </div>
         <div class="row ftco-animate">
@@ -226,12 +226,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Mang đến những bữa ăn dinh dưỡng và vệ sinh là cách mà tôi làm việc. Có kinh nghiệm làm bếp 5 năm tại các nhà hàng lớn.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Nhi Phan</p>
+                                        <span class="position">Bếp trưởng</span>
                                     </div>
                                 </div>
                             </div>
@@ -241,12 +240,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Năng động và nhiệt tình là cách mà người khác nói về mình, luôn lắng nghe khách hàng là tiêu chí khi làm việc của bản thân mình.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Yến Dâng</p>
+                                        <span class="position">Nhân viên quầy</span>
                                     </div>
                                 </div>
                             </div>
@@ -256,12 +254,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Nguyên tắc khi làm việc của tôi là không được có sai sót. Mà lâu lâu sai sót tí thì chị quản lý bỏ qua cho em hihi.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Lan Phương</p>
+                                        <span class="position">Thu ngân xinh đẹp</span>
                                     </div>
                                 </div>
                             </div>
@@ -271,27 +268,11 @@
                         <div class="testimony-wrap py-4">
                             <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
                             <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="mb-4">Phải nghiêm túc khi làm việc, không được phép mắc sai lầm. Đặc biệt nhắc nhở đến cô thu ngân Lan Phương về vấn đề này.</p>
                                 <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
                                     <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
+                                        <p class="name">Thanh Nhàn</p>
+                                        <span class="position">Quản lý</span>
                                     </div>
                                 </div>
                             </div>
