@@ -74,19 +74,25 @@ namespace CanteenVanLang.Controllers
             return View(food);
         }
 
-        [HttpPost]
         public ActionResult Search(string searching)
         {
             var listFoods = getFoods();
             var searchResults = new List<FOOD>();
             foreach (var item in listFoods)
             {
-                if (ConvertToUnSign(item.FOOD_NAME).ToLower().Contains((ConvertToUnSign(searching))))
+                var name = ConvertToUnSign(item.FOOD_NAME).ToLower();
+                var category = ConvertToUnSign(item.CATEGORY.CATEGORY_NAME).ToLower();
+                var description = ConvertToUnSign(item.DESCRIPTION).ToLower();
+                var searchingParsed = ConvertToUnSign(searching);
+                if (name.Contains(searchingParsed) || category.Contains(searchingParsed) || description.Contains(searchingParsed)
+                     || item.PRICE.ToString().Contains(searching))
                 {
                     searchResults.Add(item);
                 }
             }
             ViewBag.Categories = model.CATEGORies.ToList();
+            ViewBag.Searching = searching;
+            ViewBag.Count = searchResults.Count;
             return View(searchResults);
         }
 

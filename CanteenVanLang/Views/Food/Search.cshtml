@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.FOOD>
-    @using CanteenVanLang.Models;
+@using CanteenVanLang.Models;
 @{
     ViewBag.Title = "Tìm kiếm";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var categories = ViewBag.Categories as List<CATEGORY>;
+    var count = ViewBag.Count == null ? 0 : (int)ViewBag.Count;
 }
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('Images/Sliders/4.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~/Images/Sliders/4.jpg'"));" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -31,11 +32,20 @@
             <div class="col-md-9">
                 <div class="row mb-4">
                     <div class="col-md-12 d-flex justify-content-between align-items-center">
-                        <input id="searching" class="form-control" placeholder="Tìm kiếm" style="margin-right: 40px" />
+                        <input value="@ViewBag.Searching" id="searching" class="form-control" placeholder="Tìm kiếm" style="margin-right: 40px" />
                         <input onclick="search()" type="button" value="Tìm kiếm" class="btn btn-primary btn btn-primary py-3 px-4" style="margin-right: 10px">
                     </div>
                 </div>
-
+                @if (count > 0)
+                {
+                    <p>Có @count kết quả tìm kiếm cho @ViewBag.Searching</p>
+                }
+                else
+                {
+                    <p>
+                        Xin lỗi, không có kết quả tìm kiếm nào cho @ViewBag.Searching
+                    </p>
+                }
                 <div class="row">
                     @foreach (var food in Model)
                     {
@@ -69,21 +79,6 @@
                         </div>
                     }
                 </div>
-                @*<div class="row mt-5">
-                        <div class="col text-center">
-                            <div class="block-27">
-                                <ul>
-                                    <li><a href="#">&lt;</a></li>
-                                    <li class="active"><span>1</span></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">&gt;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>*@
             </div>
 
             <div class="col-md-3">
@@ -103,6 +98,9 @@
     </div>
 </section>
 
+<form id="form-search" action="@Url.Action("Search", "Food")">
+    <input hidden id="searchValue" value="" name="searching" />
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -110,16 +108,10 @@
     <script>
         function search() {
             var searchingValue = $("#searching").val();
-             $.ajax({
-                type: "POST",
-                url: "@Url.Action("Search", "Food")",
-                 data: JSON.stringify({ searching: searchingValue}),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (r) {
-
-                }
-            });
+            if (searchingValue != "") {
+                $("#searchValue").val(searchingValue);
+                $("#form-search").submit();
+            }
         }
     </script>
 }

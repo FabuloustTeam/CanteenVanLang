@@ -8,7 +8,7 @@
     var categories = ViewBag.Categories as List<CATEGORY>;
 }
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('Images/Sliders/4.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~/Images/Sliders/4.jpg'"));" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -78,20 +78,20 @@
                     }
                 </div>
                 @*<div class="row mt-5">
-                    <div class="col text-center">
-                        <div class="block-27">
-                            <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
-                            </ul>
+                        <div class="col text-center">
+                            <div class="block-27">
+                                <ul>
+                                    <li><a href="#">&lt;</a></li>
+                                    <li class="active"><span>1</span></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">&gt;</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </div>
 
             <div class="col-md-3">
@@ -111,6 +111,9 @@
     </div>
 </section>
 
+<form id="form-search" action="@Url.Action("Search", "Food")">
+    <input hidden id="searchValue" value="" name="searching" />
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -118,16 +121,10 @@
     <script>
         function search() {
             var searchingValue = $("#searching").val();
-             $.ajax({
-                type: "POST",
-                url: "@Url.Action("Search", "Food")",
-                 data: JSON.stringify({ searching: searchingValue}),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (r) {
-
-                }
-            });
+            if (searchingValue != "") {
+                $("#searchValue").val(searchingValue);
+                $("#form-search").submit();
+            }
         }
     </script>
 }
