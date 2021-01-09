@@ -86,6 +86,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             else
             {
                 Session["customerEmail"] = cust.EMAIL;
+                Session["customerName"] = cust.FULLNAME;
             }
             return Redirect("/");
         }
