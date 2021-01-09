@@ -1,0 +1,8 @@
+﻿@if (Session["userFullName"] != null)
+{
+    <p class="mb-0"><a href="@Url.Action("SignUp", "Customer")" class="mr-2">Đăng ký</a> <a href="@Url.Action("LogIn", "Customer")">Đăng nhập</a></p>
+}
+else
+{
+    <p class="mb-0"><a href="#" class="mr-2">Đăng xuất</a></p>
+}
