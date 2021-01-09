@@ -56,7 +56,7 @@ namespace CanteenVanLang.Controllers
         public ActionResult Index()
         {
             var listFoods = getFoods();
-            ViewBag.Categories = model.CATEGORies.ToList();
+            ViewBag.Categories = model.CATEGORies.Where(cate => cate.FOODs.Count > 0).ToList();
             return View(listFoods);
         }
 
@@ -93,7 +93,7 @@ namespace CanteenVanLang.Controllers
                     searchResults.Add(item);
                 }
             }
-            ViewBag.Categories = model.CATEGORies.ToList();
+            ViewBag.Categories = model.CATEGORies.Where(cate => cate.FOODs.Count > 0).ToList();
             ViewBag.Searching = searching;
             ViewBag.Count = searchResults.Count;
             return View(searchResults);
@@ -114,6 +114,14 @@ namespace CanteenVanLang.Controllers
                 str2 = str2.Remove(str2.IndexOf("?"), 1);
             }
             return str2;
+        }
+
+        public ActionResult Category(int id)
+        {
+            var listFoods = getFoods().Where(food => food.CATEGORY_ID == id).ToList<FOOD>();
+            ViewBag.Categories = model.CATEGORies.Where(cate => cate.FOODs.Count > 0).ToList();
+            ViewBag.Category = model.CATEGORies.FirstOrDefault(cate => cate.ID == id);
+            return View(listFoods);
         }
     }
 }

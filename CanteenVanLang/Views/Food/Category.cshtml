@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.FOOD>
-@using CanteenVanLang.Models;
+@using CanteenVanLang.Models
 @{
-    ViewBag.Title = "Tìm kiếm";
+    var category = ViewBag.Category as CATEGORY;
+    ViewBag.Title = category.CATEGORY_NAME;
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var categories = ViewBag.Categories as List<CATEGORY>;
-    var count = ViewBag.Count == null ? 0 : (int)ViewBag.Count;
 }
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~/Images/Sliders/4.jpg'"));" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~"+category.IMAGE_URL.Replace(@"\", "/"))');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -19,14 +19,14 @@
                             <i class="fa fa-chevron-right"></i>
                         </a>
                     </span>
-                    <span>
+                    <span class="mr-2">
                         <a href="@Url.Action("Index", "Food")">
                             Món ăn
                             <i class="fa fa-chevron-right"></i>
                         </a>
                     </span>
                 </p>
-                <h2 class="mb-0 bread" style="margin-top: 10px">Tìm kiếm</h2>
+                <h2 class="mb-0 bread" style="margin-top: 10px">@category.CATEGORY_NAME</h2>
             </div>
         </div>
     </div>
@@ -38,23 +38,15 @@
             <div class="col-md-9">
                 <div class="row mb-4">
                     <div class="col-md-12 d-flex justify-content-between align-items-center">
-                        <input value="@ViewBag.Searching" id="searching" class="form-control" placeholder="Tìm kiếm" style="margin-right: 40px" />
+                        <input id="searching" class="form-control" placeholder="Tìm kiếm" style="margin-right: 40px" />
                         <input onclick="search()" type="button" value="Tìm kiếm" class="btn btn-primary btn btn-primary py-3 px-4" style="margin-right: 10px">
                     </div>
                 </div>
-                @if (count > 0)
-                {
-                    <p>Có @count kết quả tìm kiếm cho @ViewBag.Searching</p>
-                }
-                else
-                {
-                    <p>
-                        Xin lỗi, không có kết quả tìm kiếm nào cho @ViewBag.Searching
-                    </p>
-                }
+
                 <div class="row">
                     @foreach (var food in Model)
                     {
+
                         <div class="col-md-4 d-flex">
                             <div class="product ftco-animate fadeInUp ftco-animated">
                                 <div class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
@@ -64,6 +56,7 @@
                                 </div>
 
                                 <div class="text text-center">
+
                                     <span>
                                         @if (food.STATUS)
                                         {
@@ -81,8 +74,12 @@
                                     </a>
                                     <p class="mb-0"><span class="price">@food.PRICE.ToString("N0")</span> VNĐ</p>
                                 </div>
+
+
                             </div>
+
                         </div>
+
                     }
                 </div>
             </div>

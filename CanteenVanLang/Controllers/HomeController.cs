@@ -7,6 +7,7 @@ using CanteenVanLang.Models;
 
 namespace CanteenVanLang.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
         QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();

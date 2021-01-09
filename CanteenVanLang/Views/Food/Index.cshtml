@@ -101,7 +101,7 @@
                         <ul class="p-0">
                             @foreach (var item in categories)
                             {
-                                <li><a href="@Url.Action("")">@item.CATEGORY_NAME <span class="fa fa-chevron-right"></span></a></li>
+                                <li><a href="@Url.Action("Category", "Food", new { id = item.ID })">@item.CATEGORY_NAME <span class="fa fa-chevron-right"></span></a></li>
                             }
                         </ul>
                     </div>
