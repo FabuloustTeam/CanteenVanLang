@@ -26,13 +26,31 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             return View(printData);
         }
 
+        private List<MENU> getMenuToday()
+        {
+            var today = DateTime.Now;
+            var allMenu = model.MENUs.ToList();
+            var menuToday = new List<MENU>();
+            foreach (var item in allMenu)
+            {
+                if (item.DATE.Date == today.Date)
+                    menuToday.Add(item);
+            }
+            return menuToday;
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
             List<CUSTOMER> customers = model.CUSTOMERs.OrderByDescending(cust => cust.FULLNAME).ToList();
-            List<FOOD> foods = model.FOODs.OrderByDescending(food => food.FOOD_NAME).ToList();
+            List<MENU> menuToday = getMenuToday();
             ViewBag.customers = customers;
-            ViewBag.foods = foods;
+            ViewBag.menus = menuToday;
+            ViewBag.IsNoMenu = false;
+            if (menuToday.Count == 0)
+            {
+                ViewBag.IsNoMenu = true;
+            }
             return View();
         }
 
@@ -55,10 +73,20 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult getPrice(string foodCode)
+        public JsonResult getPrice(string menuCode)
         {
-            int price = model.FOODs.FirstOrDefault(food => food.FOOD_CODE == foodCode).PRICE;
+            int price = model.MENUs.FirstOrDefault(menu => menu.MENU_CODE == menuCode).PRICE;
             return Json(new { success = true, value = price }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult checkQuantity(int quantity, int idMenu)
+        {
+            var menu = model.MENUs.FirstOrDefault(men => men.ID == idMenu);
+            if(menu.QUANTITY >= quantity)
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
     }
 }
