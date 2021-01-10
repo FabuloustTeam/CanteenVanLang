@@ -1,18 +1,10 @@
-
 ﻿@model CanteenVanLang.Models.CUSTOMER
 @{
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     ViewBag.Title = "Đăng nhập";
 }
-@*@if (ViewBag.SignInSucceed != null)
-    {
-        <script>
-            alert('Tài khoản đã được tạo thành công');
-            window.location.href = "/Customer/Login";
-        </script>
 
-    }*@
-<section class="hero-wrap hero-wrap-2" style="background-image: url(&quot;@Url.Content("~/Content/customer/images/bg_1.jpg")&quot;); background-position: 50% -15px;" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url(@Url.Content("~/Content/customer/images/bg_1.jpg")); background-position: 50% -15px;" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -35,17 +27,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 ftco-animate fadeInUp ftco-animated">
-                <form action="@Url.Action("Login", "Customer")"  method="post" class="billing-form" id="target">
+                <form action="@Url.Action("Login", "Customer")" method="post" class="contactForm" id="target">
                     @*<div class="row">
                             <div class="col-md-6 offset-md-3"><h3 class="mb-4 billing-heading">Đăng nhập</h3></div>
                         </div>*@
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
                             <div class="form-group">
-                                    <label for="firstname">Email</label>
-                                    <input type="text" class="form-control" placeholder="" name="email" id="email" />
+                                <label for="firstname">Email</label>
+                                <input type="text" class="form-control" placeholder="" name="email" id="email" />
                                 @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-                               
+
                             </div>
                         </div>
 
@@ -61,12 +53,12 @@
                                 }
                             </div>
                             @*<div id="passwordErrorContainer">
-                                <p class="emptyError" style="color: red"></p>
-                                <p class="notMatchError" style="color: red"></p>
-                            </div>*@
+                                    <p class="emptyError" style="color: red"></p>
+                                    <p class="notMatchError" style="color: red"></p>
+                                </div>*@
                         </div>
                     </div>
-                   
+
                     <div class="row">
                         <div class="col-md-6 offset-md-3" style="text-align: center"><button class="btn btn-primary py-3 px-4" style="margin-top: 50px; width: 170px" type="submit">Đăng nhập</button></div>
                     </div>
@@ -75,17 +67,21 @@
         </div>
     </div>
 </section>
-<script>
-    $('#target').submit(function (event) {
-        var emailField = $('#email');
-        var passwordField = $('#password');
-        if (emailField.val() === '') {
-            $('#emailErrorContainer').html('Vui lòng nhập email');
-            event.preventDefault();
-        }
-        if (passwordField.val() === '') {
-            $('#passwordErrorContainer>.emptyError').html('Vui lòng nhập mật khẩu');
-            event.preventDefault();
-        }
-    });
-</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $('#target').submit(function (event) {
+            var emailField = $('#email');
+            var passwordField = $('#password');
+            if (emailField.val() === '') {
+                $('#emailErrorContainer').html('Vui lòng nhập email');
+                event.preventDefault();
+            }
+            if (passwordField.val() === '') {
+                $('#passwordErrorContainer>.emptyError').html('Vui lòng nhập mật khẩu');
+                event.preventDefault();
+            }
+        });
+    </script>
+}

@@ -1,7 +1,7 @@
 ﻿@using CanteenVanLang.Models;
 @{
     var model = new QUANLYCANTEENEntities();
-    var categoriesInLayout = model.CATEGORies.ToList();
+    var categoriesInLayout = model.CATEGORies.Where(cate => cate.FOODs.Count > 0).ToList();
 }
 
 <!DOCTYPE html>
@@ -72,7 +72,7 @@
                             <p class="mb-0"><a href="#" class="price">$25.99</a><span class="quantity ml-3">Quantity: 01</span></p>
                         </div>
                     </div>
-                    <a class="dropdown-item text-center btn-link d-block w-100" href="cart.html">
+                    <a class="dropdown-item text-center btn-link d-block w-100" href="#">
                         View All
                         <span class="ion-ios-arrow-round-forward"></span>
                     </a>
@@ -90,7 +90,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             @foreach (var item in categoriesInLayout)
                             {
-                                <a class="dropdown-item" href="@Url.Action("")">@item.CATEGORY_NAME</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Food", new { id = item.ID })">@item.CATEGORY_NAME</a>
                             }
                         </div>
                     </li>
@@ -204,9 +204,6 @@
 <script src="~/Content/customer/js/google-map.js"></script>
 <script src="~/Content/customer/js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-
-</body>
 
 @RenderSection("scripts", required: false) @*Chuyên Add Script vào*@
 

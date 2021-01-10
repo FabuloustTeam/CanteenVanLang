@@ -13,7 +13,7 @@ namespace CanteenVanLang.Controllers
         QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
         public ActionResult Index()
         {
-            ViewBag.Categories = model.CATEGORies.ToList();
+            ViewBag.Categories = model.CATEGORies.Where(cate => cate.FOODs.Count > 0).ToList();
             var today = DateTime.Now;
             var menu = model.MENUs.ToList();
             var foodToday = new List<FOOD>();

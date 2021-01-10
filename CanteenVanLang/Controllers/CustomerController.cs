@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Text.RegularExpressions;
 using CanteenVanLang.Models;
 using System.Dynamic;
+using CanteenVanLang.Controllers;
 
 namespace CanteenVanLang.Areas.Customer.Controllers
 {
@@ -93,6 +94,8 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             return View();
         }
 
+        [CustomerVerification]
+        [HttpGet]
         public ActionResult Update()
         {
             string email = Session["customerEmail"].ToString();
@@ -132,6 +135,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Session["customerEmail"] = null;
             return RedirectToAction("Index", "Home");
         }
+
         private void ValidateLogIn(string email, string password)
         {
             if (email.Trim() == "")
