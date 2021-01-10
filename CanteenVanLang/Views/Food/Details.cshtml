@@ -81,8 +81,8 @@
                 <p>
                     @if (Model.STATUS == true)
                     {
-                        <a href="#" class="btn btn-primary py-3 px-5 mr-2">Thêm vào giỏ</a>
-                        <a href="#" class="btn btn-primary py-3 px-5">Mua ngay</a>
+                        <a onclick="addToCart()" class="btn btn-primary py-3 px-5 mr-2">Thêm vào giỏ</a>
+                        <a class="btn btn-primary py-3 px-5">Mua ngay</a>
                     }
                     else
                     {
@@ -102,8 +102,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-    <script>
+<script>
         $(document).ready(function () {
             var quantitiy = 0;
             $('.quantity-right-plus').click(function (e) {
@@ -130,7 +129,30 @@
                 }
             });
         });
-    </script>
+
+        function addToCart() {
+            var id = @Model.ID;
+            var quantity = $('#quantity').val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddToCart", "Order")",
+                data: JSON.stringify({ idFood: id, quantity: quantity }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        swal("Thêm món ăn vào giỏ hàng thành công", "", 'success');
+                    } else {
+                        if (r.failQuantity) {
+                            swal("Xin lỗi", "Số lượng còn của món ăn không đủ, vui lòng điều chỉnh lại số lượng món", 'error');
+                        } else {
+                            swal("Lỗi", "Món ăn này đã ngưng bán. Hãy đặt món ăn khác", 'error');
+                        }
+                    }
+                }
+            });
+        }
+</script>
 
 }
 
