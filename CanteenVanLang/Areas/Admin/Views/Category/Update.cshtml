@@ -4,88 +4,106 @@
     ViewBag.Feature = "Quản lý loại món ăn";
     ViewBag.Title = Model.CATEGORY_NAME;
 }
-<div class="col-lg-12">
-    <div class="grid">
-        <p class="grid-header">Cập nhật loại món ăn</p>
-        <div class="grid-body">
-            <div class="item-wrapper">
-                <div class="row mb-3">
-                    <div class="col-md-8 mx-auto">
-                        @using (Html.BeginForm("Update", "Category", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-update", @class = "form-add" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Category")">Quản lý loại món ăn</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Update", "Category",new { id = Model.ID })">Cập nhật @Model.CATEGORY_NAME</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <p class="grid-header">Thông tin loại món ăn</p>
+                    <div class="grid-body">
+                        <div class="item-wrapper">
+                            <div class="row mb-3">
+                                <div class="col-md-8 mx-auto">
+                                    @using (Html.BeginForm("Update", "Category", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-update", @class = "form-add" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Mã loại món ăn</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.CATEGORY_CODE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.CATEGORY_CODE, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Tên loại món ăn</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.CATEGORY_NAME, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @required = true, @minLength = "3", @maxLength = "50" } })
-                                    @Html.ValidationMessageFor(model => model.CATEGORY_NAME, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label data-toggle="tooltip" data-placement="left" title="Trạng thái thay đổi sang còn bán nếu có món ăn thuộc loại đồ ăn này, ngược lại đổi sang hết bán">Trạng thái</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    <div class="form-inline">
-                                        <div class="radio mb-3">
-                                            <label class="radio-label mr-4">
-                                                @Html.RadioButtonFor(model => model.STATUS, "true", new { disabled = "disabled" }) Còn bán
-                                                <i class="input-frame"></i>
-                                            </label>
+                                        <div class="form-group row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label for="inputType1">Mã loại món ăn</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @Html.EditorFor(model => model.CATEGORY_CODE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
+                                                @Html.ValidationMessageFor(model => model.CATEGORY_CODE, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
-                                        <div class="radio mb-3">
-                                            <label class="radio-label">
-                                                @Html.RadioButtonFor(model => model.STATUS, "false", new { disabled = "disabled" }) Hết bán
-                                                <i class="input-frame"></i>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row showcase_row_area mb-3">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label>Hình ảnh</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    <div class="custom-file">
-                                        <input name="Picture" type="file" class="custom-file-input" id="IMG" onchange="readPicture(this);" accept="image/png, image/jpeg, image/jpg">
-                                        <label class="custom-file-label" id="namePicture" for="customFile">Chọn tệp</label>
-                                        <img class="logo test1" id="img-food" src="@Model.IMAGE_URL" width="200px" />
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 0;left: 50%">
-                                <div class="col-md-6 showcase_text_area">
-                                    <label>
-                                        <a href="@Url.Action("Index", "Category")">
-                                            <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
-                                        </a>
-                                    </label>
-                                </div>
-                                <div class="col-md-6 showcase_content_area">
-                                    <div class="custom-file">
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Cập nhật" />
-                                    </div>
+                                        <div class="form-group row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label for="inputType1">Tên loại món ăn</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @Html.EditorFor(model => model.CATEGORY_NAME, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @required = true, @minLength = "3", @maxLength = "50" } })
+                                                @Html.ValidationMessageFor(model => model.CATEGORY_NAME, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label data-toggle="tooltip" data-placement="left" title="Trạng thái thay đổi sang còn bán nếu có món ăn thuộc loại đồ ăn này, ngược lại đổi sang hết bán">Trạng thái</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                <div class="form-inline">
+                                                    <div class="radio mb-3">
+                                                        <label class="radio-label mr-4">
+                                                            @Html.RadioButtonFor(model => model.STATUS, "true", new { disabled = "disabled" }) Còn bán
+                                                            <i class="input-frame"></i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio mb-3">
+                                                        <label class="radio-label">
+                                                            @Html.RadioButtonFor(model => model.STATUS, "false", new { disabled = "disabled" }) Hết bán
+                                                            <i class="input-frame"></i>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row showcase_row_area mb-3">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label>Hình ảnh</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                <div class="custom-file">
+                                                    <input name="Picture" type="file" class="custom-file-input" id="IMG" onchange="readPicture(this);" accept="image/png, image/jpeg, image/jpg">
+                                                    <label class="custom-file-label" id="namePicture" for="customFile">Chọn tệp</label>
+                                                    <img class="logo test1" id="img-food" src="@Model.IMAGE_URL" width="200px" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 0;left: 50%">
+                                            <div class="col-md-6 showcase_text_area">
+                                                <label>
+                                                    <a href="@Url.Action("Index", "Category")">
+                                                        <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6 showcase_content_area">
+                                                <div class="custom-file">
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Cập nhật" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
-                        }
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,21 +1,4 @@
 ﻿@{
-    var linkBreadcrumb = "";
-    if (ViewBag.Feature == "Quản lý món ăn")
-    {
-        linkBreadcrumb = "/Admin/Food/Index";
-    }
-    else if (ViewBag.Feature == "Quản lý loại món ăn")
-    {
-        linkBreadcrumb = "/Admin/Category/Index";
-    }
-    else if (ViewBag.Feature == "Quản lý món ăn theo ngày")
-    {
-        linkBreadcrumb = "/Admin/Menu/Index";
-    }
-    else if (ViewBag.Feature == "Quản lý đơn đặt hàng")
-    {
-        linkBreadcrumb = "/Admin/Order/Index";
-    }
     var role = "";
     if (Session["userRole"] != null)
     {
