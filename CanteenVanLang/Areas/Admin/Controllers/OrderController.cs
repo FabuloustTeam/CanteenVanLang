@@ -85,14 +85,15 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                 order.CUSTOMER_ID = Int32.Parse(customerID);
                 order.STATUS = 1;
                 model.ORDERs.Add(order);
+                model.SaveChanges();
 
                 foreach (var detail in orderDetails)
                 {
                     detail.ORDER_ID = order.ID;
                     model.ORDER_DETAIL.Add(detail);
+                    model.SaveChanges();
                 }
                 Session["newOrder"] = true;
-                model.SaveChanges();
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -113,7 +114,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Update(int id, List<ORDER_DETAIL> orderDetails, int status)
+        public JsonResult Update(int id, List<ORDER_DETAIL> orderDetails, ORDER order)
         {
             if (orderDetails.Count == 0)
             {
@@ -121,6 +122,23 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             }
             else
             {
+                var oldListOrderDetails = model.ORDER_DETAIL.Where(detail => detail.ORDER_ID == id).ToList();
+                for(int i = 0; i < oldListOrderDetails.Count; i++)
+                {
+                    model.ORDER_DETAIL.Remove(oldListOrderDetails[i]);
+                    model.SaveChanges();
+                }
+
+                foreach (var detail in orderDetails)
+                {
+                    detail.ORDER_ID = id;
+                    model.ORDER_DETAIL.Add(detail);
+                    model.SaveChanges();
+                }
+
+                var updatedOrder = model.ORDERs.FirstOrDefault(ord => ord.ID == id);
+                updatedOrder.STATUS = order.STATUS;
+                model.SaveChanges();
 
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }

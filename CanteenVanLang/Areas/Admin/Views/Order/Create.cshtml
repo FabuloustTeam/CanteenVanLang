@@ -287,23 +287,6 @@
 
         });
 
-        function checkQuantity(quantity, idMenu) {
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("checkQuantity", "Order")",
-                data: JSON.stringify({ quantity: quantity, idMenu: idMenu }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (r) {
-                    if (r.success) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            });
-        }
-
         function Remove(button) {
             //Determine the reference of the Row using the Button.
             var row = $(button).closest("TR");

@@ -3501,7 +3501,8 @@ input[type="button"].btn-block {
   text-decoration: none; }
 
 .breadcrumb-item.active {
-  color: #6c757d; }
+    color: #D41B29;
+}
 
 .pagination {
   display: flex;
@@ -11490,7 +11491,7 @@ table {
               .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item a {
                 color: inherit; }
               .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item.active {
-                color: #696ffb; }
+                color: #D41B29; }
           .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .page-title-heading {
             color: #cccccc;
             font-size: 1.5rem;

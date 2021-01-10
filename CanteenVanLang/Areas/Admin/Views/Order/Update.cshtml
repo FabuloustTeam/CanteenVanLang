@@ -184,8 +184,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -296,22 +294,6 @@
             }
         });
 
-        function checkQuantity(quantity, idMenu) {
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("checkQuantity", "Order")",
-                data: JSON.stringify({ quantity: quantity, idMenu: idMenu }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (r) {
-                    if (r.success) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            });
-        }
 
         function Remove(button) {
             //Determine the reference of the Row using the Button.
@@ -340,11 +322,12 @@
                     orderDetail.UNIT_PRICE = row.find("TD").eq(3).html();
                     listOrderDetails.push(orderDetail);
                 });
-                var status = $("#selectStatus").val();
+                var newOrder = {};
+                newOrder.STATUS = $("#selectStatus").val();
                  $.ajax({
                     type: "POST",
                     url: "@Url.Action("Update", "Order")",
-                    data: JSON.stringify({ id: @idOrder, orderDetails: listOrderDetails, staus: status }),
+                     data: JSON.stringify({ id: @idOrder, orderDetails: listOrderDetails, order: newOrder }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                      success: function (r) {
