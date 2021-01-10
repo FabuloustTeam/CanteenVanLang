@@ -11,7 +11,8 @@ namespace CanteenVanLang.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CUSTOMER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +23,28 @@ namespace CanteenVanLang.Models
     
         public int ID { get; set; }
         public string CUSTOMER_CODE { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
+        [StringLength(50)]
         public string FULLNAME { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [StringLength(50)]
         public string PASSWORD { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập email")]
+        [StringLength(50)]
         public string EMAIL { get; set; }
         public bool STATUS { get; set; }
         public int MEMBER_TYPE { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
+        [StringLength(20)]
         public string PHONE { get; set; }
+        [Required(ErrorMessage = "Vui lòng chọn khoa")]
         public Nullable<int> FACULTY_ID { get; set; }
-    
+
+        [Required(ErrorMessage = "Vui lòng nhập xác nhận mật khẩu")]
+        [StringLength(50)]
+        [Compare("PASSWORD", ErrorMessage = "Xác nhận mật khẩu không khớp")]
+        public string confirmPassword { get; set; }
+
         public virtual FACULTY FACULTY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDER> ORDERs { get; set; }
