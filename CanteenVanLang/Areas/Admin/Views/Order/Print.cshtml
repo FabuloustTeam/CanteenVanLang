@@ -224,7 +224,7 @@
     <footer>
         <section id="memo">
             <button type="button" class="btn-print" onclick="window.print()">In hóa đơn</button>
-            <a href="@Url.Action("Index", "Order")" style="float: right; margin-right: 40px">
+            <a href="@Url.Action("Details", "Order", new { id = Model.ID })" style="float: right; margin-right: 40px">
                 <button type="button" class="btn-print" style="background-color: #fff; border-color: #f3f5f6; color: black">Hủy</button>
             </a>
         </section>

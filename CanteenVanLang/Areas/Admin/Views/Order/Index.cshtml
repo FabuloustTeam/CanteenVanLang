@@ -1,100 +1,123 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.ORDER>
+@using CanteenVanLang.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách đơn đặt hàng";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var total = 0;
+    var listDetail = new List<ORDER_DETAIL>();
 }
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Order")">Quản lý đơn đặt hàng</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <p class="grid-header">Danh sách đơn đặt hàng</p>
+                    <a href="@Url.Action("Create", "Order")" style="float: right; margin-right: 40px">
+                        <button type="button" class="btn btn-sm btn-primary">Thêm đơn đặt hàng</button>
+                    </a>
 
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                            <table class="table" id="food-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Mã đơn đặt hàng
+                                        </th>
+                                        <th>
+                                            Khách hàng
+                                        </th>
+                                        <th>
+                                            Nhân viên
+                                        </th>
+                                        <th>
+                                            Ngày mua
+                                        </th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th>
+                                            Tổng tiền (VNĐ)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        total = 0;
+                                        listDetail = item.ORDER_DETAIL.ToList<ORDER_DETAIL>();
+                                        <tr>
+                                            <td>
+                                                @item.ORDER_CODE
+                                            </td>
+                                            <td>
+                                                @item.CUSTOMER.FULLNAME
+                                            </td>
+                                            <td>
+                                                @if (item.ACCOUNT != null)
+                                                {
+                                                    @item.ACCOUNT.FULLNAME
+                                                }
+                                            </td>
+                                            <td>
+                                                @(((DateTime)item.DATE).ToString("dd/MM/yyyy"))
+                                            </td>
+                                            <td>
+                                                @if (item.STATUS == 1)
+                                                {
+                                                    <label class="badge badge-info">Chưa dùng</label>
+                                                }
+                                                else if (item.STATUS == 2)
+                                                {
+                                                    <label class="badge badge-success">Đã thanh toán</label>
+                                                }
+                                                else if (item.STATUS == 3)
+                                                {
+                                                    <label class="badge badge-dark">Hết hạn</label>
+                                                }
+                                                else if (item.STATUS == 4)
+                                                {
+                                                    <label class="badge badge-danger">Hủy</label>
+                                                }
+                                            </td>
 
-<div class="col-lg-12">
-    <div class="grid">
-        <p class="grid-header">Danh sách đơn đặt hàng</p>
-        <a href="@Url.Action("Create", "Order")" style="float: right; margin-right: 40px">
-            <button type="button" class="btn btn-sm btn-primary">Thêm đơn đặt hàng</button>
-        </a>
-
-        <div class="item-wrapper">
-            <div class="table-responsive">
-                <table class="table" id="food-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Mã đơn đặt hàng
-                            </th>
-                            <th>
-                                Khách hàng
-                            </th>
-                            <th>
-                                Nhân viên
-                            </th>
-                            <th>
-                                Ngày mua
-                            </th>
-                            <th>
-                                Trạng thái
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.ORDER_CODE
-                                </td>
-                                <td>
-                                    @item.CUSTOMER.FULLNAME
-                                </td>
-                                <td>
-                                    @if (item.ACCOUNT != null)
-                                    {
-                                        @item.ACCOUNT.FULLNAME
+                                            @foreach (var detail in listDetail)
+                                            {
+                                                total += detail.QUANTITY * detail.UNIT_PRICE;
+                                            }
+                                            <td>
+                                                @total.ToString("N0")
+                                            </td>
+                                            <td>
+                                                <form action="@Url.Action("Details", "Order", new { id = item.ID })" style="display:inline">
+                                                    <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
+                                                        <i class="mdi mdi-information-variant"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     }
-                                </td>
-                                <td>
-                                    @item.DATE
-                                </td>
-                                <td>
-                                    @if (item.STATUS == 1)
-                                    {
-                                        <label class="badge badge-info">Chưa dùng</label>
-                                    }
-                                    else if (item.STATUS == 2)
-                                    {
-                                        <label class="badge badge-success">Đã thanh toán</label>
-                                    }
-                                    else if (item.STATUS == 3)
-                                    {
-                                        <label class="badge badge-dark">Hết hạn</label>
-                                    }
-                                    else if (item.STATUS == 4)
-                                    {
-                                        <label class="badge badge-danger">Hủy</label>
-                                    }
-                                </td>
-                                <td>
-                                    <form action="#" style="display:inline" target="_blank">
-                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                    </form>
-                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    <form action="@Url.Action("Print", "Order", new { id = item.ID })" style="display:inline" target="_blank">
-                                        <button type="submit" class="btn action-btn btn-outline-warning btn-rounded">
-                                            <i class="mdi mdi-printer"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 

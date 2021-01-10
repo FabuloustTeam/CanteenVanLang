@@ -4,71 +4,85 @@
     ViewBag.Title = "Quản lý loại món ăn";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Category")">Quản lý loại món ăn</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <p class="grid-header">Danh sách loại món ăn</p>
+                    <a href="@Url.Action("Create", "Category")" style="float: right; margin-right: 40px">
+                        <button type="button" class="btn btn-sm btn-primary">Thêm loại món ăn</button>
+                    </a>
 
-<div class="col-lg-12">
-    <div class="grid">
-        <p class="grid-header">Danh sách loại món ăn</p>
-        <a href="@Url.Action("Create", "Category")" style="float: right; margin-right: 40px">
-            <button type="button" class="btn btn-sm btn-primary">Thêm loại món ăn</button>
-        </a>
-
-        <div class="item-wrapper">
-            <div class="table-responsive">
-                <table class="table" id="cate-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Mã loại món ăn
-                            </th>
-                            <th>
-                                Tên loại món ăn
-                            </th>
-                            <th>
-                                Hình ảnh
-                            </th>
-                            <th>
-                                Trạng thái
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.CATEGORY_CODE
-                                </td>
-                                <td>
-                                    @item.CATEGORY_NAME
-                                </td>
-                                <td>
-                                    <img src="@item.IMAGE_URL" width="100px" />
-                                </td>
-                                <td>
-                                    @if (item.STATUS)
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                            <table class="table" id="cate-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Mã loại món ăn
+                                        </th>
+                                        <th>
+                                            Tên loại món ăn
+                                        </th>
+                                        <th>
+                                            Hình ảnh
+                                        </th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
                                     {
-                                        <label class="badge badge-success">Còn bán</label>
+                                        <tr>
+                                            <td>
+                                                @item.CATEGORY_CODE
+                                            </td>
+                                            <td>
+                                                @item.CATEGORY_NAME
+                                            </td>
+                                            <td>
+                                                <img src="@item.IMAGE_URL" width="100px" />
+                                            </td>
+                                            <td>
+                                                @if (item.STATUS)
+                                                {
+                                                    <label class="badge badge-success">Còn bán</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="badge badge-danger">Hết bán</label>
+                                                }
+                                            </td>
+                                            <td>
+                                                <form action="@Url.Action("Update", "Category", new { id = item.ID })" style="display:inline">
+                                                    <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
+                                                        <i class="mdi mdi-lead-pencil"></i>
+                                                    </button>
+                                                </form>
+                                                <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                     }
-                                    else
-                                    {
-                                        <label class="badge badge-danger">Hết bán</label>
-                                    }
-                                </td>
-                                <td>
-                                    <form action="@Url.Action("Update", "Category", new { id = item.ID })" style="display:inline" target="_blank">
-                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                    </form>
-                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

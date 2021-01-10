@@ -47,7 +47,7 @@ namespace CanteenVanLang.Controllers
             var menuToday = new List<MENU>();
             foreach(var item in allMenu)
             {
-                if (item.DATE.Date == today.Date)
+                if (item.DATE.Date == today.Date && item.STATUS == true)
                     menuToday.Add(item);
             }
             return menuToday;

@@ -4,105 +4,119 @@
     ViewBag.Title = "Danh sách món ăn theo ngày";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
-<div class="col-lg-12">
-    <div class="grid">
-        <p class="grid-header">Danh sách món ăn theo ngày</p>
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Menu")">Quản lý món ăn theo ngày</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="col-md-10 showcase_content_area">
-                    <input type="date" class="form-control" id="filter-date">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <p class="grid-header">Danh sách món ăn theo ngày</p>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="col-md-10 showcase_content_area">
+                                <input type="date" class="form-control" id="filter-date">
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="filterDate()">Lọc</button>
+                        </div>
+                        <div class="col-lg-1">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="removeFilterDate()">Xóa lọc</button>
+                        </div>
+                        <div class="col-lg-7">
+                            <a class="col-lg-6" href="@Url.Action("Create", "Menu")" style="float: right; margin-right: 40px">
+                                <button type="button" class="btn btn-sm btn-primary" style="float: right">Thêm món ăn theo ngày</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                            <table class="table" id="daily-food-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Mã món ăn theo ngày
+                                        </th>
+                                        <th>
+                                            Ngày
+                                        </th>
+                                        <th>
+                                            Món ăn
+                                        </th>
+                                        <th>
+                                            Giá (VNĐ)
+                                        </th>
+                                        <th>
+                                            Số lượng
+                                        </th>
+                                        <th>
+                                            Nhân viên
+                                        </th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.MENU_CODE
+                                            </td>
+                                            <td>
+                                                @item.DATE.ToString("dd/MM/yyyy")
+                                            </td>
+                                            <td>
+                                                @item.FOOD.FOOD_NAME
+                                            </td>
+                                            <td>
+                                                @item.PRICE.ToString("N0")
+                                            </td>
+                                            <td>
+                                                @item.QUANTITY
+                                            </td>
+                                            <td>
+                                                @item.ACCOUNT.FULLNAME
+                                            </td>
+                                            <td>
+                                                @if (item.STATUS)
+                                                {
+                                                    <label class="badge badge-success">Còn bán</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="badge badge-danger">Hết bán</label>
+                                                }
+                                            </td>
+                                            <td>
+                                                <form action="@Url.Action("Update", "Menu", new { id = item.ID })" style="display:inline">
+                                                    <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
+                                                        <i class="mdi mdi-lead-pencil"></i>
+                                                    </button>
+                                                </form>
+                                                <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-1">
-                <button type="button" class="btn btn-sm btn-primary" onclick="filterDate()">Lọc</button>
-            </div>
-            <div class="col-lg-1">
-                <button type="button" class="btn btn-sm btn-primary" onclick="removeFilterDate()">Xóa lọc</button>
-            </div>
-            <div class="col-lg-7">
-                <a class="col-lg-6" href="@Url.Action("Create", "Menu")" style="float: right; margin-right: 40px">
-                    <button type="button" class="btn btn-sm btn-primary" style="float: right">Thêm món ăn theo ngày</button>
-                </a>
-            </div>
-        </div>
-
-        <div class="item-wrapper">
-            <div class="table-responsive">
-                <table class="table" id="daily-food-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Mã món ăn theo ngày
-                            </th>
-                            <th>
-                                Ngày
-                            </th>
-                            <th>
-                                Món ăn
-                            </th>
-                            <th>
-                                Giá (VNĐ)
-                            </th>
-                            <th>
-                                Số lượng
-                            </th>
-                            <th>
-                                Nhân viên
-                            </th>
-                            <th>
-                                Trạng thái
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.MENU_CODE
-                                </td>
-                                <td>
-                                    @item.DATE.ToString("dd/MM/yyyy")
-                                </td>
-                                <td>
-                                    @item.FOOD.FOOD_NAME
-                                </td>
-                                <td>
-                                    @item.PRICE.ToString("N0")
-                                </td>
-                                <td>
-                                    @item.QUANTITY
-                                </td>
-                                <td>
-                                    @item.ACCOUNT.FULLNAME
-                                </td>
-                                <td>
-                                    @if (item.STATUS)
-                                    {
-                                        <label class="badge badge-success">Còn bán</label>
-                                    }
-                                    else
-                                    {
-                                        <label class="badge badge-danger">Hết bán</label>
-                                    }
-                                </td>
-                                <td>
-                                    <form action="@Url.Action("Update", "Menu", new { id = item.ID })" style="display:inline" target="_blank">
-                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                    </form>
-                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-
-                        }
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

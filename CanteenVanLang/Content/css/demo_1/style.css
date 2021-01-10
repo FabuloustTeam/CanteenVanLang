@@ -287,8 +287,9 @@
             padding-top: 10px; }
             .sidebar .navigation-menu li .navigation-submenu li:first-child a:after {
               top: 15px; }
-          .sidebar .navigation-menu li .navigation-submenu li:nth-child(5n + 1) a:after {
-            background: #4CCEAC; }
+            .sidebar .navigation-menu li .navigation-submenu li:nth-child(5n + 1) a:after {
+                background: #D41B29;
+            }
           .sidebar .navigation-menu li .navigation-submenu li:nth-child(5n + 2) a:after {
             background: #696ffb; }
           .sidebar .navigation-menu li .navigation-submenu li:nth-child(5n + 3) a:after {
@@ -301,13 +302,16 @@
             padding-left: 0px; }
             .sidebar .navigation-menu li .navigation-submenu li .navigation-submenu li a {
               opacity: 0.5; }
-      .sidebar .navigation-menu li.active a .link-title {
-        color: #4CCEAC; }
-      .sidebar .navigation-menu li.active a .link-icon {
-        color: #4CCEAC; }
+        .sidebar .navigation-menu li.active a .link-title {
+            color: #D41B29;
+        }
+        .sidebar .navigation-menu li.active a .link-icon {
+            color: #D41B29;
+        }
     .sidebar .navigation-menu > li:not(.nav-category-divider):hover a:not([aria-expanded="true"]) .link-icon {
-      margin-right: 20px;
-      color: #4CCEAC; }
+        margin-right: 20px;
+        color: #D41B29;
+    }
     .sidebar .navigation-menu > li:not(.nav-category-divider) > a[data-toggle="collapse"] {
       position: relative; }
       .sidebar .navigation-menu > li:not(.nav-category-divider) > a[data-toggle="collapse"]:after {
@@ -406,8 +410,9 @@ footer {
               font-weight: 500; }
               .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item a {
                 color: inherit; }
-              .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item.active {
-                color: #696ffb; }
+                .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item.active {
+                    color: #D41B29;
+                }
           .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .page-title-heading {
             color: #565656;
             font-size: 1.5rem;
