@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,8 @@ namespace CanteenVanLang.Controllers
     public class OrderController : Controller
     {
         QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
+        private List<ORDER_DETAIL> cart = null;
+
         [CustomerVerification]
         // GET: Order
         public ActionResult Index()
@@ -17,6 +20,7 @@ namespace CanteenVanLang.Controllers
             return View();
         }
 
+        [HttpPost]
         public JsonResult AddToCart(int idFood, int quantity)
         {
             var menu = getMenuToday();
@@ -27,21 +31,27 @@ namespace CanteenVanLang.Controllers
                 {
                     var newItem = new ORDER_DETAIL();
                     newItem.MENU_ID = choosenMenu.ID;
+                    newItem.MENU = choosenMenu;
                     newItem.QUANTITY = quantity;
                     newItem.UNIT_PRICE = choosenMenu.PRICE;
 
-                    if (Session["Cart"] != null)
+                    GetCart();
+                    cart.Add(newItem);
+                    var hashtable = new Hashtable();
+                    foreach (var detail in cart)
                     {
-                        List<ORDER_DETAIL> cart = Session["Cart"] as List<ORDER_DETAIL>;
-                        cart.Add(newItem);
-                        Session["Cart"] = cart;
+                        if (hashtable[detail.MENU_ID] != null)
+                        {
+                            (hashtable[detail.MENU_ID] as ORDER_DETAIL).QUANTITY += detail.QUANTITY;
+                        }
+                        else
+                        {
+                            hashtable[detail.MENU_ID] = detail;
+                        }
                     }
-                    else
-                    {
-                        List<ORDER_DETAIL> cart = new List<ORDER_DETAIL>();
-                        cart.Add(newItem);
-                        Session["Cart"] = cart;
-                    }
+                    cart.Clear();
+                    foreach (ORDER_DETAIL item in hashtable.Values)
+                        cart.Add(item);
 
                     return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }
@@ -51,6 +61,23 @@ namespace CanteenVanLang.Controllers
                 }
             }
             return Json(new { success = false, failQuantity = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void GetCart()
+        {
+            if (Session["Cart"] != null)
+                cart = Session["Cart"] as List<ORDER_DETAIL>;
+            else
+            {
+                cart = new List<ORDER_DETAIL>();
+                Session["Cart"] = cart;
+            }
+        }
+        
+        public ActionResult Cart()
+        {
+            GetCart();
+            return View(cart);
         }
 
         private List<MENU> getMenuToday()
