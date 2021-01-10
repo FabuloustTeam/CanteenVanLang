@@ -2465,9 +2465,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
-    <Content Include="Views\Customer\SignUp1.cshtml" />
     <Content Include="Views\Customer\LogIn.cshtml" />
-    <Content Include="Views\Customer\Update1.cshtml" />
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Food\Details.cshtml" />
     <Content Include="Views\Shared\_PartialLogIn.cshtml" />
