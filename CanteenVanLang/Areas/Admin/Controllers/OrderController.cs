@@ -16,8 +16,21 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         // GET: Admin/Order
         public ActionResult Index()
         {
-            var allOrders = model.ORDERs.OrderByDescending(ord => ord.DATE).ToList();
-            return View(allOrders);
+            if((bool) Session["newOrder"])
+            {
+                var allOrder = model.ORDERs.OrderByDescending(ord => ord.ID).ToList();
+                var newOrder = allOrder[allOrder.Count - 1];
+                allOrder.Remove(newOrder);
+                allOrder.OrderBy(ord => ord.DATE).ToList();
+                allOrder.Add(newOrder);
+                Session["newOrder"] = false;
+                return View(allOrder);
+            }
+            else
+            {
+                var allOrders = model.ORDERs.OrderByDescending(ord => ord.DATE).ToList();
+                return View(allOrders);
+            }
         }
 
         public ActionResult Print(int id)
@@ -78,7 +91,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
                     detail.ORDER_ID = order.ID;
                     model.ORDER_DETAIL.Add(detail);
                 }
-
+                Session["newOrder"] = true;
                 model.SaveChanges();
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
