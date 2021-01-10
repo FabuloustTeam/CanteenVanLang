@@ -24,15 +24,16 @@
                 <div class="grid">
                     <p class="grid-header">Chi tiết đơn đặt hàng</p>
 
-                    <a href="@Url.Action("Delete", "Order", new { id = idOrder })" style="float: right; margin-right: 40px">
-                        <button type="button" class="btn btn-sm btn-light">Hủy</button>
-                    </a>
+                    <button onclick="DeleteOrder()" style="float: right; margin-right: 40px" type="button" class="btn btn-sm btn-light">Hủy</button>
+
                     <a href="@Url.Action("Print", "Order", new { id = idOrder })" style="float: right; margin-right: 40px">
                         <button type="button" class="btn btn-sm btn-light">In</button>
                     </a>
+
                     <a href="@Url.Action("Update", "Order", new { id = idOrder })" style="float: right; margin-right: 40px">
                         <button type="button" class="btn btn-sm btn-primary">Cập nhật</button>
                     </a>
+
                     <div class="grid-body">
                         <div class="item-wrapper">
                             <div class="row mb-3">
@@ -130,5 +131,25 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
+    <script>
+        function DeleteOrder() {
+            if (confirm("Bạn có chắc chắn muốn huỷ đơn đặt hàng này?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Delete", "Order")",
+                    data: JSON.stringify({ id: @idOrder }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        if (r.success) {
+                            alert("Huỷ đơn đặt hàng thành công.");
+                            window.location.href = "@Url.Action("Details", "Order", new { id = idOrder })";
+                        } else {
+                            alert("Không thể hủy đơn dặt hàng ở trạng thái đã thanh toán.");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 }

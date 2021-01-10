@@ -230,8 +230,7 @@
             var valueMenuCode = $("#selectMenu option:selected").val();
             var valueQuantity = document.getElementById("txtQuantity").value;
             var valuePrice = document.getElementById("txtPrice").value;
-
-
+            
             if (valueQuantity.trim() == "") {
                 alert('Vui lòng nhập đầy đủ thông tin.');
             } else if (!Number.isInteger(parseInt(valueQuantity))) {
@@ -240,8 +239,6 @@
                 alert('Số lượng không được nhỏ hơn 0.');
             } else if (valueMenu == "Vui lòng chọn món ăn") {
                 alert("Vui lòng chọn món ăn");
-            //} else if (checkQuantity(valueQuantity, valueMenuCode.split("-")[1])) {
-            //    alert("Không thể thêm món ăn với số lượng lớn hơn số lượng còn.");
             } else {
                 $.ajax({
                     type: "POST",
@@ -322,7 +319,7 @@
             var name = $("TD", row).eq(2).html();
             if (confirm("Bạn có muốn xóa " + name + "?")) {
                 //Get the reference of the Table.
-                var table = $("#table-order-details")[1];
+                var table = $("#table-order-details")[0];
 
                 //Delete the Table row using it's Index.
                 table.deleteRow(row[0].rowIndex);

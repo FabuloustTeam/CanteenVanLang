@@ -135,6 +135,22 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             return View(order);
         }
 
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var order = model.ORDERs.FirstOrDefault(ord => ord.ID == id);
+            if(order.STATUS == 2)
+            {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                order.STATUS = 4;
+                model.SaveChanges();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         private List<MENU> getMenuOnDate(DateTime date)
         {
             var allMenus = model.MENUs.ToList();
