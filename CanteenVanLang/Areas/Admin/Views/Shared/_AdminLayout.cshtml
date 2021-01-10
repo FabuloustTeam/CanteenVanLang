@@ -1,17 +1,4 @@
 ﻿@{
-    var linkBreadcrumb = "";
-    if (ViewBag.Feature == "Quản lý món ăn")
-    {
-        linkBreadcrumb = "/Admin/Food/Index";
-    }
-    else if (ViewBag.Feature == "Quản lý loại món ăn")
-    {
-        linkBreadcrumb = "/Admin/Category/Index";
-    }
-    else if (ViewBag.Feature == "Quản lý món ăn theo ngày")
-    {
-        linkBreadcrumb = "/Admin/Menu/Index";
-    }
     var role = "";
     if (Session["userRole"] != null)
     {
@@ -142,22 +129,8 @@
         </div>
         <!-- partial -->
         <div class="page-content-wrapper">
-            <div class="page-content-wrapper-inner">
-                <div class="viewport-header">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb has-arrow">
-                            <li class="breadcrumb-item">
-                                <a href="@linkBreadcrumb">@ViewBag.Feature</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="content-viewport">
-                    <div class="row">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
+            @RenderBody()
+            
             <!-- content viewport ends -->
             <!-- partial:../../partials/_footer.html -->
             <footer class="footer">

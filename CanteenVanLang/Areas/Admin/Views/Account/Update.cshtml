@@ -1,126 +1,140 @@
 ﻿@model CanteenVanLang.Models.ACCOUNT
 @{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    ViewBag.Feature = "Quản lý tài khoản cá nhân";
     ViewBag.Title = "Thay đổi thông tin cá nhân";
 }
-<div class="col-lg-12">
-    <div class="grid">
-        <p class="grid-header">Thay đổi thông tin cá nhân</p>
-        <div class="grid-body">
-            <div class="item-wrapper">
-                <div class="row mb-3">
-                    <div class="col-md-8 mx-auto">
-                        @using (Html.BeginForm("Update", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-update", @class = "form-add" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <input type="hidden" value="@Model.ID" name="idCategory" />
 
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Email</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
-                                </div>
-                            </div>
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    Thay đổi thông tin cá nhân
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <div class="grid-body">
+                        <div class="item-wrapper">
+                            <div class="row mb-3">
+                                <div class="col-md-8 mx-auto">
+                                    @using (Html.BeginForm("Update", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-update", @class = "form-add" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <input type="hidden" value="@Model.ID" name="idCategory" />
 
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Họ tên</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.FULLNAME, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.FULLNAME, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Mật khẩu</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password" , @required = true, @minLenght = 0, @maxLength = 50} })
-                                    @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label for="inputType1">Xác nhận mật khẩu</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password", @required = true, @minLenght = 0, @maxLength = 50 } })
-                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            
-                            <div class="row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label>Trạng thái</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    <div class="form-inline">
-                                        <div class="radio mb-3">
-                                            <label class="radio-label mr-4">
-                                                @Html.RadioButtonFor(model => model.STATUS, "true", new { Checked = "checked" }) Hoạt động
-                                                <i class="input-frame"></i>
-                                            </label>
+                                        <div class="form-group row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label for="inputType1">Email</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })
+                                            </div>
                                         </div>
-                                        <div class="radio mb-3">
-                                            <label class="radio-label">
-                                                @Html.RadioButtonFor(model => model.STATUS, "false") Ngưng hoạt động
-                                                <i class="input-frame"></i>
-                                            </label>
+
+                                        <div class="form-group row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label for="inputType1">Họ tên</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @Html.EditorFor(model => model.FULLNAME, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @required = true } })
+                                                @Html.ValidationMessageFor(model => model.FULLNAME, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
-                                        @Html.ValidationMessageFor(model => model.STATUS, "", new { @class = "text-danger" })
-                                    </div>
+
+                                        <div class="form-group row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label for="inputType1">Mật khẩu</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password", @required = true, @minLenght = 0, @maxLength = 50 } })
+                                                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label for="inputType1">Xác nhận mật khẩu</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "inputType4", @type = "password", @required = true, @minLenght = 0, @maxLength = 50 } })
+                                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label>Trạng thái</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                <div class="form-inline">
+                                                    <div class="radio mb-3">
+                                                        <label class="radio-label mr-4">
+                                                            @Html.RadioButtonFor(model => model.STATUS, "true", new { Checked = "checked" }) Hoạt động
+                                                            <i class="input-frame"></i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio mb-3">
+                                                        <label class="radio-label">
+                                                            @Html.RadioButtonFor(model => model.STATUS, "false") Ngưng hoạt động
+                                                            <i class="input-frame"></i>
+                                                        </label>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.STATUS, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row showcase_row_area">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label>Vai trò</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                @*@Html.DropDownList("ROLE", new SelectList(ViewBag.Categories, "ID", "CATEGORY_NAME"), new { @class = "custom-select" })*@
+                                                @*@Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })*@
+
+                                                <input type="text" class="form-control" readonly value="@(Model.ROLE == 1 ? "Quản trị" : Model.ROLE == 2 ? "Quản lý" : "Thu ngân" )">
+                                            </div>
+                                        </div>
+
+                                        <div class="row showcase_row_area mb-3">
+                                            <div class="col-md-3 showcase_text_area">
+                                                <label>Hình ảnh</label>
+                                            </div>
+                                            <div class="col-md-9 showcase_content_area">
+                                                <div class="custom-file">
+                                                    <input name="Picture" type="file" class="custom-file-input" id="IMG" onchange="readPicture(this);" accept="image/png, image/jpeg, image/jpg">
+                                                    <label class="custom-file-label" id="namePicture" for="customFile">Chọn tệp</label>
+                                                    <img class="logo test1" id="img-account" src="@Model.IMAGE_URL" width="200px" />
+                                                    @Html.ValidationMessageFor(model => model.IMAGE_URL, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 0;left: 50%">
+                                            <div class="col-md-6 showcase_text_area">
+                                                <label>
+                                                    <a href="@Url.Action("Welcome", "Authentication")">
+                                                        <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6 showcase_content_area">
+                                                <div class="custom-file">
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Cập nhật" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
-
-                            <div class="row showcase_row_area">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label>Vai trò</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    @*@Html.DropDownList("ROLE", new SelectList(ViewBag.Categories, "ID", "CATEGORY_NAME"), new { @class = "custom-select" })*@
-                                    @*@Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control", @id = "inputType1", @readonly = "readonly" } })*@
-
-                                    <input type="text" class="form-control" readonly value="@(Model.ROLE == 1 ? "Quản trị" : Model.ROLE == 2 ? "Quản lý" : "Thu ngân" )">
-                                </div>
-                            </div>
-
-                            <div class="row showcase_row_area mb-3">
-                                <div class="col-md-3 showcase_text_area">
-                                    <label>Hình ảnh</label>
-                                </div>
-                                <div class="col-md-9 showcase_content_area">
-                                    <div class="custom-file">
-                                        <input name="Picture" type="file" class="custom-file-input" id="IMG" onchange="readPicture(this);" accept="image/png, image/jpeg, image/jpg">
-                                        <label class="custom-file-label" id="namePicture" for="customFile">Chọn tệp</label>
-                                        <img class="logo test1" id="img-account" src="@Model.IMAGE_URL" width="200px" />
-                                        @Html.ValidationMessageFor(model => model.IMAGE_URL, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 0;left: 50%">
-                                <div class="col-md-6 showcase_text_area">
-                                    <label>
-                                        <a href="@Url.Action("Welcome", "Authentication")">
-                                            <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
-                                        </a>
-                                    </label>
-                                </div>
-                                <div class="col-md-6 showcase_content_area">
-                                    <div class="custom-file">
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Cập nhật" />
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                        </div>
                     </div>
                 </div>
             </div>

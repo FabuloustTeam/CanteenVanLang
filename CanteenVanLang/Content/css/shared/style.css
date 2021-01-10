@@ -3504,7 +3504,8 @@ input[type="button"].btn-block {
   text-decoration: none; }
 
 .breadcrumb-item.active {
-  color: #6c757d; }
+    color: #D41B29;
+}
 
 .pagination {
   display: flex;

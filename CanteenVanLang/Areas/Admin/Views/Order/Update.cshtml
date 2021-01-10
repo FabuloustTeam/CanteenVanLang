@@ -1,0 +1,345 @@
+﻿@model CanteenVanLang.Models.ORDER
+@using CanteenVanLang.Models
+@{
+    ViewBag.Title = "Cập nhật đơn đặt hàng";
+    ViewBag.Feature = "Quản lý đơn đặt hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var menus = ViewBag.menus as List<MENU>;
+    var orderDetails = ViewBag.listOrderDetails as List<ORDER_DETAIL>;
+    var idOrder = Model.ID;
+}
+
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Order")">Quản lý đơn đặt hàng</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Details", "Order", new { id = Model.ID })">@Model.ORDER_CODE</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Cập nhật</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
+        <div class="row">
+
+            <div class="col-lg-6 equel-grid">
+                <div class="grid">
+                    <p class="grid-header">@Model.ORDER_CODE</p>
+                    <div class="grid-body">
+                        <div class="item-wrapper">
+                            <form>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail10">Khách hàng</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <input type="text" value="@Model.CUSTOMER.FULLNAME" class="form-control" id="inputEmail4" style="background-color: lightgray" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail4">Nhân viên</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <input type="text" value="@Model.ACCOUNT.FULLNAME" class="form-control" id="inputEmail4" style="background-color: lightgray" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail4">Ngày mua</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <input type="text" value="@(((DateTime) Model.DATE).ToString("dd/MM/yyyy"))" class="form-control" id="inputEmail4" style="background-color: lightgray" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail5">Trạng thái</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <select class="custom-select" name="status" id="selectStatus">
+                                            <option value="1">Chưa dùng</option>
+                                            <option value="2">Đã thanh toán</option>
+                                            <option value="3">Hết hạn</option>
+                                            <option value="4">Hủy</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 equel-grid">
+                <div class="grid">
+                    <p class="grid-header">Thêm món ăn vào đơn đặt hàng</p>
+                    <div class="grid-body">
+                        <div class="item-wrapper">
+                            <form>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail10">Món ăn</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <select id="selectMenu" class="custom-select" onchange="getPrice()">
+                                            <option value="none" selected="">Vui lòng chọn món ăn</option>
+                                            @foreach (var menu in menus)
+                                            {
+                                                <option value="@menu.MENU_CODE-@menu.ID">@menu.FOOD.FOOD_NAME</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail4">Số lượng</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <input type="number" class="form-control" id="txtQuantity">
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-3 showcase_text_area">
+                                        <label for="inputEmail5">Đơn giá</label>
+                                    </div>
+                                    <div class="col-md-9 showcase_content_area">
+                                        <input type="text" class="form-control" id="txtPrice" style="background-color: lightgray" readonly>
+                                    </div>
+                                </div>
+                                <button type="button" id="btnAdd" class="btn btn-sm btn-primary">Thêm</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="grid">
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                            <table class="table" id="table-order-details">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            Mã món ăn
+                                        </th>
+                                        <th>
+                                            Tên món ăn
+                                        </th>
+                                        <th>
+                                            Đơn giá
+                                        </th>
+                                        <th>
+                                            Số lượng
+                                        </th>
+                                        <th>
+                                            Thành tiền
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in orderDetails)
+                                    {
+                                        <tr>
+                                            <td>@item.MENU_ID</td>
+                                            <td>@item.MENU.MENU_CODE</td>
+                                            <td>@item.MENU.FOOD.FOOD_NAME</td>
+                                            <td>@item.UNIT_PRICE</td>
+                                            <td>@item.QUANTITY</td>
+                                            <td>@(item.UNIT_PRICE * item.QUANTITY)</td>
+                                            <td>
+                                                <button class="btn action-btn btn-outline-primary btn-rounded" onclick="Remove(this);">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 70px; left: 50%">
+                <div class="col-md-6 showcase_text_area">
+                    <label>
+                        <a href="@Url.Action("Details", "Order", new { id = Model.ID })">
+                            <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
+                        </a>
+                    </label>
+                </div>
+                <div class="col-md-6 showcase_content_area">
+                    <div class="custom-file">
+                        <input onclick="submitOrder()" type="submit" class="btn btn-sm btn-primary" value="Cập nhật">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var status = @Model.STATUS;
+            $("#selectStatus").val(status);
+        });
+
+
+        function getPrice() {
+            var valueMenuCode = $("#selectMenu option:selected").val().split("-")[0];
+            var txtPrice = $("#txtPrice");
+
+             $.ajax({
+                type: "POST",
+                url: "@Url.Action("getPrice", "Order")",
+                 data: JSON.stringify({ menuCode: valueMenuCode }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        txtPrice.val(r.value);
+                    }
+                }
+            });
+        }
+
+        $("body").on("click", "#btnAdd", function () {
+            //Reference the Name and Country TextBoxes.
+            var txtQuantity = $("#txtQuantity");
+
+            //Get the reference of the Table's TBODY element.
+            var tBody = $("#table-order-details > TBODY")[0];
+
+            //get values
+            var valueMenu = $("#selectMenu option:selected").text();
+            var valueMenuCode = $("#selectMenu option:selected").val();
+            var valueQuantity = document.getElementById("txtQuantity").value;
+            var valuePrice = document.getElementById("txtPrice").value;
+            
+            if (valueQuantity.trim() == "") {
+                alert('Vui lòng nhập đầy đủ thông tin.');
+            } else if (!Number.isInteger(parseInt(valueQuantity))) {
+                alert('Sai định dạng trường Số lượng.');
+            } else if (Number.isInteger(parseInt(valueQuantity)) && parseInt(valueQuantity) < 0) {
+                alert('Số lượng không được nhỏ hơn 0.');
+            } else if (valueMenu == "Vui lòng chọn món ăn") {
+                alert("Vui lòng chọn món ăn");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("checkQuantity", "Order")",
+                    data: JSON.stringify({ quantity: valueQuantity, idMenu: valueMenuCode.split("-")[1] }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        if (r.success) {
+                            //Add Row.
+                            var row = tBody.insertRow(0);
+
+                            //sub total cell
+                            cell = $(row.insertCell(0));
+                            cell.html(valueQuantity * valuePrice);
+
+                            //Add quantity cell
+                            cell = $(row.insertCell(0));
+                            cell.html(valueQuantity);
+
+                            //Add price cell.
+                            cell = $(row.insertCell(0));
+                            cell.html(valuePrice);
+
+                            //Add menu name cell.
+                            cell = $(row.insertCell(0));
+                            cell.html(valueMenu);
+
+                            //Add menu code cell
+                            cell = $(row.insertCell(0));
+                            cell.html(valueMenuCode.split("-")[0]);
+
+                            //Add menu id cell
+                            cell = $(row.insertCell(0));
+                            cell.html(valueMenuCode.split("-")[1]);
+
+
+                            //Add Button cell.
+
+                            cell = $(row.insertCell(-1));
+                            var $iElement = $("<i/>").addClass('fas fa-trash');
+                            var $buttonElement = $("<button/>")
+                            $buttonElement.attr("class", "btn action-btn btn-outline-primary btn-rounded");
+                            $buttonElement.attr("onclick", "Remove(this);");
+                            $buttonElement.append($iElement);
+                            cell.append($buttonElement);
+
+                            //Clear the TextBoxes.
+                            txtQuantity.val("");
+                        } else {
+                            alert("Không thể thêm món ăn với số lượng lớn hơn số lượng còn.");
+                        }
+                    }
+                });
+            }
+        });
+
+
+        function Remove(button) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(2).html();
+            if (confirm("Bạn có muốn xóa " + name + "?")) {
+                //Get the reference of the Table.
+                var table = $("#table-order-details")[0];
+
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+            }
+        };
+
+        function submitOrder() {
+            if ($('#table-order-details tr').length < 2) {
+                alert("Vui lòng thêm món ăn vào đơn đặt hàng");
+            }
+            else {
+                var listOrderDetails = new Array();
+                $("#table-order-details TBODY TR").each(function () {
+                    var row = $(this);
+                    var orderDetail = {};
+                    orderDetail.MENU_ID = row.find("TD").eq(0).html();
+                    orderDetail.QUANTITY = row.find("TD").eq(4).html();
+                    orderDetail.UNIT_PRICE = row.find("TD").eq(3).html();
+                    listOrderDetails.push(orderDetail);
+                });
+                var newOrder = {};
+                newOrder.STATUS = $("#selectStatus").val();
+                 $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Update", "Order")",
+                     data: JSON.stringify({ id: @idOrder, orderDetails: listOrderDetails, order: newOrder }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                     success: function (r) {
+                         if (r.success) {
+                             window.location.href = "@Url.Action("Details", "Order", new { id = idOrder })";
+                         } else {
+                             if (r.caseFalse == "no details")
+                                alert("Vui lòng thêm món ăn vào đơn đặt hàng");
+                         }
+                    }
+                });
+            }
+        }
+    </script>
+}

@@ -210,6 +210,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             //{
             //    ModelState.AddModelError("emptyFaculty", "Vui lòng chọn khoa");
             //}
+
         }
 
         private bool CheckPhone(string phone)
@@ -217,10 +218,12 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Regex pattern = new Regex("^0[0-9]{9}$");
             return pattern.IsMatch(phone);
         }
-        //private bool CheckEmail(string email)
-        //{
-        //    Regex regex = new Regex("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/");
-        //    return regex.IsMatch(email);
-        //}
+        
+        public ActionResult SignOut()
+        {
+            Session["customerEmail"] = null;
+            Session["customerName"] = null;
+            return Redirect("/");
+        }
     }
 }

@@ -49,6 +49,7 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
                         Session["newCategory"] = false;
                         Session["newFood"] = false;
+                        Session["newOrder"] = false;
 
                         if ((int)Session["userRole"] == 3)
                         {

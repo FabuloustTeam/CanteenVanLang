@@ -124,7 +124,7 @@
                     <div class="col-lg-2 col-md-4 ">
                         <div class="sort w-100 text-center ftco-animate">
                             <div class="img" style="background-image: url(@Url.Content("~"+categories[i].IMAGE_URL.Replace(@"\", "/")))"></div>
-                            <a href="#"><h3>@categories[i].CATEGORY_NAME</h3></a>
+                            <a href="@Url.Action("Category", "Food", new { id = categories[i].ID })"><h3>@categories[i].CATEGORY_NAME</h3></a>
                         </div>
                     </div>
                 }
@@ -136,7 +136,7 @@
                     <div class="col-lg-2 col-md-4 ">
                         <div class="sort w-100 text-center ftco-animate">
                             <div class="img" style="background-image: url(@Url.Content("~"+categories[i].IMAGE_URL.Replace(@"\", "/")));"></div>
-                            <a href="#"><h3>@categories[i].CATEGORY_NAME</h3></a>
+                            <a href="@Url.Action("Category", "Food", new { id = categories[i].ID })"><h3>@categories[i].CATEGORY_NAME</h3></a>
                         </div>
                     </div>
                 }
@@ -162,15 +162,15 @@
                             <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~"+item.IMAGE_URL.Replace(@"\", "/")));">
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                        <a href="@Url.Action("Cart", "Order", new { id = item.ID })" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
                                         @*<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>*@
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                        <a href="@Url.Action("Details", "Food", new { id = item.ID })" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
                                     </p>
                                 </div>
                             </div>
                             <div class="text text-center">
                                 <span class="category">@item.CATEGORY.CATEGORY_NAME</span>
-                                <a href="#"><h2>@item.FOOD_NAME</h2></a>
+                                <a href="@Url.Action("Details", "Food", new { id = item.ID })"><h2>@item.FOOD_NAME</h2></a>
                                 <p class="mb-0"><span class="price">@item.PRICE.ToString("N0") VNĐ</span></p>
                             </div>
                         </div>
@@ -186,9 +186,9 @@
                             <div class="img d-flex align-items-center justify-content-center" style="background-image: url(@Url.Content("~"+foods[i].IMAGE_URL.Replace(@"\", "/")));">
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                        <a href="@Url.Action("Cart", "Order", new { id = foods[i].ID })" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
                                         @*<a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>*@
-                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                        <a href="@Url.Action("Details", "Food", new { id = foods[i].ID })" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
                                     </p>
                                 </div>
                             </div>
@@ -296,57 +296,57 @@
         <div class="row d-flex">
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-1.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url(@Url.Content("~/Images/canteen-vlu-cs3-1.jpg"));">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
-                            <p><span class="fa fa-calendar"></span> 23 April 2020</p>
+                            <p><span class="fa fa-calendar"></span> 13 Tháng 1 2021</p>
                         </div>
-                        <h3 class="heading mb-3"><a href="#">The Recipe from a Winemaker’s Restaurent</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <a href="#" class="btn-custom">Continue <span class="fa fa-long-arrow-right"></span></a>
+                        <h3 class="heading mb-3"><a href="#">Làm việc trong thời dịch Covid</a></h3>
+                        <p>Nếu như bạn nghĩ làm việc trong bếp chỉ cần thực phẩm hay gia vị hay là một đầu bếp giỏi thì có lẽ..</p>
+                        <a href="#" class="btn-custom">Tiếp tục <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-11.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url(@Url.Content("~/Images/canteen-vlu-cs3-11.jpg"));">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
-                            <p><span class="fa fa-calendar"></span> 23 April 2020</p>
+                            <p><span class="fa fa-calendar"></span> 27 tháng 12 2020</p>
                         </div>
-                        <h3 class="heading mb-3"><a href="#">The Recipe from a Winemaker’s Restaurent</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <a href="#" class="btn-custom">Continue <span class="fa fa-long-arrow-right"></span></a>
+                        <h3 class="heading mb-3"><a href="#">"Sức nóng" ẩn sau sự hào nhoáng bên ngoài</a></h3>
+                        <p>Làm việc ở nhà bếp chưa bao giờ là dễ và còn đặc biệt "nóng" hơn tại nhà bếp của <em>Canteen Văn Lang</em></p>
+                        <a href="#" class="btn-custom">Tiếp tục <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-2.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url(@Url.Content("~/Images/canteen-vlu-cs3-2.jpg"));">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
-                            <p><span class="fa fa-calendar"></span> 23 April 2020</p>
+                            <p><span class="fa fa-calendar"></span> 17 Tháng 12 2020</p>
                         </div>
-                        <h3 class="heading mb-3"><a href="#">The Recipe from a Winemaker’s Restaurent</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <a href="#" class="btn-custom">Continue <span class="fa fa-long-arrow-right"></span></a>
+                        <h3 class="heading mb-3"><a href="#">Những bữa cơm không bao giờ nguội</a></h3>
+                        <p>Những bữa cơm chung luôn kéo gần khoảng cách giữa người với người, giữa thầy với trò, giữa cá nhân với tập thể</p>
+                        <a href="#" class="btn-custom">Tiếp tục <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
                 <div class="blog-entry d-flex">
-                    <a href="blog-single.html" class="block-20 img" style="background-image: url('Images/canteen-vlu-cs3-22.jpg');">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url(@Url.Content("~/Images/canteen-vlu-cs3-22.jpg"));">
                     </a>
                     <div class="text p-4 bg-light">
                         <div class="meta">
-                            <p><span class="fa fa-calendar"></span> 23 April 2020</p>
+                            <p><span class="fa fa-calendar"></span> 13 Tháng 12 2020</p>
                         </div>
-                        <h3 class="heading mb-3"><a href="#">The Recipe from a Winemaker’s Restaurent</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                        <a href="#" class="btn-custom">Continue <span class="fa fa-long-arrow-right"></span></a>
+                        <h3 class="heading mb-3"><a href="#">Giữ lấy những nụ cười thắp sáng không gian</a></h3>
+                        <p>Sau mỗi bữa cơm, sau một ngày làm việc vất vả, điều để lại sau cùng trong lòng những con người nơi đây là</p>
+                        <a href="#" class="btn-custom">Tiếp tục <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                 </div>
             </div>

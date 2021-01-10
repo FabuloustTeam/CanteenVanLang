@@ -5,97 +5,113 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="col-lg-12">
-    <div class="grid">
-        <p class="grid-header">Danh sách món ăn</p>
-        <a href="@Url.Action("Create", "Food")" style="float: right; margin-right: 40px">
-            <button type="button" class="btn btn-sm btn-primary">Thêm món ăn</button>
-        </a>
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Food")">Quản lý món ăn</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="content-viewport">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <p class="grid-header">Danh sách món ăn</p>
+                    <a href="@Url.Action("Create", "Food")" style="float: right; margin-right: 40px">
+                        <button type="button" class="btn btn-sm btn-primary">Thêm món ăn</button>
+                    </a>
 
-        <div class="item-wrapper">
-            <div class="table-responsive">
-                <table class="table" id="food-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Mã món ăn
-                            </th>
-                            <th>
-                                Tên món ăn
-                            </th>
-                            <th>
-                                Mô tả
-                            </th>
-                            <th>
-                                Giá (VNĐ)
-                            </th>
-                            <th>
-                                Hình ảnh
-                            </th>
-                            <th>
-                                Trạng thái
-                            </th>
-                            <th>
-                                Loại món ăn
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.FOOD_CODE
-                                </td>
-                                <td>
-                                    @item.FOOD_NAME
-                                </td>
-                                <td>
-                                    @if (item.DESCRIPTION != null)
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                            <table class="table" id="food-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Mã món ăn
+                                        </th>
+                                        <th>
+                                            Tên món ăn
+                                        </th>
+                                        <th>
+                                            Mô tả
+                                        </th>
+                                        <th>
+                                            Giá (VNĐ)
+                                        </th>
+                                        <th>
+                                            Hình ảnh
+                                        </th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th>
+                                            Loại món ăn
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
                                     {
-                                        @item.DESCRIPTION
+                                        <tr>
+                                            <td>
+                                                @item.FOOD_CODE
+                                            </td>
+                                            <td>
+                                                @item.FOOD_NAME
+                                            </td>
+                                            <td>
+                                                @if (item.DESCRIPTION != null)
+                                                {
+                                                    @item.DESCRIPTION
+                                                }
+                                            </td>
+                                            <td>
+                                                @item.PRICE.ToString("N0")
+                                            </td>
+                                            <td>
+                                                <img src="@item.IMAGE_URL" width="100px" />
+                                            </td>
+                                            <td>
+                                                @if (item.STATUS)
+                                                {
+                                                    <label class="badge badge-success">Còn bán</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="badge badge-danger">Hết bán</label>
+                                                }
+                                            </td>
+                                            <td>
+                                                @item.CATEGORY.CATEGORY_NAME
+                                            </td>
+                                            <td>
+                                                <form action="@Url.Action("Update", "Food", new { id = item.ID })" style="display:inline">
+                                                    <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
+                                                        <i class="mdi mdi-lead-pencil"></i>
+                                                    </button>
+                                                </form>
+                                                @*<form action="@Url.Action("Delete", "Food", new { id = item.ID })" style="display:inline">*@
+                                                <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                                @*</form>*@
+                                            </td>
+                                        </tr>
                                     }
-                                </td>
-                                <td>
-                                    @item.PRICE.ToString("N0")
-                                </td>
-                                <td>
-                                    <img src="@item.IMAGE_URL" width="100px" />
-                                </td>
-                                <td>
-                                    @if (item.STATUS)
-                                    {
-                                        <label class="badge badge-success">Còn bán</label>
-                                    }
-                                    else
-                                    {
-                                        <label class="badge badge-danger">Hết bán</label>
-                                    }
-                                </td>
-                                <td>
-                                    @item.CATEGORY.CATEGORY_NAME
-                                </td>
-                                <td>
-                                    <form action="@Url.Action("Update", "Food", new { id = item.ID })" style="display:inline" target="_blank">
-                                        <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                    </form>
-                                    @*<form action="@Url.Action("Delete", "Food", new { id = item.ID })" style="display:inline">*@
-                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    @*</form>*@
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
