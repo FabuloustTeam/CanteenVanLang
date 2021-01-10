@@ -55,21 +55,33 @@ namespace CanteenVanLang.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Create(List<ORDER_DETAIL> orderDetails, int customerID)
+        public JsonResult Create(List<ORDER_DETAIL> orderDetails, string customerID)
         {
-            var order = new ORDER();
-            order.ACCOUNT_ID = (int)Session["userId"];
-            order.CUSTOMER_ID = customerID;
-            order.STATUS = 1;
-
-            foreach(var detail in orderDetails)
+            if(customerID == null || customerID.Equals("none"))
             {
-                model.ORDER_DETAIL.Add(detail);
+                return Json(new { success = false, caseFalse = "no customer" }, JsonRequestBehavior.AllowGet);
             }
+            else if(orderDetails.Count == 0)
+            {
+                return Json(new { success = false, caseFalse = "no details" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var order = new ORDER();
+                order.ACCOUNT_ID = (int)Session["userId"];
+                order.CUSTOMER_ID = Int32.Parse(customerID);
+                order.STATUS = 1;
+                model.ORDERs.Add(order);
 
-            model.ORDERs.Add(order);
-            model.SaveChanges();
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                foreach (var detail in orderDetails)
+                {
+                    detail.ORDER_ID = order.ID;
+                    model.ORDER_DETAIL.Add(detail);
+                }
+
+                model.SaveChanges();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]

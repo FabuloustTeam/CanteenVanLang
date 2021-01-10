@@ -97,7 +97,7 @@
                                     <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
                                         <i class="fas fa-trash"></i>
                                     </button>
-                                    <form action="@Url.Action("Print", "Order", new { id = item.ID })" style="display:inline" target="_blank">
+                                    <form action="@Url.Action("Print", "Order", new { id = item.ID })" style="display:inline">
                                         <button type="submit" class="btn action-btn btn-outline-warning btn-rounded">
                                             <i class="mdi mdi-printer"></i>
                                         </button>

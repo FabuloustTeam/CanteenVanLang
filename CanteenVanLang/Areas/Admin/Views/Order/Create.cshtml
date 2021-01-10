@@ -308,7 +308,7 @@ else
                     var orderDetail = {};
                     orderDetail.MENU_ID = row.find("TD").eq(0).html();
                     orderDetail.QUANTITY = row.find("TD").eq(4).html();
-                    orderDetail.PRICE = row.find("TD").eq(3).html();
+                    orderDetail.UNIT_PRICE = row.find("TD").eq(3).html();
                     listOrderDetails.push(orderDetail);
                 });
                  $.ajax({
@@ -319,8 +319,13 @@ else
                     dataType: "json",
                      success: function (r) {
                          if (r.success) {
-                            alert("Tạo đơn đặt hàng thành công");
-                            window.location.href = "@Url.Action("Index", "Order")";
+                             alert("Tạo đơn đặt hàng thành công");
+                             window.location.href = "@Url.Action("Index", "Order")";
+                         } else {
+                             if (r.caseFalse == "no customer")
+                                 alert("Vui lòng chọn khách hàng");
+                             else if (r.caseFalse == "no details")
+                                 alert("Vui lòng thêm món ăn vào đơn đặt hàng");
                          }
                     }
                 });
