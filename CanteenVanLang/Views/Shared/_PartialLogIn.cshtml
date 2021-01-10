@@ -1,8 +1,15 @@
 ﻿@if (Session["customerEmail"] == null)
 {
-    <p class="mb-0"><a href="@Url.Action("SignUp", "Customer")" class="mr-2">Đăng ký</a> <a href="@Url.Action("LogIn", "Customer")">Đăng nhập</a></p>
+    <p class="mb-0">
+        <a href="@Url.Action("SignUp", "Customer")" class="mr-2">Đăng ký</a>
+        <a href="@Url.Action("LogIn", "Customer")">Đăng nhập</a>
+    </p>
 }
 else
 {
-    <p class="mb-0"><a href="#" class="mr-2">Đăng xuất</a></p>
+
+    <p class="mb-0">
+        <a href="@Url.Action("Update", "Customer")" class="mr-2">@Session["customerName"]</a>
+        <a href="@Url.Action("Logout", "Customer")" class="mr-2">Đăng xuất</a>
+    </p>
 }
