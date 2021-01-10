@@ -1,0 +1,110 @@
+﻿@model CanteenVanLang.Models.CUSTOMER
+@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+
+    ViewBag.Title = "Thay đổi thông tin cá nhân";
+    string memberType = Model.MEMBER_TYPE == true ? "Thân thiết" : "Chưa thân thiết";
+}
+@if (ViewBag.UpdateCustomerInformationSucceed != null)
+{
+    <script>
+        alert('Cập nhật thông tin thành công');
+    </script>
+}
+<section class="hero-wrap hero-wrap-2" style="background-image: url(&quot;@Url.Content("~/Content/customer/images/bg_1.jpg")&quot;); background-position: 50% -15px;" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate mb-5 text-center fadeInUp ftco-animated">
+                <p class="breadcrumbs mb-0">
+                    <span class="mr-2">
+                        <a href="index.html">
+                            Trang chủ
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </span>
+                </p>
+                <h2 class="mb-0 bread" style="margin-top: 10px">Cập nhật tài khoản</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 ftco-animate fadeInUp ftco-animated">
+                <form method="post" class="billing-form" id="target">
+                    @*<h3 class="mb-4 billing-heading">Cập nhật thông tin tài khoản</h3>*@
+                    <div class="row">
+                        @using (Html.BeginForm("Update", "Customer", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-update", @class = "form-add" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="col-md-6 align-self-start">
+                                <div class="form-group">
+                                    <label for="firstname">Họ và tên</label>
+                                    <input type="text" class="form-control" placeholder="" name="name" id="name" value="@Model.FULLNAME"
+                                           style="color: black">
+                                </div>
+                            </div>
+                            <div class="col-md-6 align-self-end">
+                                <div class="form-group">
+                                    <label for="lastname">Email</label>
+                                    <input type="text" class="form-control" placeholder="" name="email" id="email" value="@Model.EMAIL" disabled style="background-color: lightgray !important">
+                                </div>
+                                <p style="color: red" id="emailErrorContainer"></p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-6 align-self-start">
+                                <div class="form-group">
+                                    <label for="streetaddress">Mật khẩu</label>
+                                    <input type="password" class="form-control" placeholder="" name="password" id="password" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 align-self-end">
+                                <div class="form-group">
+                                    <label for="streetaddress">Xác nhận mật khẩu</label>
+                                    <input type="password" class="form-control" placeholder="" name="confirmPassword" id="confirmPassword" value="">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-6 align-self-start">
+                                <div class="form-group">
+                                    <label for="towncity">Số điện thoại</label>
+                                    <input type="text" class="form-control" placeholder="" name="numberphone" id="numberphone" value="@Model.PHONE">
+                                </div>
+                            </div>
+                            <div class="col-md-6 align-self-end">
+                                <div class="form-group">
+                                    <label for="country">Khoa</label>
+                                    <div class="select-wrap">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        @Html.DropDownList("FACULTY_ID", new SelectList(ViewBag.Faculties, "ID", "FACULTY_NAME", Model.FACULTY), new { @class = "custom-select" })
+                                        @Html.ValidationMessageFor(model => model.FACULTY_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-6 align-self-start">
+                                <div class="form-group">
+                                    <label for="towncity">Hạng thành viên</label>
+                                    <input type="text" class="form-control" placeholder="" name="numberphone" id="numberphone"
+                                           value="@memberType" disabled style="background-color: lightgray !important">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3" style="text-align: center">
+                            <a href="@Url.Action("Index", "Home")">
+                                <button class="btn btn-light py-3 px-4" style="margin-top: 50px; width: 170px; margin-right: 10px" type="button">Hủy</button>
+                            </a>
+                            <button class="btn btn-primary py-3 px-4" style="margin-top: 50px; width: 170px; margin-left: 10px" type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </form><!-- END -->
+            </div> <!-- .col-md-8 -->
+        </div>
+    </div>
+</section>

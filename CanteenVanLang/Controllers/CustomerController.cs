@@ -47,6 +47,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult LogIn()
         {
             if (Session["customerName"] != null)
@@ -76,6 +77,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
                     {
                         Session["customerName"] = customer.FULLNAME;
                         Session["customerEmail"] = customer.EMAIL;
+                        Session["customerId"] = customer.ID;
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -93,49 +95,35 @@ namespace CanteenVanLang.Areas.Customer.Controllers
 
         public ActionResult Update()
         {
-            if (Session["customerEmail"] == null || string.IsNullOrEmpty(Session["customerEmail"] as string))
-            {
-                return RedirectToAction("LogIn");
-            }
-            //dynamic model = new ExpandoObject();
             string email = Session["customerEmail"].ToString();
             CUSTOMER cust = this.model.CUSTOMERs.FirstOrDefault(item => item.EMAIL == email);
-            ViewBag.Categories = model.FACULTies.OrderByDescending(x => x.ID).ToList();
-            ViewBag.Action = "Index";
-            ViewBag.Controller = "Customer";
+            ViewBag.Faculties = model.FACULTies.OrderByDescending(x => x.ID).ToList();
             return View(cust);
         }
 
         [HttpPost]
         public ActionResult Update(CUSTOMER updateCustomer)
         {
-            if (Session["customerEmail"] == null || string.IsNullOrEmpty(Session["customerEmail"] as string))
-            {
-                return RedirectToAction("LogIn");
-            }
-            string email = Session["customerEmail"].ToString();
-
-            //CUSTOMER customer = new CUSTOMER() { FACULTY_ID = faculty, FULLNAME = name, PASSWORD = password, EMAIL = email, PHONE = numberPhone };
-            ValidateCustomerInfo(updateCustomer);
+            ValidateCustomerInfoUpdated(updateCustomer);
             if (ModelState.IsValid)
             {
-                var customer = model.CUSTOMERs.FirstOrDefault(item => item.EMAIL == email);
+                var id = (int)Session["customerId"];
+                var customer = model.CUSTOMERs.FirstOrDefault(item => item.ID == id);
                 customer.FACULTY_ID = updateCustomer.FACULTY_ID;
                 customer.FULLNAME = updateCustomer.FULLNAME;
                 customer.PASSWORD = updateCustomer.PASSWORD;
                 customer.PHONE = updateCustomer.PHONE;
                 customer.confirmPassword = updateCustomer.confirmPassword;
-                if (updateCustomer.PASSWORD == updateCustomer.confirmPassword)
-                {
-                    model.SaveChanges();
-                }
+                
                 model.SaveChanges();
                 Session["customerName"] = customer.FULLNAME;
+                ViewBag.UpdateCustomerInformationSucceed = true;
+                ViewBag.Faculties = model.FACULTies.OrderByDescending(x => x.ID).ToList();
+                customer.confirmPassword = "";
+                return View(customer);
             }
-            ViewBag.Action = "Index";
-            ViewBag.Controller = "Customer";
-            ViewBag.UpdateCustomerInformationSucceed = true;
-            return View();
+            ViewBag.Faculties = model.FACULTies.OrderByDescending(x => x.ID).ToList();
+            return View(updateCustomer);
         }
 
         public ActionResult Logout()
@@ -153,6 +141,30 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             if (password.Trim() == "")
             {
                 ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
+            }
+        }
+
+        private void ValidateCustomerInfoUpdated(CUSTOMER customer)
+        {
+            if (customer.FULLNAME.Trim() == "")
+            {
+                ModelState.AddModelError("FULLNAME", "Vui lòng nhập Họ và tên.");
+            }
+            if (customer.PASSWORD.Trim() == "")
+            {
+                ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
+            }
+            if (customer.confirmPassword.Trim() == "")
+            {
+                ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu xác nhận");
+            }
+            if (customer.PHONE.Trim() == "")
+            {
+                ModelState.AddModelError("PHONE", "Vui lòng nhập số điện thoại");
+            }
+            else if (!CheckPhone(customer.PHONE))
+            {
+                ModelState.AddModelError("PHONE", "Vui lòng nhập đúng định dạng số điện thoại");
             }
         }
 

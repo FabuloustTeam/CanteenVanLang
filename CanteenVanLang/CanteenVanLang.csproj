@@ -2467,7 +2467,7 @@
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Views\Customer\SignUp1.cshtml" />
     <Content Include="Views\Customer\LogIn.cshtml" />
-    <Content Include="Views\Customer\Update.cshtml" />
+    <Content Include="Views\Customer\Update1.cshtml" />
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Food\Details.cshtml" />
     <Content Include="Views\Shared\_PartialLogIn.cshtml" />
@@ -2475,6 +2475,7 @@
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Food\Category.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
+    <Content Include="Views\Customer\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,16 +1,14 @@
 ﻿@model CanteenVanLang.Models.CUSTOMER
-@{
-    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 
-    ViewBag.Title = "Thay đổi thông tin cá nhân";
-    //CanteenVanLang.Models.CUSTOMER customerInfo = Model.CustomerInfo;
-    //IEnumerable<CanteenVanLang.Models.FACULTY> faculties = 
-    string memberType = Model.MEMBER_TYPE == 1 ? "Thân thiết" : "Chưa thân thiết";
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 @if (ViewBag.UpdateCustomerInformationSucceed != null)
 {
     <script>
         alert('Cập nhật thông tin thành công');
+        window.location.href = "@Url.Action("Index", "Home")";
     </script>
 }
 <section class="hero-wrap hero-wrap-2" style="background-image: url(&quot;@Url.Content("~/Content/customer/images/bg_1.jpg")&quot;); background-position: 50% -15px;" data-stellar-background-ratio="0.5">
@@ -31,205 +29,93 @@
         </div>
     </div>
 </section>
-@*<div class="reg">
-    <p class="mb-0">
-        @if (Session["customerEmail"] == null)
-        {
-            <a href="/Customer/SignUp" class="mr-2">Sign Up</a> 
-            <a href="/Customer/LogIn">Log In</a>
-        }
-        else
-        {
-            <a href="/Customer/UpdateCustomer" class="mr-2">@Session["customerName"]</a> <a href="#">Đăng xuất</a>
-        }
-    </p>*@
 
-@*</div>*@
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 ftco-animate fadeInUp ftco-animated">
-                <form method="post" class="billing-form" id="target">
-                    @*<h3 class="mb-4 billing-heading">Cập nhật thông tin tài khoản</h3>*@
-                    <div class="row">
-                        @using (Html.BeginForm("Update", "Customer", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-update", @class = "form-add" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="col-md-6 align-self-start">
-                                <div class="form-group">
-                                    <label for="firstname">Họ và tên</label>
-                                    <input type="text" class="form-control" placeholder="" name="name" id="name" value="@Model.FULLNAME"
-                                           style="color: black">
-                                </div>
-                                @Html.ValidationMessage("emptyName")
-                                <p style="color: red" id="nameErrorContainer"></p>
-                            </div>
-                            <div class="col-md-6 align-self-end">
-                                <div class="form-group">
-                                    <label for="lastname">Email</label>
-                                    <input type="text" class="form-control" placeholder="" name="email" id="email" value="@Model.EMAIL" disabled style="background-color: lightgray !important">
-                                </div>
-                                <p style="color: red" id="emailErrorContainer"></p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col-md-6 align-self-start">
-                                <div class="form-group">
-                                    <label for="streetaddress">Mật khẩu</label>
-                                    <input type="password" class="form-control" placeholder="" name="password" id="password" value="">
-                                </div>
-                                <div id="passwordErrorContainer">
-                                    @Html.ValidationMessage("emptyPassword")
-                                    <p class="emptyError" style="color: red"></p>
-                                    <p class="notMatchError" style="color: red"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 align-self-end">
-                                <div class="form-group">
-                                    <label for="streetaddress">Xác nhận mật khẩu</label>
-                                    <input type="password" class="form-control" placeholder="" name="confirmPassword" id="confirmPassword" value="">
-                                </div>
-                                <div id="confirmPasswordErrorContainer">
-                                    @Html.ValidationMessage("emptyConfirmPassword")
-                                    <p class="emptyError" style="color: red"></p>
-                                    <p class="notMatchError" style="color: red"></p>
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col-md-6 align-self-start">
-                                <div class="form-group">
-                                    <label for="towncity">Số điện thoại</label>
-                                    <input type="text" class="form-control" placeholder="" name="numberphone" id="numberphone" value="@Model.PHONE">
-                                </div>
-                                @Html.ValidationMessage("emptyPhone")
-                                @Html.ValidationMessage("invalidPhone")
-                                <p style="color: red" id="numberphoneErrorContainer"></p>
-                            </div>
-                            <div class="col-md-6 align-self-end">
-                                <div class="form-group">
-                                    <label for="country">Khoa</label>
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        @Html.DropDownList("FACULTY_ID", new SelectList(ViewBag.Categories, "ID", "FACULTY_NAME", Model.FACULTY), new { @class = "custom-select" })
-                                        @Html.ValidationMessageFor(model => model.FACULTY_ID, "", new { @class = "text-danger" })
-                                        @*<select name="faculty" id="faculty" class="form-control">
-                            <option disabled="disabled" selected="selected">Chọn khoa</option>
-                            @foreach (var faculty in Model.FACULTY)
-                            {
-                                if (faculty.ID == customerInfo.FACULTY_ID)
-                                {
-                                    <option value="@faculty.ID" selected>@faculty.FACULTY_NAME</option>
-                                }
-                                else
-                                {
-                                    <option value="@faculty.ID">@faculty.FACULTY_NAME</option>
-                                }
-                            }
-                        </select>*@
-                                    </div>
-                                    @*<p style="color: red" id="facultyErrorContainer"></p>*@
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col-md-6 align-self-start">
-                                <div class="form-group">
-                                    <label for="towncity">Hạng thành viên</label>
 
-                                    <input type="text" class="form-control" placeholder="" name="numberphone" id="numberphone"
-                                           value="@memberType" disabled style="background-color: lightgray !important">
-                                </div>
-                                <p style="color: red" id="numberphoneErrorContainer"></p>
-                            </div>
-                        }
+                @using (Html.BeginForm("Update", "Customer", FormMethod.Post, new { @class = "contactForm", @id = "target" }))
+                {
+                    @*<h3 class="mb-4 billing-heading">Cập nhật thông tin tài khoản</h3>*@
+                <div class="row">
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-md-6 align-self-start">
+                        <div class="form-group">
+                            <label for="firstname">Họ và tên</label>
+                            @Html.EditorFor(model => model.FULLNAME, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                            @Html.ValidationMessageFor(model => model.FULLNAME, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </form><!-- END -->
-                <div class="row" style="padding: 0px 15px;">
-                    <a href="@Url.Action("Index", "Home")"style="margin-left: 550px">
-                        <button class="btn btn-primary py-3 px-4 col-md-2  offset-md-1" style="color: red !important; background-color: white
-                            !important" id="btnCancel">
-                            Huỷ
-                        </button>
-                    </a>
-                    
-                    <button class="btn btn-primary py-3 px-4 col-md-2 offset-md-1" id="btnUpdate" type="submit">Cập nhật</button>
+                    <div class="col-md-6 align-self-start">
+                        <div class="form-group">
+                            <label for="streetaddress">Mật khẩu</label>
+                            <input name="PASSWORD" type="password" class="form-control" required id="password" />
+                            @*@Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @type = "password", @required = true } })*@
+                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-end">
+                        <div class="form-group">
+                            <label for="lastname">Email</label>
+                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @required = "true", @readonly = true, @style = "background-color: lightgray !important" } })
+                            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-end">
+                        <div class="form-group">
+                            <label for="streetaddress">Xác nhận mật khẩu</label>
+                            @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control", @required = "true", @type = "password", @id = "confirm-password" } })
+                            @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger", @id = "message" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-start">
+                        <div class="form-group">
+                            <label for="towncity">Số điện thoại</label>
+                            @Html.EditorFor(model => model.PHONE, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                            @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-end">
+                        <div class="form-group">
+                            <label for="country">Khoa</label>
+                            <div class="select-wrap">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                @Html.DropDownList("FACULTY_ID", new SelectList(ViewBag.Faculties, "ID", "FACULTY_NAME", Model.FACULTY), new { @class = "custom-select" })
+                                @Html.ValidationMessageFor(model => model.FACULTY_ID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-start">
+                        <div class="form-group">
+                            <label for="towncity">Hạng thành viên</label>
+                            <input type="text" class="form-control" value="@(Model.MEMBER_TYPE == true ? "Thân thiết" : "Chưa thân thiết")" readonly style="background-color: lightgray !important">
+                        </div>
+                    </div>
+                    <div class="col-md-6 align-self-start">
+                        <div class="form-group">
+                            <label for="towncity"></label>
+                            
+                        </div>
+                    </div>
                 </div>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3" style="text-align: center">
+                            <a href="@Url.Action("Index", "Home")">
+                                <button class="btn btn-light py-3 px-4" style="margin-top: 50px; width: 170px; margin-right: 10px" type="button">Hủy</button>
+                            </a>
+                            <button class="btn btn-primary py-3 px-4" style="margin-top: 50px; width: 170px; margin-left: 10px" type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                }
+
             </div> <!-- .col-md-8 -->
         </div>
     </div>
 </section>
 
-<script>
-    $('#target').submit(function (event) {
-        var nameField = $('#name');
-        var emailField = $('#email');
-        var passwordField = $('#password');
-        var confirmPasswordField = $('#confirmPassword');
-        var numberphoneField = $('#numberphone');
-        var facultyField = $('#faculty');
-        var emailPattern = /^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
-        var phonePattern = new RegExp("^0[0-9]{9}$");
-        if (nameField.val() === '') {
-            $('#nameErrorContainer').html('Vui lòng nhập Họ và Tên');
-            event.preventDefault();
-        } else {
-            $('#nameErrorContainer').html('');
-        }
-        if (emailField.val() === '') {
-            $('#emailErrorContainer').html('Vui lòng nhập email');
-            event.preventDefault();
-        } else {
-            $('#emailErrorContainer').html('');
-        }
-        if (passwordField.val() === '') {
-            $('#passwordErrorContainer>.emptyError').html('Vui lòng nhập mật khẩu');
-            event.preventDefault();
-        } else {
-            $('#passwordErrorContainer>.emptyError').html('');
-        }
-        if (confirmPasswordField.val() === '') {
-            passwordError = true;
-            $('#confirmPasswordErrorContainer>.emptyError').html('Vui lòng nhập xác nhận mật khẩu');
-            event.preventDefault();
-        } else {
-            $('#confirmPasswordErrorContainer>.emptyError').html('');
-        }
-        if (numberphoneField.val() === '') {
-            $('#numberphoneErrorContainer').html('Vui lòng nhập số điện thoại');
-            event.preventDefault();
-        } else {
-            $('#numberphoneErrorContainer').html('');
-        }
-        if (facultyField.val() == null) {
-            $('#facultyErrorContainer').html('Vui lòng chọn Khoa');
-            event.preventDefault();
-        } else {
-            $('#facultyErrorContainer').html('');
-        }
-        if (passwordField.val() !== confirmPasswordField.val()) {
-            $('#passwordErrorContainer>.notMatchError').html('Mật khẩu và xác nhận mật khẩu không trùng khớp');
-            $('#confirmPasswordErrorContainer>.notMatchError').html('Mật khẩu và xác nhận mật khẩu không trùng khớp');
-            event.preventDefault();
-        } else {
-            $('#confirmPasswordErrorContainer>.notMatchError').html('');
-            $('#passwordErrorContainer>.notMatchError').html('');
-        }
-        if (!emailPattern.test(emailField.val())) {
-            $('#emailErrorContainer').html('Email không hợp lệ, vui lòng nhập lại');
-            event.preventDefault();
-        } else {
-            $('#emailErrorContainer').html('');
-        }
-        if (!phonePattern.test(numberphoneField.val())) {
-            $('#numberphoneErrorContainer').html('Số điện thoại không hợp lệ, vui vòng nhập lại');
-            event.preventDefault();
-        } else {
-            $('#numberphoneErrorContainer').html('');
-        }
-    });
-    $('#btnUpdate').click(function () {
-        $('#target').submit();
-    });
-    $('#btnCancel').click(function () {
-        location.href = "/";
-    });
-</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

@@ -1,7 +1,7 @@
 ﻿@model CanteenVanLang.Models.CUSTOMER
 @using CanteenVanLang.Models
 @{
-    ViewBag.Title = "SignUp";
+    ViewBag.Title = "Đăng ký";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
@@ -76,14 +76,6 @@
                             <div class="form-group">
                                 <label for="country">Khoa</label>
                                 <div class="select-wrap">
-                                    @*<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="faculty" id="faculty" class="form-control">
-                                            <option disabled="disabled" selected="selected">Chọn khoa</option>
-                                            @foreach (var faculty in Model)
-                                            {
-                                                <option value="@faculty.ID">@faculty.FACULTY_NAME</option>
-                                            }
-                                        </select>*@
                                     <div class="col-md-9 showcase_content_area">
                                         @Html.DropDownList("FACULTY_ID", new SelectList(ViewBag.Faculties, "ID", "FACULTY_NAME"), new { @class = "custom-select" })
                                         @Html.ValidationMessageFor(model => model.FACULTY_ID, "", new { @class = "text-danger" })
@@ -94,7 +86,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary py-3 px-4" style="margin-top: 30px">Đăng ký</button>
                 }
-            </div> <!-- .col-md-8 -->
+            </div>
         </div>
     </div>
 </section>
