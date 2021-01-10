@@ -25,29 +25,29 @@ namespace CanteenVanLang.Models
         public string CUSTOMER_CODE { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập họ tên")]
-        [StringLength(50)]
+        [StringLength(30, ErrorMessage = "Số lượng ký tự không thể nhiều hơn 30. Vui lòng nhập lại.")]
         public string FULLNAME { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
-        [StringLength(50)]
+        [MaxLength(20, ErrorMessage = "Số lượng ký tự không thể nhiều hơn 20. Vui lòng nhập lại.")]
         public string PASSWORD { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập email")]
-        [StringLength(50)]
+        [StringLength(100, ErrorMessage = "Số lượng ký tự không thể nhiều hơn 100. Vui lòng nhập lại.")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Vui lòng nhập đúng định dạng email")]
         public string EMAIL { get; set; }
         public bool STATUS { get; set; }
         public bool MEMBER_TYPE { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
-        [StringLength(20)]
+        [MaxLength(15, ErrorMessage = "Số lượng ký tự không thể nhiều hơn 15. Vui lòng nhập lại.")]
         public string PHONE { get; set; }
 
         [Required(ErrorMessage = "Vui lòng chọn khoa")]
         public Nullable<int> FACULTY_ID { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập xác nhận mật khẩu")]
-        [StringLength(50)]
+        [StringLength(20)]
         [Compare("PASSWORD", ErrorMessage = "Xác nhận mật khẩu không khớp")]
         public string confirmPassword { get; set; }
 

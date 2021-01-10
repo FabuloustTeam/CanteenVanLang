@@ -12,8 +12,7 @@ namespace CanteenVanLang.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
-
+    
     public partial class ACCOUNT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,7 +30,7 @@ namespace CanteenVanLang.Models
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         [StringLength(50)]
         public string PASSWORD { get; set; }
-        
+
         [Required(ErrorMessage = "Vui lòng nhập họ tên")]
         public string FULLNAME { get; set; }
         public bool STATUS { get; set; }

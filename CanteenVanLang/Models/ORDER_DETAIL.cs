@@ -17,8 +17,8 @@ namespace CanteenVanLang.Models
         public int ID { get; set; }
         public int QUANTITY { get; set; }
         public int UNIT_PRICE { get; set; }
-        public Nullable<int> MENU_ID { get; set; }
-        public Nullable<int> ORDER_ID { get; set; }
+        public int MENU_ID { get; set; }
+        public int ORDER_ID { get; set; }
     
         public virtual MENU MENU { get; set; }
         public virtual ORDER ORDER { get; set; }

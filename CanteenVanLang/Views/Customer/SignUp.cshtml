@@ -36,14 +36,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="firstname">Họ và tên</label>
-                                @Html.EditorFor(model => model.FULLNAME, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                                @Html.EditorFor(model => model.FULLNAME, new { htmlAttributes = new { @class = "form-control", @required = true, @maxLength = 30 } })
                                 @Html.ValidationMessageFor(model => model.FULLNAME, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="lastname">Email</label>
-                                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @required = true, @maxLength = 100 } })
                                 @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -52,14 +52,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="streetaddress">Mật khẩu</label>
-                                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @required = "true", @type = "password" } })
+                                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @required = true, @type = "password", @maxLength = 20 } })
                                 @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="streetaddress">Xác nhận mật khẩu</label>
-                                @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control", @required = "true", @type = "password" } })
+                                @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control", @required = true, @type = "password" } })
                                 @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="towncity">Số điện thoại</label>
-                                @Html.EditorFor(model => model.PHONE, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                                @Html.EditorFor(model => model.PHONE, new { htmlAttributes = new { @class = "form-control", @required = true, @maxLength = 15, @pattern = "^0[0-9]{9}$" } })
                                 @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
                             </div>
                         </div>
