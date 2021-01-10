@@ -218,13 +218,28 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("PRICE", "Giá không hợp lệ");
             }
-            if (model.FOOD_NAME.Trim() == "")
+            if(model.FOOD_NAME == null)
             {
                 ModelState.AddModelError("FOOD_NAME", "Vui lòng nhập tên món ăn");
             }
-            if (model.DESCRIPTION.Trim() == "")
+            else
+            {
+                if (model.FOOD_NAME.Trim() == "")
+                {
+                    ModelState.AddModelError("FOOD_NAME", "Vui lòng nhập tên món ăn");
+                }
+            }
+
+            if(model.DESCRIPTION == null)
             {
                 ModelState.AddModelError("DESCRIPTION", "Vui lòng nhập mô tả");
+            }
+            else
+            {
+                if (model.DESCRIPTION.Trim() == "")
+                {
+                    ModelState.AddModelError("DESCRIPTION", "Vui lòng nhập mô tả");
+                }
             }
         }
 

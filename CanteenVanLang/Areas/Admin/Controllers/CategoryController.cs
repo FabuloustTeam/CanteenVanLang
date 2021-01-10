@@ -108,9 +108,16 @@ namespace CanteenVanLang.Areas.Admin.Controllers
 
         private void ValidateCategory(CATEGORY model)
         {
-            if (model.CATEGORY_NAME.Trim() == "")
+            if(model.CATEGORY_NAME == null)
             {
                 ModelState.AddModelError("CATEGORY_NAME", "Vui lòng nhập tên loại món ăn");
+            }
+            else
+            {
+                if (model.CATEGORY_NAME.Trim() == "")
+                {
+                    ModelState.AddModelError("CATEGORY_NAME", "Vui lòng nhập tên loại món ăn");
+                }
             }
         }
 

@@ -110,7 +110,7 @@
                                                 <div class="custom-file">
                                                     <input name="Picture" type="file" class="custom-file-input" id="IMG" onchange="readPicture(this);" accept="image/png, image/jpeg, image/jpg">
                                                     <label class="custom-file-label" id="namePicture" for="customFile">Chọn tệp</label>
-                                                    <img class="logo test1" id="img-account" src="@Model.IMAGE_URL" width="200px" />
+                                                    <img class="logo test1" id="img-account" src="@Url.Content("~"+Model.IMAGE_URL)" width="200px" />
                                                     @Html.ValidationMessageFor(model => model.IMAGE_URL, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>

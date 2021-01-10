@@ -59,7 +59,7 @@
                             <div class="product ftco-animate fadeInUp ftco-animated">
                                 <div class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     <a href="@Url.Action("Details", "Food", new { id = food.ID })" class=" stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        <img src="@food.IMAGE_URL" class="img-fluid" alt="@food.FOOD_NAME">
+                                        <img src="@Url.Content("~"+food.IMAGE_URL)" class="img-fluid" alt="@food.FOOD_NAME">
                                     </a>
                                 </div>
 
