@@ -80,6 +80,70 @@ namespace CanteenVanLang.Controllers
             return View(cart);
         }
 
+        [HttpPost]
+        public JsonResult Remove(int id)
+        {
+            GetCart();
+            var orderDetail = cart.Where(detail => detail.ID == id).FirstOrDefault();
+            if(orderDetail != null)
+            {
+                cart.Remove(orderDetail);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult check(string a)
+        {
+            GetCart();
+            var menu = getMenuToday();
+            if(cart.Count > 0)
+            {
+                for (int i = 0; i < cart.Count; i++)
+                {
+                    var tmpMenu = menu.Where(men => men.ID == cart[i].MENU_ID).FirstOrDefault();
+                    if (cart[i].QUANTITY > tmpMenu.QUANTITY)
+                        return Json(new { success = false, name = cart[i].MENU.FOOD.FOOD_NAME }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false, noItem = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        [CustomerVerification]
+        [HttpGet]
+        public ActionResult CheckOut()
+        {
+            GetCart();
+            return View(cart);
+        }
+
+        [CustomerVerification]
+        public ActionResult PlaceOrder()
+        {
+            GetCart();
+            var order = new ORDER();
+            order.CUSTOMER_ID = (int)Session["customerId"];
+            order.STATUS = 1;
+            model.ORDERs.Add(order);
+            model.SaveChanges();
+
+            for(int i = 0; i < cart.Count; i++)
+            {
+                var temp = new ORDER_DETAIL();
+                temp.ORDER_ID = order.ID;
+                temp.QUANTITY = cart[i].QUANTITY;
+                temp.UNIT_PRICE = cart[i].UNIT_PRICE;
+                temp.MENU_ID = cart[i].MENU_ID;
+                model.ORDER_DETAIL.Add(temp);
+                model.SaveChanges();
+            }
+            cart.Clear();
+            ViewBag.listOrderDetails = model.ORDER_DETAIL.Where(detail => detail.ORDER_ID == order.ID).ToList();
+            return View(order);
+        }
+
         private List<MENU> getMenuToday()
         {
             var today = DateTime.Now;

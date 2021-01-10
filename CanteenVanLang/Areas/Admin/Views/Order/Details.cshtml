@@ -51,7 +51,10 @@
                                             <label for="inputType12"><b>Nhân viên</b></label>
                                         </div>
                                         <div class="col-md-9 showcase_content_area">
-                                            <label for="inputType12">@Model.ACCOUNT.FULLNAME</label>
+                                            @if (Model.ACCOUNT_ID != null)
+                                            {
+                                                <label for="inputType12">@Model.ACCOUNT.FULLNAME</label>
+                                            }
                                         </div>
                                     </div>
                                     <div class="form-group row showcase_row_area">
