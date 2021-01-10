@@ -97,6 +97,56 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var order = model.ORDERs.FirstOrDefault(ord => ord.ID == id);
+            var listOrderDetails = model.ORDER_DETAIL.Where(detail => detail.ORDER_ID == id).ToList<ORDER_DETAIL>();
+            var menus = getMenuOnDate((DateTime) order.DATE);
+            ViewBag.listOrderDetails = listOrderDetails;
+            ViewBag.menus = menus;
+            if (menus.Count == 0)
+            {
+                ViewBag.IsNoMenu = true;
+            }
+            return View(order);
+        }
+
+        [HttpPost]
+        public JsonResult Update(int id, List<ORDER_DETAIL> orderDetails, int status)
+        {
+            if (orderDetails.Count == 0)
+            {
+                return Json(new { success = false, caseFalse = "no details" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var order = model.ORDERs.FirstOrDefault(ord => ord.ID == id);
+            var listOrderDetails = model.ORDER_DETAIL.Where(detail => detail.ORDER_ID == id).ToList<ORDER_DETAIL>();
+            ViewBag.listOrderDetails = listOrderDetails;
+            return View(order);
+        }
+
+        private List<MENU> getMenuOnDate(DateTime date)
+        {
+            var allMenus = model.MENUs.ToList();
+            var menus = new List<MENU>();
+            foreach(var item in allMenus)
+            {
+                if (item.DATE.Date == date.Date)
+                    menus.Add(item);
+            }
+            return menus;
+        }
+
         [HttpPost]
         public JsonResult getPrice(string menuCode)
         {

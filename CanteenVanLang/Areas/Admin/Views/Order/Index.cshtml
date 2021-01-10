@@ -89,17 +89,9 @@
                                     @total.ToString("N0")
                                 </td>
                                 <td>
-                                    <form action="#" style="display:inline" target="_blank">
+                                    <form action="@Url.Action("Details", "Order", new { id = item.ID })" style="display:inline">
                                         <button type="submit" class="btn action-btn btn-like btn-outline-danger btn-rounded">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                    </form>
-                                    <button onclick="Remove(this, @item.ID)" class="btn action-btn btn-outline-primary btn-rounded">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    <form action="@Url.Action("Print", "Order", new { id = item.ID })" style="display:inline">
-                                        <button type="submit" class="btn action-btn btn-outline-warning btn-rounded">
-                                            <i class="mdi mdi-printer"></i>
+                                            <i class="mdi mdi-information-variant"></i>
                                         </button>
                                     </form>
                                 </td>
