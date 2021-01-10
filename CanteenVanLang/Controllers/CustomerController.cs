@@ -13,17 +13,20 @@ namespace CanteenVanLang.Areas.Customer.Controllers
     {
         private QUANLYCANTEENEntities model = new QUANLYCANTEENEntities();
         // GET: Customer/Auth
+
+        [HttpGet]
         public ActionResult SignUp()
         {
-            return View(model.FACULTies.ToList());
+            ViewBag.Faculties = model.FACULTies.ToList();
+            return View();
         }
 
         [HttpPost]
         public ActionResult SignUp(CUSTOMER newCustomer)
         {
-            ValidateCustomerInfo(newCustomer);  
+            ValidateCustomerInfo(newCustomer);
             if (ModelState.IsValid)
-            {  
+            {
                 CUSTOMER cust = new CUSTOMER
                 {
                     EMAIL = newCustomer.EMAIL,
@@ -31,13 +34,16 @@ namespace CanteenVanLang.Areas.Customer.Controllers
                     FACULTY_ID = newCustomer.FACULTY_ID,
                     PASSWORD = newCustomer.PASSWORD,
                     PHONE = newCustomer.PHONE,
-                    STATUS = false,
-                    MEMBER_TYPE = 0      
+                    STATUS = true,
+                    MEMBER_TYPE = true,
+                    confirmPassword = newCustomer.confirmPassword
                 };
+                model.CUSTOMERs.Add(cust);
                 model.SaveChanges();
                 return RedirectToAction("LogIn");
             }
-            ViewBag.SignInSucceed = true;
+            //ViewBag.SignInSucceed = true;
+            ViewBag.Faculties = model.FACULTies.ToList();
             return View();
         }
 
@@ -138,7 +144,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Session["customerEmail"] = null;
             return RedirectToAction("Index", "Home");
         }
-        private void ValidateLogIn( string email, string password)
+        private void ValidateLogIn(string email, string password)
         {
             if (email.Trim() == "")
             {
@@ -156,6 +162,7 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             {
                 ModelState.AddModelError("FULLNAME", "Vui lòng nhập Họ và tên.");
             }
+
             if (customer.EMAIL.Trim() == "")
             {
                 ModelState.AddModelError("EMAIL", "Vui lòng nhập Email");
@@ -164,18 +171,21 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             {
                 ModelState.AddModelError("EMAIL", "Email đã tồn tại");
             }
-            else if (!CheckEmail(customer.EMAIL))
-            {
-                ModelState.AddModelError("EMAIL", "Email không hợp lệ, vui lòng nhập lại");
-            }
+
+            //else if (!CheckEmail(customer.EMAIL))
+            //{
+            //    ModelState.AddModelError("EMAIL", "Email không hợp lệ, vui lòng nhập lại");
+            //}
+
             if (customer.PASSWORD.Trim() == "")
             {
                 ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
             }
-            if ( customer.confirmPassword.Trim() == "")
+            if (customer.confirmPassword.Trim() == "")
             {
                 ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu xác nhận");
             }
+
             if (customer.PHONE.Trim() == "")
             {
                 ModelState.AddModelError("PHONE", "Vui lòng nhập số điện thoại");
@@ -195,10 +205,10 @@ namespace CanteenVanLang.Areas.Customer.Controllers
             Regex pattern = new Regex("^0[0-9]{9}$");
             return pattern.IsMatch(phone);
         }
-        private bool CheckEmail(string email)
-        {
-            Regex regex = new Regex("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/");
-            return regex.IsMatch(email);
-        }
+        //private bool CheckEmail(string email)
+        //{
+        //    Regex regex = new Regex("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/");
+        //    return regex.IsMatch(email);
+        //}
     }
 }

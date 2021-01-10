@@ -55,7 +55,7 @@
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="STATUS" Type="bit" Nullable="false" />
-          <Property Name="MEMBER_TYPE" Type="int" Nullable="false" />
+          <Property Name="MEMBER_TYPE" Type="bit" Nullable="false" />
           <Property Name="PHONE" Type="nvarchar" MaxLength="15" />
           <Property Name="FACULTY_ID" Type="int" />
         </EntityType>
@@ -122,8 +122,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QUANTITY" Type="int" Nullable="false" />
           <Property Name="UNIT_PRICE" Type="int" Nullable="false" />
-          <Property Name="MENU_ID" Type="int" />
-          <Property Name="ORDER_ID" Type="int" />
+          <Property Name="MENU_ID" Type="int" Nullable="false" />
+          <Property Name="ORDER_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SLIDER">
           <Key>
@@ -229,7 +229,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ORDER_DET__MENU___4AB81AF0">
-          <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
           <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MENU">
@@ -241,7 +241,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ORDER_DET__ORDER__49C3F6B7">
-          <End Role="ORDER" Type="Self.ORDER" Multiplicity="0..1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="1" />
           <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ORDER">
@@ -418,7 +418,7 @@
           <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="STATUS" Type="Boolean" Nullable="false" />
-          <Property Name="MEMBER_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="MEMBER_TYPE" Type="Boolean" Nullable="false" />
           <Property Name="PHONE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="FACULTY_ID" Type="Int32" />
           <NavigationProperty Name="FACULTY" Relationship="QUANLYCANTEENModel.FK__CUSTOMER__FACULT__38996AB5" FromRole="CUSTOMER" ToRole="FACULTY" />
@@ -499,8 +499,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QUANTITY" Type="Int32" Nullable="false" />
           <Property Name="UNIT_PRICE" Type="Int32" Nullable="false" />
-          <Property Name="MENU_ID" Type="Int32" />
-          <Property Name="ORDER_ID" Type="Int32" />
+          <Property Name="MENU_ID" Type="Int32" Nullable="false" />
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MENU" Relationship="QUANLYCANTEENModel.FK__ORDER_DET__MENU___4AB81AF0" FromRole="ORDER_DETAIL" ToRole="MENU" />
           <NavigationProperty Name="ORDER" Relationship="QUANLYCANTEENModel.FK__ORDER_DET__ORDER__49C3F6B7" FromRole="ORDER_DETAIL" ToRole="ORDER" />
         </EntityType>
@@ -596,7 +596,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ORDER_DET__MENU___4AB81AF0">
-          <End Type="QUANLYCANTEENModel.MENU" Role="MENU" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.MENU" Role="MENU" Multiplicity="1" />
           <End Type="QUANLYCANTEENModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MENU">
@@ -620,7 +620,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ORDER_DET__ORDER__49C3F6B7">
-          <End Type="QUANLYCANTEENModel.ORDER" Role="ORDER" Multiplicity="0..1" />
+          <End Type="QUANLYCANTEENModel.ORDER" Role="ORDER" Multiplicity="1" />
           <End Type="QUANLYCANTEENModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ORDER">

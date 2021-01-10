@@ -12,7 +12,7 @@ namespace CanteenVanLang.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CUSTOMER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,10 +34,10 @@ namespace CanteenVanLang.Models
 
         [Required(ErrorMessage = "Vui lòng nhập email")]
         [StringLength(50)]
-        [DataType(DataType.EmailAddress, ErrorMessage ="Vui lòng nhập đúng định dạng email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Vui lòng nhập đúng định dạng email")]
         public string EMAIL { get; set; }
         public bool STATUS { get; set; }
-        public int MEMBER_TYPE { get; set; }
+        public bool MEMBER_TYPE { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
         [StringLength(20)]
