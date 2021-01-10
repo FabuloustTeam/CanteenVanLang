@@ -7,160 +7,179 @@
     List<MENU> menus = ViewBag.menus as List<MENU>;
 }
 
-@if ((bool)ViewBag.IsNoMenu)
-{
-    <div class="col-lg-6 equel-grid">
-        <div class="grid">
-            <p class="grid-header">Vui lòng thêm món ăn theo ngày vào hôm nay để tạo đơn đặt hàng</p>
-
-        </div>
+<div class="page-content-wrapper-inner">
+    <div class="viewport-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb has-arrow">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Order")">Quản lý đơn đặt hàng</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Thêm đơn đặt hàng</li>
+            </ol>
+        </nav>
     </div>
-}
-else
-{
+    <div class="content-viewport">
+        <div class="row">
 
-    <div class="col-lg-6 equel-grid">
-        <div class="grid">
-            <p class="grid-header">Thêm thông tin đơn đặt hàng</p>
-            <div class="grid-body">
-                <div class="item-wrapper">
-                    <form>
-                        <div class="form-group row showcase_row_area">
-                            <div class="col-md-3 showcase_text_area">
-                                <label for="inputEmail10">Khách hàng</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area">
-                                <select class="custom-select" name="customerID" id="selectCustomer">
-                                    <option value="none" selected="">Vui lòng chọn khách hàng</option>
-                                    @foreach (var cust in customers)
-                                    {
-                                        <option value="@cust.ID">@cust.FULLNAME</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row showcase_row_area">
-                            <div class="col-md-3 showcase_text_area">
-                                <label for="inputEmail4">Nhân viên</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area">
-                                <input hidden value="@Session["userId"]" name="accountID" />
-                                <input type="text" value="@Session["userFullName"]" class="form-control" id="inputEmail4" style="background-color: lightgray" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group row showcase_row_area">
-                            <div class="col-md-3 showcase_text_area">
-                                <label for="inputEmail5">Trạng thái</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area">
-                                <select disabled class="custom-select" name="status" id="selectStatus">
-                                    <option value="1" selected>Chưa dùng</option>
-                                    <option value="2">Đã thanh toán</option>
-                                    <option value="3">Hết hạn</option>
-                                    <option value="4">Hủy</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
+            @if ((bool)ViewBag.IsNoMenu)
+            {
+                <div class="col-lg-6 equel-grid">
+                    <div class="grid">
+                        <p class="grid-header">Vui lòng thêm món ăn theo ngày vào hôm nay để tạo đơn đặt hàng</p>
+
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 equel-grid">
-        <div class="grid">
-            <p class="grid-header">Thêm món ăn vào đơn đặt hàng</p>
-            <div class="grid-body">
-                <div class="item-wrapper">
-                    <form>
-                        <div class="form-group row showcase_row_area">
-                            <div class="col-md-3 showcase_text_area">
-                                <label for="inputEmail10">Món ăn</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area">
-                                <select id="selectMenu" class="custom-select" onchange="getPrice()">
-                                    <option value="none" selected="">Vui lòng chọn món ăn</option>
-                                    @foreach (var menu in menus)
-                                    {
-                                        <option value="@menu.MENU_CODE-@menu.ID">@menu.FOOD.FOOD_NAME</option>
-                                    }
-                                </select>
+            }
+            else
+            {
+
+                <div class="col-lg-6 equel-grid">
+                    <div class="grid">
+                        <p class="grid-header">Thêm thông tin đơn đặt hàng</p>
+                        <div class="grid-body">
+                            <div class="item-wrapper">
+                                <form>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-3 showcase_text_area">
+                                            <label for="inputEmail10">Khách hàng</label>
+                                        </div>
+                                        <div class="col-md-9 showcase_content_area">
+                                            <select class="custom-select" name="customerID" id="selectCustomer">
+                                                <option value="none" selected="">Vui lòng chọn khách hàng</option>
+                                                @foreach (var cust in customers)
+                                                {
+                                                    <option value="@cust.ID">@cust.FULLNAME</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-3 showcase_text_area">
+                                            <label for="inputEmail4">Nhân viên</label>
+                                        </div>
+                                        <div class="col-md-9 showcase_content_area">
+                                            <input hidden value="@Session["userId"]" name="accountID" />
+                                            <input type="text" value="@Session["userFullName"]" class="form-control" id="inputEmail4" style="background-color: lightgray" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-3 showcase_text_area">
+                                            <label for="inputEmail5">Trạng thái</label>
+                                        </div>
+                                        <div class="col-md-9 showcase_content_area">
+                                            <select disabled class="custom-select" name="status" id="selectStatus">
+                                                <option value="1" selected>Chưa dùng</option>
+                                                <option value="2">Đã thanh toán</option>
+                                                <option value="3">Hết hạn</option>
+                                                <option value="4">Hủy</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="form-group row showcase_row_area">
-                            <div class="col-md-3 showcase_text_area">
-                                <label for="inputEmail4">Số lượng</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area">
-                                <input type="number" class="form-control" id="txtQuantity">
-                            </div>
-                        </div>
-                        <div class="form-group row showcase_row_area">
-                            <div class="col-md-3 showcase_text_area">
-                                <label for="inputEmail5">Đơn giá</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area">
-                                <input type="text" class="form-control" id="txtPrice" style="background-color: lightgray" readonly>
-                            </div>
-                        </div>
-                        <button type="button" id="btnAdd" class="btn btn-sm btn-primary">Thêm</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="grid">
-            <div class="item-wrapper">
-                <div class="table-responsive">
-                    <table class="table" id="table-order-details">
-                        <thead>
-                            <tr>
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Mã món ăn
-                                </th>
-                                <th>
-                                    Tên món ăn
-                                </th>
-                                <th>
-                                    Đơn giá
-                                </th>
-                                <th>
-                                    Số lượng
-                                </th>
-                                <th>
-                                    Thành tiền
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                <div class="col-lg-6 equel-grid">
+                    <div class="grid">
+                        <p class="grid-header">Thêm món ăn vào đơn đặt hàng</p>
+                        <div class="grid-body">
+                            <div class="item-wrapper">
+                                <form>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-3 showcase_text_area">
+                                            <label for="inputEmail10">Món ăn</label>
+                                        </div>
+                                        <div class="col-md-9 showcase_content_area">
+                                            <select id="selectMenu" class="custom-select" onchange="getPrice()">
+                                                <option value="none" selected="">Vui lòng chọn món ăn</option>
+                                                @foreach (var menu in menus)
+                                                {
+                                                    <option value="@menu.MENU_CODE-@menu.ID">@menu.FOOD.FOOD_NAME</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-3 showcase_text_area">
+                                            <label for="inputEmail4">Số lượng</label>
+                                        </div>
+                                        <div class="col-md-9 showcase_content_area">
+                                            <input type="number" class="form-control" id="txtQuantity">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-3 showcase_text_area">
+                                            <label for="inputEmail5">Đơn giá</label>
+                                        </div>
+                                        <div class="col-md-9 showcase_content_area">
+                                            <input type="text" class="form-control" id="txtPrice" style="background-color: lightgray" readonly>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="btnAdd" class="btn btn-sm btn-primary">Thêm</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="col-lg-12">
+                    <div class="grid">
+                        <div class="item-wrapper">
+                            <div class="table-responsive">
+                                <table class="table" id="table-order-details">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                ID
+                                            </th>
+                                            <th>
+                                                Mã món ăn
+                                            </th>
+                                            <th>
+                                                Tên món ăn
+                                            </th>
+                                            <th>
+                                                Đơn giá
+                                            </th>
+                                            <th>
+                                                Số lượng
+                                            </th>
+                                            <th>
+                                                Thành tiền
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 70px; left: 50%">
+                    <div class="col-md-6 showcase_text_area">
+                        <label>
+                            <a href="@Url.Action("Index", "Order")">
+                                <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
+                            </a>
+                        </label>
+                    </div>
+                    <div class="col-md-6 showcase_content_area">
+                        <div class="custom-file">
+                            <input onclick="submitOrder()" type="submit" class="btn btn-sm btn-primary" value="Thêm">
+                        </div>
+                    </div>
+                </div>
+
+            }
+
 
         </div>
     </div>
-
-    <div class="row showcase_row_area mb-3" style="position: absolute; bottom: 70px; left: 50%">
-        <div class="col-md-6 showcase_text_area">
-            <label>
-                <a href="@Url.Action("Index", "Order")">
-                    <button id="cancel" type="button" class="btn btn-sm btn-light">Hủy</button>
-                </a>
-            </label>
-        </div>
-        <div class="col-md-6 showcase_content_area">
-            <div class="custom-file">
-                <input onclick="submitOrder()" type="submit" class="btn btn-sm btn-primary" value="Thêm">
-            </div>
-        </div>
-    </div>
-
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -262,7 +281,7 @@ else
                         }
                     }
                 });
-                
+
             }
 
 

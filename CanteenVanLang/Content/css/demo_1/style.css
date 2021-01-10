@@ -406,8 +406,9 @@ footer {
               font-weight: 500; }
               .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item a {
                 color: inherit; }
-              .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item.active {
-                color: #696ffb; }
+                .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .breadcrumb .breadcrumb-item.active {
+                    color: #D41B29;
+                }
           .page-body .page-content-wrapper .page-content-wrapper-inner .viewport-header .page-title-heading {
             color: #565656;
             font-size: 1.5rem;
