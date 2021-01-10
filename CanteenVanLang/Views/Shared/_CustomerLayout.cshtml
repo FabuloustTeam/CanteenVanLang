@@ -1,4 +1,4 @@
-@using CanteenVanLang.Models;
+﻿@using CanteenVanLang.Models;
 @{
     var model = new QUANLYCANTEENEntities();
     var categoriesInLayout = model.CATEGORies.ToList();
@@ -46,10 +46,8 @@
                         </p>
                     </div>
                     <div class="reg">
-
                         @*<p class="mb-0"><a href="#" class="mr-2">Sign Up</a> <a href="#">Log In</a></p>*@
                         @Html.Partial("_PartialLogIn")
-
                     </div>
                 </div>
             </div>
@@ -121,10 +119,10 @@
                     <div class="ftco-footer-widget mb-4 ml-md-4">
                         <h2 class="ftco-heading-2">Tài khoản</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Tài khoản của tôi</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đăng ký</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đăng nhập</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đơn đặt hàng</a></li>
+                            <li><a href="@Url.Action("Update", "Customer")"><span class="fa fa-chevron-right mr-2"></span>Tài khoản của tôi</a></li>
+                            <li><a href="@Url.Action("SignUp", "Customer")"><span class="fa fa-chevron-right mr-2"></span>Đăng ký</a></li>
+                            <li><a href="@Url.Action("Login", "Customer")"><span class="fa fa-chevron-right mr-2"></span>Đăng nhập</a></li>
+                            <li><a href="@Url.Action("Index", "Order")"><span class="fa fa-chevron-right mr-2"></span>Đơn đặt hàng</a></li>
                         </ul>
                     </div>
                 </div>
@@ -143,7 +141,7 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Đường dẫn nhanh</h2>
                         <ul class="list-unstyled">
-                            <li><a href="https://www.vanlanguni.edu.vn/"><span class="fa fa-chevron-right mr-2"></span>Đại học Văn Lang</a></li>
+                            <li><a href="https://www.vanlanguni.edu.vn/" target="_blank"><span class="fa fa-chevron-right mr-2"></span>Đại học Văn Lang</a></li>
                             <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Cơ sở 1</a></li>
                             <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Cơ sở 3</a></li>
                             <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Faq's</a></li>
@@ -206,7 +204,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
-
-</body>
-=======
 @RenderSection("scripts", required: false) @*Chuyên Add Script vào*@
