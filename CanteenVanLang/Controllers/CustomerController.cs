@@ -43,24 +43,44 @@ namespace CanteenVanLang.Areas.Customer.Controllers
 
         public ActionResult LogIn()
         {
-            return View();
+            if (Session["customerName"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                Session["incorrectPwd"] = false;
+                Session["customerNotFound"] = false;
+                return View();
+            }
         }
 
         [HttpPost]
         public ActionResult LogIn(string email, string password)
         {
+            Session["incorrectPwd"] = false;
+            Session["customerNotFound"] = false;
             ValidateLogIn(email, password);
-            CUSTOMER cust = model.CUSTOMERs.FirstOrDefault(item => item.EMAIL == email && item.PASSWORD == password);
-
-            if (cust == null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("loginFail", "Email hoặc mật khẩu không đúng");
-            }
-            else
-            {
-                Session["customerEmail"] = cust.EMAIL;
-                Session["customerName"] = cust.FULLNAME;
-                return RedirectToAction("Index", "Home");
+                var customer = model.CUSTOMERs.FirstOrDefault(cus => cus.EMAIL.Equals(email));
+                if (customer != null)
+                {
+                    if (customer.PASSWORD.Equals(password))
+                    {
+                        Session["customerName"] = customer.FULLNAME;
+                        Session["customerEmail"] = customer.EMAIL;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        Session["incorrectPwd"] = true;
+                        ViewBag.email = customer.EMAIL;
+                        return View();
+                    }
+                }
+                Session["customerNotFound"] = true;
+                return View();
             }
             return View();
         }
@@ -122,11 +142,11 @@ namespace CanteenVanLang.Areas.Customer.Controllers
         {
             if (email.Trim() == "")
             {
-                ModelState.AddModelError("emptyEmail", "Vui lòng nhập Email");
+                ModelState.AddModelError("EMAIL", "Vui lòng nhập Email");
             }
             if (password.Trim() == "")
             {
-                ModelState.AddModelError("emptyPassword", "Vui lòng nhập mật khẩu");
+                ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
             }
         }
 
@@ -134,35 +154,35 @@ namespace CanteenVanLang.Areas.Customer.Controllers
         {
             if (customer.FULLNAME.Trim() == "")
             {
-                ModelState.AddModelError("emptyName", "Vui lòng nhập Họ và tên.");
+                ModelState.AddModelError("FULLNAME", "Vui lòng nhập Họ và tên.");
             }
             if (customer.EMAIL.Trim() == "")
             {
-                ModelState.AddModelError("emptyEmail", "Vui lòng nhập Email");
+                ModelState.AddModelError("EMAIL", "Vui lòng nhập Email");
             }
             else if (model.CUSTOMERs.Count(item => item.EMAIL == customer.EMAIL) == 1)
             {
-                ModelState.AddModelError("existedEmail", "Email đã tồn tại");
+                ModelState.AddModelError("EMAIL", "Email đã tồn tại");
             }
             else if (!CheckEmail(customer.EMAIL))
             {
-                ModelState.AddModelError("invalidEmail", "Email không hợp lệ, vui lòng nhập lại");
+                ModelState.AddModelError("EMAIL", "Email không hợp lệ, vui lòng nhập lại");
             }
             if (customer.PASSWORD.Trim() == "")
             {
-                ModelState.AddModelError("emptyPassword", "Vui lòng nhập mật khẩu");
+                ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
             }
             if ( customer.confirmPassword.Trim() == "")
             {
-                ModelState.AddModelError("emptyConfirmPassword", "Vui lòng nhập mật khẩu xác nhận");
+                ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu xác nhận");
             }
             if (customer.PHONE.Trim() == "")
             {
-                ModelState.AddModelError("emptyPhone", "Vui lòng nhập số điện thoại");
+                ModelState.AddModelError("PHONE", "Vui lòng nhập số điện thoại");
             }
             else if (!CheckPhone(customer.PHONE))
             {
-                ModelState.AddModelError("invalidPhone", "Số điện thoại không hợp lệ, vui lòng nhập lại");
+                ModelState.AddModelError("PHONE", "Số điện thoại không hợp lệ, vui lòng nhập lại");
             }
             //if (!customer.FACULTY_ID.HasValue)
             //{

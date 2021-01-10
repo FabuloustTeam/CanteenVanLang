@@ -23,20 +23,26 @@ namespace CanteenVanLang.Models
     
         public int ID { get; set; }
         public string CUSTOMER_CODE { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập họ tên")]
         [StringLength(50)]
         public string FULLNAME { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         [StringLength(50)]
         public string PASSWORD { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập email")]
         [StringLength(50)]
+        [DataType(DataType.EmailAddress, ErrorMessage ="Vui lòng nhập đúng định dạng email")]
         public string EMAIL { get; set; }
         public bool STATUS { get; set; }
         public int MEMBER_TYPE { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
         [StringLength(20)]
         public string PHONE { get; set; }
+
         [Required(ErrorMessage = "Vui lòng chọn khoa")]
         public Nullable<int> FACULTY_ID { get; set; }
 

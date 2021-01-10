@@ -17,7 +17,7 @@
             <div class="col-md-9 ftco-animate mb-5 text-center fadeInUp ftco-animated">
                 <p class="breadcrumbs mb-0">
                     <span class="mr-2">
-                        <a href="index.html">
+                        <a href="@Url.Action("Index", "Home")">
                             Trang chủ
                             <i class="fa fa-chevron-right"></i>
                         </a>
@@ -33,17 +33,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 ftco-animate fadeInUp ftco-animated">
-                <form method="post" class="billing-form" id="target">
+                <form action="@Url.Action("Login", "Customer")"  method="post" class="billing-form" id="target">
                     @*<div class="row">
                             <div class="col-md-6 offset-md-3"><h3 class="mb-4 billing-heading">Đăng nhập</h3></div>
                         </div>*@
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
                             <div class="form-group">
-                                <label for="firstname">Email</label>
-                                <input type="text" class="form-control" placeholder="" name="email" id="email">
+                                    <label for="firstname">Email</label>
+                                    <input type="text" class="form-control" placeholder="" name="email" id="email" />
+                                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                               
                             </div>
-                            <p style="color: red" id="emailErrorContainer"></p>
                         </div>
 
                         <div class="w-100"></div>
@@ -51,19 +52,21 @@
                             <div class="form-group">
                                 <label for="streetaddress">Mật khẩu</label>
                                 <input type="password" class="form-control" name="password" id="password">
+                                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                @if (Convert.ToBoolean(Session["customerNotFound"]) || Convert.ToBoolean(Session["incorrectPwd"]))
+                                {
+                                    <p class="user-name error text-danger">Email hoặc mật khẩu không đúng</p>
+                                }
                             </div>
-                            <div id="passwordErrorContainer">
+                            @*<div id="passwordErrorContainer">
                                 <p class="emptyError" style="color: red"></p>
                                 <p class="notMatchError" style="color: red"></p>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
-                    <div style="color :red">
-                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-                        @*<p class="user-name error text-danger">Email hoặc mật khẩu không đúng</p>*@
-                    </div>
+                   
                     <div class="row">
-                        <div class="col-md-6 offset-md-3" style="text-align: center"><button class="btn btn-primary py-3 px-4" style="margin-top: 50px; width: 170px">Đăng nhập</button></div>
+                        <div class="col-md-6 offset-md-3" style="text-align: center"><button class="btn btn-primary py-3 px-4" style="margin-top: 50px; width: 170px" type="submit">Đăng nhập</button></div>
                     </div>
                 </form><!-- END -->
             </div> <!-- .col-md-8 -->
