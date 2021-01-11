@@ -1,13 +1,13 @@
 ﻿@model CanteenVanLang.Models.ORDER
 @using CanteenVanLang.Models
 @{
-    ViewBag.Title = "PlaceOrder";
+    ViewBag.Title = "Đơn đặt hàng thành công";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var listOrderDetails = ViewBag.listOrderDetails as List<ORDER_DETAIL>;
     var total = 0;
 }
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~/Images/Sliders/3.jpg")');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">

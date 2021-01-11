@@ -57,7 +57,7 @@
                                 </td>
                                 <td>@((item.UNIT_PRICE * item.QUANTITY).ToString("N0"))</td>
                                 <td>
-                                    <button onclick="remove(@item.ID)" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <button onclick="remove(@item.ID, this)" type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true"><i class="fa fa-close"></i></span>
                                     </button>
                                 </td>
@@ -73,7 +73,7 @@
                 <p class="">
                     <span style="font-weight: bold">Tổng tiền</span>
                     <span>&nbsp;</span>
-                    <span>@total.ToString("N0")</span>
+                    <span id="total">@total.ToString("N0")</span>
                 </p>
                 <p class="text-center"><button type="button" id="check-out" class="btn btn-primary py-3 px-4">Đặt hàng</button></p>
             </div>
@@ -86,7 +86,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        function remove(idDetails) {
+        function remove(idDetails, button) {
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("Remove", "Order")",

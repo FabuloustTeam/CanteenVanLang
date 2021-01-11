@@ -123,25 +123,35 @@ namespace CanteenVanLang.Controllers
         public ActionResult PlaceOrder()
         {
             GetCart();
-            var order = new ORDER();
-            order.CUSTOMER_ID = (int)Session["customerId"];
-            order.STATUS = 1;
-            model.ORDERs.Add(order);
-            model.SaveChanges();
-
-            for (int i = 0; i < cart.Count; i++)
+            if(cart.Count > 0)
             {
-                var temp = new ORDER_DETAIL();
-                temp.ORDER_ID = order.ID;
-                temp.QUANTITY = cart[i].QUANTITY;
-                temp.UNIT_PRICE = cart[i].UNIT_PRICE;
-                temp.MENU_ID = cart[i].MENU_ID;
-                model.ORDER_DETAIL.Add(temp);
+                var order = new ORDER();
+                order.CUSTOMER_ID = (int)Session["customerId"];
+                order.STATUS = 1;
+                model.ORDERs.Add(order);
                 model.SaveChanges();
+
+                var listOrderDetails = new List<ORDER_DETAIL>();
+                for (int i = 0; i < cart.Count; i++)
+                {
+                    listOrderDetails.Add(cart[i]);
+                    var temp = new ORDER_DETAIL();
+                    temp.ORDER_ID = order.ID;
+                    temp.QUANTITY = cart[i].QUANTITY;
+                    temp.UNIT_PRICE = cart[i].UNIT_PRICE;
+                    temp.MENU_ID = cart[i].MENU_ID;
+                    model.ORDER_DETAIL.Add(temp);
+                    model.SaveChanges();
+                }
+                cart.Clear();
+                var newOrder = new ORDER();
+                newOrder.CUSTOMER = model.CUSTOMERs.Find(order.CUSTOMER_ID);
+                newOrder.DATE = DateTime.Now;
+
+                ViewBag.listOrderDetails = listOrderDetails;
+                return View(newOrder);
             }
-            cart.Clear();
-            ViewBag.listOrderDetails = model.ORDER_DETAIL.Where(detail => detail.ORDER_ID == order.ID).ToList();
-            return View(order);
+            return RedirectToAction("Cart");
         }
 
         private List<MENU> getMenuToday()
