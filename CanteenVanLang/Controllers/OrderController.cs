@@ -25,9 +25,9 @@ namespace CanteenVanLang.Controllers
         {
             var menu = getMenuToday();
             var choosenMenu = menu.Find(men => men.FOOD_ID == idFood);
-            if(choosenMenu != null)
+            if (choosenMenu != null)
             {
-                if(choosenMenu.QUANTITY >= quantity)
+                if (choosenMenu.QUANTITY >= quantity)
                 {
                     var newItem = new ORDER_DETAIL();
                     newItem.MENU_ID = choosenMenu.ID;
@@ -73,7 +73,7 @@ namespace CanteenVanLang.Controllers
                 Session["Cart"] = cart;
             }
         }
-        
+
         public ActionResult Cart()
         {
             GetCart();
@@ -85,7 +85,7 @@ namespace CanteenVanLang.Controllers
         {
             GetCart();
             var orderDetail = cart.Where(detail => detail.ID == id).FirstOrDefault();
-            if(orderDetail != null)
+            if (orderDetail != null)
             {
                 cart.Remove(orderDetail);
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -98,7 +98,7 @@ namespace CanteenVanLang.Controllers
         {
             GetCart();
             var menu = getMenuToday();
-            if(cart.Count > 0)
+            if (cart.Count > 0)
             {
                 for (int i = 0; i < cart.Count; i++)
                 {
@@ -129,7 +129,7 @@ namespace CanteenVanLang.Controllers
             model.ORDERs.Add(order);
             model.SaveChanges();
 
-            for(int i = 0; i < cart.Count; i++)
+            for (int i = 0; i < cart.Count; i++)
             {
                 var temp = new ORDER_DETAIL();
                 temp.ORDER_ID = order.ID;
