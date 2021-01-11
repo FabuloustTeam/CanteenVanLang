@@ -177,8 +177,7 @@ namespace CanteenVanLang.Controllers
             newItem.MENU = choosenMenu;
             newItem.QUANTITY = 1;
             newItem.UNIT_PRICE = choosenMenu.PRICE;
-
-            GetCart();
+            
             cart.Add(newItem);
             var hashtable = new Hashtable();
             foreach (var detail in cart)
@@ -195,6 +194,7 @@ namespace CanteenVanLang.Controllers
             cart.Clear();
             foreach (ORDER_DETAIL item in hashtable.Values)
                 cart.Add(item);
+
             return RedirectToAction("Cart");
         }
 
