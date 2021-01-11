@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CanteenVanLang.Models.ORDER_DETAIL>
 @using CanteenVanLang.Models
 @{
-    ViewBag.Title = "Cart";
+    ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var total = 0;
 }
@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate mb-5 text-center">
-                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Trang chủ <i class="fa fa-chevron-right"></i></a></span></p>
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="@Url.Action("Index", "Home")">Trang chủ <i class="fa fa-chevron-right"></i></a></span></p>
                 <h2 class="mb-0 bread">Giỏ hàng</h2>
             </div>
         </div>

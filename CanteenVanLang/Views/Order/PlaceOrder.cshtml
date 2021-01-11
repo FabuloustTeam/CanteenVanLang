@@ -1,7 +1,7 @@
 ﻿@model CanteenVanLang.Models.ORDER
 @using CanteenVanLang.Models
 @{
-    ViewBag.Title = "Đơn đặt hàng thành công";
+    ViewBag.Title = "Đặt hàng thành công";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     var listOrderDetails = ViewBag.listOrderDetails as List<ORDER_DETAIL>;
     var total = 0;
@@ -22,13 +22,6 @@
                     <span>
                         <a href="@Url.Action("Cart", "Order")">
                             Giỏ hàng
-                            <i class="fa fa-chevron-right"></i>
-                        </a>
-                        <i class="fa fa-chevron-right"></i>
-                    </span>
-                    <span>
-                        <a href="@Url.Action("CheckOut", "Order")">
-                            Đặt hàng
                             <i class="fa fa-chevron-right"></i>
                         </a>
                     </span>
