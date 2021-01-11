@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label for="firstname">Email</label>
                                 <input type="text" class="form-control" placeholder="" name="email" id="email" />
-                                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger", @required = "true" })
 
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                         <div class="col-md-6 offset-md-3">
                             <div class="form-group">
                                 <label for="streetaddress">Mật khẩu</label>
-                                <input type="password" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password" required>
                                 @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
                                 @if (Convert.ToBoolean(Session["customerNotFound"]) || Convert.ToBoolean(Session["incorrectPwd"]))
                                 {
@@ -70,7 +70,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
+    @*<script>
         $('#target').submit(function (event) {
             var emailField = $('#email');
             var passwordField = $('#password');
@@ -83,5 +83,5 @@
                 event.preventDefault();
             }
         });
-    </script>
+    </script>*@
 }

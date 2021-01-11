@@ -138,13 +138,27 @@ namespace CanteenVanLang.Areas.Customer.Controllers
 
         private void ValidateLogIn(string email, string password)
         {
-            if (email.Trim() == "")
+            if(email == null)
             {
                 ModelState.AddModelError("EMAIL", "Vui lòng nhập Email");
             }
-            if (password.Trim() == "")
+            else
+            {
+                if (email.Trim() == "")
+                {
+                    ModelState.AddModelError("EMAIL", "Vui lòng nhập Email");
+                }
+            }
+            if(password == null)
             {
                 ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
+            }
+            else
+            {
+                if (password.Trim() == "")
+                {
+                    ModelState.AddModelError("PASSWORD", "Vui lòng nhập mật khẩu");
+                }
             }
         }
 
