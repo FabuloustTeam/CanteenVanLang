@@ -1,0 +1,131 @@
+﻿@model IEnumerable<CanteenVanLang.Models.ORDER_DETAIL>
+@using CanteenVanLang.Models
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    var total = 0;
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('@Url.Content("~/Images/Sliders/1.jpg")');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate mb-5 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Trang chủ <i class="fa fa-chevron-right"></i></a></span></p>
+                <h2 class="mb-0 bread">Giỏ hàng</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="table">
+                <table class="table">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>Tên món ăn</th>
+                            <th>Giá</th>
+                            <th style="width: 13%">Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="alert" role="alert">
+                                <td></td>
+                                <td>
+                                    <div class="img" style="background-image: url(@Url.Content("~"+item.MENU.FOOD.IMAGE_URL));"></div>
+                                </td>
+                                <td>
+                                    <div class="email">
+                                        <span>@item.MENU.FOOD.FOOD_NAME</span>
+                                        @*<span>@item.MENU.FOOD.DESCRIPTION.Substring(0, 50)</span>*@
+                                    </div>
+                                </td>
+                                <td>@item.UNIT_PRICE.ToString("N0")</td>
+                                <td class="quantity">
+                                    <div class="input-group">
+                                        <input style="text-align: center" type="text" name="quantity" class="quantity form-control input-number" value="@item.QUANTITY" min="1" max="100">
+                                    </div>
+                                </td>
+                                <td>@((item.UNIT_PRICE * item.QUANTITY).ToString("N0"))</td>
+                                <td>
+                                    <button onclick="remove(@item.ID)" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            total += item.UNIT_PRICE * item.QUANTITY;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col col-lg-3 col-md-4 mt-5 cart-wrap ftco-animate">
+                <p class="">
+                    <span style="font-weight: bold">Tổng tiền</span>
+                    <span>&nbsp;</span>
+                    <span>@total.ToString("N0")</span>
+                </p>
+                <p class="text-center"><button type="button" id="check-out" class="btn btn-primary py-3 px-4">Đặt hàng</button></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function remove(idDetails) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Remove", "Order")",
+                data: JSON.stringify({ id: idDetails }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        swal("Xóa món ăn khỏi giỏ hàng thành công", "", 'success');
+                    } else {
+                        swal("Lỗi", "Xóa món ăn khỏi giỏ hàng không thành công", 'error');
+                    }
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        $("#check-out").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("check", "Order")",
+                data: JSON.stringify({ a: "a" }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    if (r.success) {
+                        window.location.href = "@Url.Action("CheckOut", "Order")"
+                    } else {
+                        if (r.noItem) {
+                            swal("Xin lỗi", "Vui lòng thêm món ăn vào đơn đặt hàng", 'error');
+                        }
+                        if (r.name) {
+                            swal("Xin lỗi", "Số lượng còn của món ăn " + r.name + " không đủ, vui lòng điều chỉnh lại số lượng món", 'error');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

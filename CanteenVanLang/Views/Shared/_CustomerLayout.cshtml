@@ -72,7 +72,7 @@
                             <p class="mb-0"><a href="#" class="price">$25.99</a><span class="quantity ml-3">Quantity: 01</span></p>
                         </div>
                     </div>
-                    <a class="dropdown-item text-center btn-link d-block w-100" href="#">
+                    <a class="dropdown-item text-center btn-link d-block w-100" href="@Url.Action("Cart", "Order")">
                         View All
                         <span class="ion-ios-arrow-round-forward"></span>
                     </a>
@@ -205,5 +205,6 @@
 <script src="~/Content/customer/js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
 @RenderSection("scripts", required: false) @*Chuyên Add Script vào*@
 

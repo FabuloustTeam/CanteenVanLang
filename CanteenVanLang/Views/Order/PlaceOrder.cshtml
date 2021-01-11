@@ -1,0 +1,96 @@
+﻿@model CanteenVanLang.Models.ORDER
+@using CanteenVanLang.Models
+@{
+    ViewBag.Title = "PlaceOrder";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    var listOrderDetails = ViewBag.listOrderDetails as List<ORDER_DETAIL>;
+    var total = 0;
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate mb-5 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Trang chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giỏ hàng <i class="fa fa-chevron-right"></i></span></p>
+                <h2 class="mb-0 bread">Đặt hàng</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 ftco-animate">
+                <form action="#" class="billing-form">
+                    <h3 class="mb-4 billing-heading" style="text-align: center">Thông tin đơn hàng</h3>
+                    <div class="row align-items-end">
+                        <div class="col-md-8">
+                            <div class="form-group" style="text-align: center">
+                                <label for="firstname">Tên khách hàng</label>
+                                <span>&nbsp;</span>
+                                <span>&nbsp;</span>
+                                <span>@Model.CUSTOMER.FULLNAME</span>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        <div class="w-100"></div>
+                        <div class="col-md-8">
+                            <div class="form-group" style="text-align: center">
+                                <label for="streetaddress">Thời gian đặt</label>
+                                <span>&nbsp;</span>
+                                <span>&nbsp;</span>
+                                <span>@(((DateTime) Model.DATE).ToString("dd/MM/yyyy"))</span>
+                            </div>
+                        </div>
+                    </div>
+                </form><!-- END -->
+                <div class="table">
+                    <table class="table">
+                        <tr>
+
+                            <th>Tên món ăn</th>
+                            <th>Đơn giá</th>
+                            <th style="width: 18%">Số lượng</th>
+                            <th>Thành tiền</th>
+
+                        </tr>
+                        @foreach (var item in listOrderDetails)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="email">
+                                        <span>@item.MENU.FOOD.FOOD_NAME</span>
+                                    </div>
+                                </td>
+                                <td>@item.UNIT_PRICE.ToString("N0")</td>
+                                <td>@item.QUANTITY</td>
+                                <td>@((item.UNIT_PRICE * item.QUANTITY).ToString("N0"))</td>
+                            </tr>
+                            total += item.UNIT_PRICE * item.QUANTITY;
+                        }
+                    </table>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col col-lg-3 col-md-4 mt-5 cart-wrap ftco-animate">
+                        <p class="">
+                            <span style="font-weight: bold">Tổng tiền</span>
+                            <span>&nbsp;</span>
+                            <span>@total.ToString("N0")</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt-5 pt-3" style="text-align: center">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("Index", "Food")" class="btn btn-primary py-2 px-4" style="width: 120px; margin: 50px">Mua tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .col-md-8 -->
+        </div>
+    </div>
+</section>
