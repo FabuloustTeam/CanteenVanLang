@@ -103,7 +103,8 @@
             </div>
 
             <div>
-                <span>Nhân viên: @Model.ACCOUNT.FULLNAME</span>
+                <span>Nhân viên: @if (Model.ACCOUNT_ID != null)
+                {@Model.ACCOUNT.FULLNAME}</span>
             </div>
 
             <div>
@@ -223,7 +224,7 @@
     </div>
     <footer>
         <section id="memo">
-            <button type="button" class="btn-print" onclick="window.print()">In hóa đơn</button>
+            <button type="button" class="btn-print" onclick="print()">In hóa đơn</button>
             <a href="@Url.Action("Details", "Order", new { id = Model.ID })" style="float: right; margin-right: 40px">
                 <button type="button" class="btn-print" style="background-color: #fff; border-color: #f3f5f6; color: black">Hủy</button>
             </a>
@@ -233,6 +234,12 @@
 </html>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function print() {
+            window.print();
+        }
+    </script>
+
     <script src="~/Content/generator.min.js"></script>
     <script src="http://cdn.invoicebus.com/generator/generator.min.js?data=data.js"></script>
     <script type="text/javascript" src="http://cdn.invoicebus.com/generator/jquery.min.js"></script>

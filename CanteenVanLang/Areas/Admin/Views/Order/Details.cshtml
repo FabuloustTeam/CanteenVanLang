@@ -26,10 +26,8 @@
 
                     <button onclick="DeleteOrder()" style="float: right; margin-right: 40px" type="button" class="btn btn-sm btn-light">Hủy</button>
 
-                    <a href="@Url.Action("Print", "Order", new { id = idOrder })" style="float: right; margin-right: 40px">
-                        <button type="button" class="btn btn-sm btn-light">In</button>
-                    </a>
-
+                    <button onclick="print()" type="button" class="btn btn-sm btn-light" style="float: right; margin-right: 40px">In</button>
+                  
                     <a href="@Url.Action("Update", "Order", new { id = idOrder })" style="float: right; margin-right: 40px">
                         <button type="button" class="btn btn-sm btn-primary">Cập nhật</button>
                     </a>
@@ -152,6 +150,14 @@
                         }
                     }
                 });
+            }
+        }
+
+        function print() {
+            if (@Model.STATUS == 3 || @Model.STATUS == 4) {
+                alert("Bạn không thể in hoá đơn này. Hóa đơn chỉ được in với đơn đặt hàng đã thanh toán hoặc chưa dùng.");
+            } else {
+                window.location.href = "@Url.Action("Print", "Order", new { id = idOrder })";
             }
         }
     </script>

@@ -39,6 +39,8 @@ namespace CanteenVanLang.Areas.Admin.Controllers
             return View(printData);
         }
 
+      
+
         private List<MENU> getMenuToday()
         {
             var today = DateTime.Now;
